@@ -11,6 +11,7 @@
 <h1>Events Post List</h1>
 {% for post in object_list %}
 <h2>{{ post.event_name }}</h2>
+<p>Posted by: {{ post.author.username }}</p>
 <p>Date: {{ post.date }}</p>
 <p>Race Type: {{ post.get_race_type_display }}</p>
 <p>Location: {{ post.location }}</p>
@@ -20,7 +21,7 @@
 <p>Course Map: <a href="{{ post.course_map }}">Link</a></p>
 {% endif %}
 
-<p>Posted by: {{ post.author.username }}</p>
+
 
 {% endfor %}
 </body>
