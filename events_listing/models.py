@@ -30,6 +30,12 @@ class PostEvent(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
 
+    class Meta:
+        ordering = ["date"]
+
+    def __str__(self):
+        return f"{self.event_name} | Posted by {self.author} | Event date {self.date.strftime('%d %B %Y')}"
+
 class Comment(models.Model):
     post = models.ForeignKey(
         PostEvent, on_delete=models.CASCADE, related_name="comments")
