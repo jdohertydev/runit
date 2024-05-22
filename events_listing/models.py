@@ -6,11 +6,22 @@ STATUS = ((0, "Draft"), (1, "Published"))
 # Create your models here.
 
 class PostEvent(models.Model):
+    ROAD = 'Road'
+    TRAIL = 'Trail'
+    MIXED = 'Mixed'
+
+    RACE_TYPE_CHOICES = [
+        (ROAD, 'Road'),
+        (TRAIL, 'Trail'),
+        (MIXED, 'Mixed'),
+    ]
+
     event_name = models.CharField(max_length=200)
-    date = models.DateTimeField()
     slug = models.SlugField(max_length=200, unique=True)
+    date = models.DateTimeField()
+    race_type = models.CharField(max_length=10, choices=RACE_TYPE_CHOICES)    
     author = models.ForeignKey(
-    User, on_delete=models.CASCADE, related_name="event_posts"
+        User, on_delete=models.CASCADE, related_name="event_posts"
     )
     location = models.CharField(max_length=200)
     description = models.TextField()
