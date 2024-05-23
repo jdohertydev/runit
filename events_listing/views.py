@@ -6,4 +6,5 @@ from .models import PostEvent
 
 class PostList(generic.ListView):
     queryset = PostEvent.objects.all()
-    template_name = "post_list.html"
+    template_name = "events_listing/index.html"
+    paginate_by = 6
