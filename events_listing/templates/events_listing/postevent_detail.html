@@ -31,16 +31,17 @@
                     <p>{{ post.get_race_type_display }}</p>
                     <h5>Location</h5>
                     <p>{{ post.location }}</p>
-                    <h5>Description</h5>
-                    <p>{{ post.description|safe }}</p>
-                    <h5>Max Participants</h5>
-                    <p>{{ post.max_participants }}</p>
                     <h5>Course Map</h5>
                     {% if post.course_map %}
                     <p><a href="{{ post.course_map }}" target="_blank">View Course Map</a></p>
                     {% else %}
                     <p>No course map available.</p>
                     {% endif %}
+                    <h5>Description</h5>
+                    <p>{{ post.description|safe }}</p>
+                    <h5>Max Participants</h5>
+                    <p>{{ post.max_participants }}</p>
+
                 </div>
             </div>
         </div>

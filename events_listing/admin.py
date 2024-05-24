@@ -11,6 +11,9 @@ class EventPostAdmin(SummernoteModelAdmin):
     prepopulated_fields = {'slug': ('event_name',)}
     summernote_fields = ('description',)
     
-# Register your models here.
+# Specify the order of fields in the admin form
+    fields = ['event_name', 'slug', 'date', 'race_type', 'author', 'location', 'course_map', 'description', 'max_participants', 'status']
+
+# Register Comment model
 
 admin.site.register(Comment)
