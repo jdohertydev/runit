@@ -49,4 +49,15 @@ class Comment(models.Model):
         ordering = ["created_on"]
 
     def __str__(self):
-        return f"Comment '{self.body}' by {self.author}" 
+        return f"Comment '{self.body}' by {self.author}"
+
+class EventSignUp(models.Model):
+    event = models.ForeignKey(PostEvent, on_delete=models.CASCADE, related_name='signups')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='event_signups')
+    signed_up_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('event', 'user')
+
+    def __str__(self):
+        return f"{self.user.username} signed up for {self.event.event_name}"

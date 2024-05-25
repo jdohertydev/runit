@@ -45,7 +45,7 @@
                 </div>
             </div>
 
-            <!-- Displaying count of comments -->
+            <!-- Displaying count of comments and comments -->
             <div class="row">
                 <div class="col-12">
                     <strong class="text-secondary">
@@ -56,16 +56,17 @@
                     <hr>
                 </div>
             </div>
-            <!-- Displaying Comments -->
+            <!-- Comments section -->
             <div class="row">
                 <div class="col-md-8 card mb-4 mt-3">
-                    <h3>Comments:</h3>
                     <div class="card-body">
+                        <h3>Comments:</h3>
                         <!-- Loop through each comment in comments -->
+                        {% if comments %}
                         {% for comment in comments %}
                         <div class="p-2 comments
-                            {% if not comment.approved and comment.author == user %}
-                            faded{% elif not comment.approved %} d-none{% endif %}">
+                                {% if not comment.approved and comment.author == user %}
+                                faded{% elif not comment.approved %} d-none{% endif %}">
                             <p class="font-weight-bold">
                                 {{ comment.author }}
                                 <span class="font-weight-normal">
@@ -82,13 +83,17 @@
                             {% endif %}
                         </div>
                         {% endfor %}
+                        {% else %}
+                        <p>There are no comments yet.</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Creating New Comments -->
+        <!-- Creating New Comments section -->
         <div class="col-md-4 card mb-4 mt-3">
             <div class="card-body">
+                <!-- Leave a comment section -->
                 {% if user.is_authenticated %}
                 <h3>Leave a comment:</h3>
                 <p>Posting as: {{ user.username }}</p>
@@ -100,9 +105,44 @@
                 {% else %}
                 <p>Log in to leave a comment</p>
                 {% endif %}
+                <hr>
+                <!-- Sign-up/Unsubscribe Buttons -->
+
+                <div class="col-md-8 card mb-4 mt-3">
+                    <h3>List of Participants:</h3>
+
+                    {% if signups %}
+                    <ol>
+                        {% for signup in signups %}
+                        <li>{{ signup.user.username }}</li>
+                        {% endfor %}
+                    </ol>
+                    {% else %}
+                    <p>No one has signed up yet.</p>
+                    {% endif %}
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-12">
+                        {% if user.is_authenticated %}
+                        <form method="post">
+                            {% csrf_token %}
+                            {% if user_signed_up %}
+                            <button type="submit" name="unsubscribe" class="btn btn-danger">Unsubscribe</button>
+                            {% else %}
+                            <button type="submit" name="signup" class="btn btn-success">Sign Up</button>
+                            {% endif %}
+                        </form>
+                        {% else %}
+                        <p><a href="{% url 'account_login' %}?next={{ request.path }}">Log in</a> to sign up for
+                            this event.</p>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 {% endblock content %}
