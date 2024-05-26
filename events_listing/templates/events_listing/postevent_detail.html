@@ -7,9 +7,7 @@
     <div class="container">
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
-                <!-- Event title goes in these h1 tags -->
                 <h1 class="post-title">{{ post.event_name }}</h1>
-                <!-- Event author goes before the | the event's created date goes after -->
                 <p class="post-subtitle">Posted by: {{ post.author.username }} | {{ post.created_on|date:"d M Y" }}</p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
@@ -45,7 +43,6 @@
                 </div>
             </div>
 
-            <!-- Displaying count of comments and comments -->
             <div class="row">
                 <div class="col-12">
                     <strong class="text-secondary">
@@ -56,30 +53,23 @@
                     <hr>
                 </div>
             </div>
-            <!-- Comments section -->
+
             <div class="row">
                 <div class="col-md-8 card mb-4 mt-3">
                     <div class="card-body">
                         <h3>Comments:</h3>
-                        <!-- Loop through each comment in comments -->
                         {% if comments %}
                         {% for comment in comments %}
-                        <div class="p-2 comments
-                                {% if not comment.approved and comment.author == user %}
-                                faded{% elif not comment.approved %} d-none{% endif %}">
+                        <div class="p-2 comments {% if not comment.approved and comment.author == user %} faded{% elif not comment.approved %} d-none{% endif %}">
                             <p class="font-weight-bold">
                                 {{ comment.author }}
-                                <span class="font-weight-normal">
-                                    {{ comment.created_on|date:"d M Y H:i" }}
-                                </span> wrote:
+                                <span class="font-weight-normal">{{ comment.created_on|date:"d M Y H:i" }}</span> wrote:
                             </p>
                             <div id="comment{{ comment.id }}">
                                 {{ comment.body|linebreaks }}
                             </div>
                             {% if not comment.approved and comment.author == user %}
-                            <p class="approval">
-                                This comment is awaiting approval
-                            </p>
+                            <p class="approval">This comment is awaiting approval</p>
                             {% endif %}
                         </div>
                         {% endfor %}
@@ -90,15 +80,14 @@
                 </div>
             </div>
         </div>
-        <!-- Creating New Comments section -->
+
         <div class="col-md-4 card mb-4 mt-3">
             <div class="card-body">
-                <!-- Leave a comment section -->
                 {% if user.is_authenticated %}
                 <h3>Leave a comment:</h3>
                 <p>Posting as: {{ user.username }}</p>
                 <form id="commentForm" method="post" style="margin-top: 1.3em;">
-                    {{ comment_form | crispy }}
+                    {{ comment_form|crispy }}
                     {% csrf_token %}
                     <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
                 </form>
@@ -106,22 +95,8 @@
                 <p>Log in to leave a comment</p>
                 {% endif %}
                 <hr>
+
                 <!-- Sign-up/Unsubscribe Buttons -->
-
-                <div class="col-md-8 card mb-4 mt-3">
-                    <h3>List of Participants:</h3>
-
-                    {% if signups %}
-                    <ol>
-                        {% for signup in signups %}
-                        <li>{{ signup.user.username }}</li>
-                        {% endfor %}
-                    </ol>
-                    {% else %}
-                    <p>No one has signed up yet.</p>
-                    {% endif %}
-                </div>
-
                 <div class="row mb-4">
                     <div class="col-12">
                         {% if user.is_authenticated %}
@@ -134,15 +109,27 @@
                             {% endif %}
                         </form>
                         {% else %}
-                        <p><a href="{% url 'account_login' %}?next={{ request.path }}">Log in</a> to sign up for
-                            this event.</p>
+                        <p><a href="{% url 'account_login' %}?next={{ request.path }}">Log in</a> to sign up for this event.</p>
                         {% endif %}
                     </div>
+                </div>
+
+                <!-- List of Participants -->
+                <div class="col-md-8 card mb-4 mt-3">
+                    <h3>List of Participants:</h3>
+                    {% if signups %}
+                    <ol>
+                        {% for signup in signups %}
+                        <li>{{ signup.user.username }}</li>
+                        {% endfor %}
+                    </ol>
+                    {% else %}
+                    <p>No one has signed up yet.</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 {% endblock content %}
