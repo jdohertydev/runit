@@ -1,39 +1,93 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Project Title
 
-Welcome,
+## Introduction
+Welcome to [Project Title] - a website for [describe the business or purpose]. 
 
-This is the Code Institute student template for Codeanywhere. If you are using Gitpod then you need [this template](https://github.com/Code-Institute-Org/gitpod-full-template) instead.  We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+## Live Site
+You can view the live site [here](#).
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **August 30th, 2023**
+## GitHub Pages
+You can view the GitHub code pages [here](#).
 
-## Codeanywhere Reminders
+## Contents
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
 
-`python3 -m http.server`
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+## User Experience (UX)
+### User Stories
+#### Client Goals
+- [Client goal 1]
+- [Client goal 2]
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere with no-cache, you can use this alias for `python3 -m http.server`.
+#### First Time Visitor Goals
+- [First time visitor goal 1]
+- [First time visitor goal 2]
 
-`http_server`
+#### Returning Visitor Goals
+- [Returning visitor goal 1]
+- [Returning visitor goal 2]
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+#### Frequent Visitor Goals
+- [Frequent visitor goal 1]
+- [Frequent visitor goal 2]
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+### Design
+#### Colour Scheme
+[Description of colour scheme]
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+#### Typography
+[Description of typography]
 
-To log into the Heroku toolbelt CLI:
+#### Imagery
+[Description of imagery]
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+#### Wireframes
+[Description of wireframes]
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+## Features
+### General Features on Each Page
+- [Feature 1]
+- [Feature 2]
 
----
+### Future Implementations
+- [Future implementation 1]
+- [Future implementation 2]
 
-Happy coding!
+## Accessibility
+[Accessibility considerations]
+
+## Technologies Used
+### Languages Used
+- [Language 1]
+- [Language 2]
+
+### Frameworks, Libraries & Programs Used
+- [Framework/Library/Program 1]
+- [Framework/Library/Program 2]
+
+## Deployment
+[Deployment process description]
+
+### Local Development
+#### How to Fork
+[Forking instructions]
+
+#### How to Clone
+[Cloning instructions]
+
+## Testing
+[Testing process description]
+
+## Credits
+### Code Used
+- [Code resource 1]
+- [Code resource 2]
+
+### Content
+[Content credits]
+
+### Media
+[Media credits]
+
+## Acknowledgments
+[Acknowledgments]
