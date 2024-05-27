@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.utils import timezone
 from .models import PostEvent, EventSignUp, Comment
 from .forms import CommentForm
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 class PostList(generic.ListView):
     template_name = "events_listing/index.html"
@@ -59,3 +61,41 @@ def postevent_detail(request, slug):
             "signups": post.signups.all(),
         },
     )
+
+def comment_edit(request, slug, comment_id):
+    """
+    View to edit comments
+    """
+    if request.method == "POST":
+        queryset = PostEvent.objects.filter(status=1)
+        post = get_object_or_404(queryset, slug=slug)
+        comment = get_object_or_404(Comment, pk=comment_id)
+        comment_form = CommentForm(data=request.POST, instance=comment)
+
+        if comment_form.is_valid() and comment.author == request.user:
+            comment = comment_form.save(commit=False)
+            comment.post = post
+            comment.approved = False
+            comment.save()
+            messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+
+    return HttpResponseRedirect(reverse('postevent_detail', args=[slug]))
+
+
+def comment_delete(request, slug, comment_id):
+    """
+    View to delete comment
+    """
+    queryset = PostEvent.objects.filter(status=1)
+    post = get_object_or_404(queryset, slug=slug)
+    comment = get_object_or_404(Comment, pk=comment_id)
+
+    if comment.author == request.user:
+        comment.delete()
+        messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+
+    return HttpResponseRedirect(reverse('postevent_detail', args=[slug]))
