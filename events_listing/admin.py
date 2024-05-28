@@ -11,7 +11,7 @@ class EventPostAdmin(SummernoteModelAdmin):
     summernote_fields = ('description',)
 
     # Specify the order of fields in the admin form
-    fields = ['event_name', 'slug', 'date', 'race_type', 'author', 'location', 'course_map', 'description', 'max_participants', 'status']
+    fields = ['event_name', 'slug', 'date', 'race_type', 'featured_image', 'author', 'location', 'course_map', 'description', 'max_participants', 'status']
 
 @admin.register(EventSignUp)
 class EventSignUpAdmin(admin.ModelAdmin):
