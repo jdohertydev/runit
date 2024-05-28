@@ -21,6 +21,9 @@ def postevent_detail(request, slug):
     post = get_object_or_404(queryset, slug=slug)
     comments = post.comments.all().order_by("-created_on")
     comment_count = post.comments.filter(approved=True).count()
+       
+    # Pass the post object to the template context
+    remaining_places = max(post.max_participants - post.signups.count(), 0)
     
     # Check if the user is signed up for the event
     user_signed_up = request.user.is_authenticated and EventSignUp.objects.filter(event=post, user=request.user).exists()
@@ -35,6 +38,9 @@ def postevent_detail(request, slug):
             else:
                 messages.add_message(request, messages.ERROR, 'The event is full.')
             return redirect('postevent_detail', slug=post.slug)
+
+
+
         elif 'unsubscribe' in request.POST:
             EventSignUp.objects.filter(event=post, user=request.user).delete()
             messages.add_message(request, messages.SUCCESS, 'You have unsubscribed from the event.')
@@ -59,6 +65,7 @@ def postevent_detail(request, slug):
             "comment_form": comment_form,
             "user_signed_up": user_signed_up,
             "signups": post.signups.all(),
+            "remaining_places": remaining_places, 
         },
     )
 

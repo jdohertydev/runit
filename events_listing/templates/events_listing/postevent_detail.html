@@ -17,7 +17,7 @@
                 <img src="{{ post.featured_image.url }}" class="scale" alt="{{ post.title }}">
                 {% endif %}
             </div>
-        </div>    
+        </div>
     </div>
 </div>
 
@@ -109,10 +109,18 @@
                 <div class="row mb-4">
                     <div class="col-12">
                         {% if user.is_authenticated %}
+                        {% if remaining_places > 0 %}
                         {% if user_signed_up %}
                         <button type="button" id="unsubscribeButton" class="btn btn-danger">Unsubscribe</button>
                         {% else %}
                         <button type="button" id="signupButton" class="btn btn-success">Sign Up</button>
+                        {% endif %}
+                        {% else %}
+                        {% if user_signed_up %}
+                        <button type="button" id="unsubscribeButton" class="btn btn-danger">Unsubscribe</button>
+                        {% else %}
+                        <p>No more places available</p>
+                        {% endif %}
                         {% endif %}
                         {% else %}
                         <p><a href="{% url 'account_login' %}?next={{ request.path }}">Log in</a> to sign up for this
@@ -121,9 +129,11 @@
                     </div>
                 </div>
 
+
                 <!-- List of Participants -->
                 <div class="col-md-8 card mb-4 mt-3">
                     <h3>List of Participants:</h3>
+                    <p>Remaining places: {{ remaining_places }}</p>
                     {% if signups %}
                     <ol>
                         {% for signup in signups %}
