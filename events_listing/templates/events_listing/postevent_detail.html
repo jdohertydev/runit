@@ -105,14 +105,11 @@
                 <div class="row mb-4">
                     <div class="col-12">
                         {% if user.is_authenticated %}
-                        <form method="post">
-                            {% csrf_token %}
-                            {% if user_signed_up %}
-                            <button type="submit" name="unsubscribe" class="btn btn-danger">Unsubscribe</button>
-                            {% else %}
-                            <button type="submit" name="signup" class="btn btn-success">Sign Up</button>
-                            {% endif %}
-                        </form>
+                        {% if user_signed_up %}
+                        <button type="button" id="unsubscribeButton" class="btn btn-danger">Unsubscribe</button>
+                        {% else %}
+                        <button type="button" id="signupButton" class="btn btn-success">Sign Up</button>
+                        {% endif %}
                         {% else %}
                         <p><a href="{% url 'account_login' %}?next={{ request.path }}">Log in</a> to sign up for this
                             event.</p>
@@ -137,6 +134,7 @@
         </div>
     </div>
 </div>
+
 <!-- Delete confirmation modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -155,8 +153,29 @@
         </div>
     </div>
 </div>
+
+<!-- Sign-up/Unsubscribe confirmation modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="signupModalLabel">Confirm action</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to <span id="actionType">sign up</span> for this event?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="signupConfirm" class="btn btn-primary">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock content %}
 
 {% block extras %}
 <script src="{% static 'js/comments.js' %}"></script>
+<script src="{% static 'js/signup.js' %}"></script>
 {% endblock %}
