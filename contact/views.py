@@ -1,11 +1,8 @@
-from django.shortcuts import render
-from django.core.mail import send_mail
-from django.conf import settings
+from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from .forms import ContactForm
+from .models import ContactMessage
 
-@login_required
 def contact_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -14,16 +11,11 @@ def contact_view(request):
             email = form.cleaned_data['email']
             message = form.cleaned_data['message']
             
-            # Send email to superuser
-            send_mail(
-                subject=f'Message from {name}',
-                message=message,
-                from_email=email,
-                recipient_list=[settings.DEFAULT_FROM_EMAIL],
-            )
+            # Save the message to the database
+            ContactMessage.objects.create(name=name, email=email, message=message)
             
             messages.success(request, 'Your message has been sent successfully.')
-            return render(request, 'contact/contact.html', {'form': form})
+            return redirect('contact')  # Redirect to the same page after successful submission
     else:
         if request.user.is_authenticated:
             initial_data = {
@@ -35,4 +27,3 @@ def contact_view(request):
             form = ContactForm()
     
     return render(request, 'contact/contact.html', {'form': form})
-
