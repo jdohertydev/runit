@@ -119,7 +119,7 @@
                 {% if signups %}
                 <ol>
                     {% for signup in signups %}
-                    <li>{{ signup.user.username }}</li>
+                    <li>{{ signup.user.first_name }} {{ signup.user.last_name }}</li>
                     {% endfor %}
                 </ol>
                 {% else %}
