@@ -8,10 +8,14 @@
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
                 <h1 class="post-title">{{ post.event_name }}</h1>
-                <p class="post-subtitle">Posted by: {{ post.author.username }} | {{ post.created_on|date:"d M Y" }}</p>
-                <p class="post-subtitle">Countdown: <span id="countdown"></span></p>
-                <p id="eventDate" data-event-date="{{ post.date|date:'Y-m-d H:i:s' }}" style="display:none;"></p>
+                <ul class="post-details">
+                    <li class="post-subtitle">Date: {{ post.date|date:"d M Y H:i" }}</li>
+                    <li class="post-subtitle">Race type: {{ post.get_race_type_display }}</li>
+                    <li class="post-subtitle">Location: {{ post.location }}</li>                    
+                </ul>
+                <p class="post-subtitle">Countdown: <span id="countdown"></span></p><p id="eventDate" data-event-date="{{ post.date|date:'Y-m-d H:i:s' }}" style="display:none;"></p>
             </div>
+            
             <div class="d-none d-md-block col-md-6 masthead-image">
                 {% if "placeholder" in post.featured_image.url %}
                 <img src="{% static 'images/default.jpg' %}" class="scale" alt="placeholder image">
@@ -30,23 +34,17 @@
                 <div class="card-body">
                     <h3 class="card-title">Event Details</h3>
                     <hr>
-                    <h5>Date and Time</h5>
-
-                    <p>{{ post.date|date:"d M Y H:i" }}</p>
-                    <h5>Race Type</h5>
-                    <p>{{ post.get_race_type_display }}</p>
-                    <h5>Location</h5>
-                    <p>{{ post.location }}</p>
+                    <h5>Description</h5>
+                    <p>{{ post.description|safe }}</p>
+                    <h5>Max Participants</h5>
+                    <p>{{ post.max_participants }}</p>
                     <h5>Course Map</h5>
                     {% if post.course_map %}
                     <p><a href="{{ post.course_map }}" target="_blank">View Course Map</a></p>
                     {% else %}
                     <p>No course map available.</p>
                     {% endif %}
-                    <h5>Description</h5>
-                    <p>{{ post.description|safe }}</p>
-                    <h5>Max Participants</h5>
-                    <p>{{ post.max_participants }}</p>
+                    <p>Posted by: {{ post.author.username }} | {{ post.created_on|date:"d M Y" }}</p>
                 </div>
             </div>
 
