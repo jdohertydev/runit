@@ -11,11 +11,12 @@
                 <ul class="post-details">
                     <li class="post-subtitle">Date: {{ post.date|date:"d M Y H:i" }}</li>
                     <li class="post-subtitle">Race type: {{ post.get_race_type_display }}</li>
-                    <li class="post-subtitle">Location: {{ post.location }}</li>                    
+                    <li class="post-subtitle">Location: {{ post.location }}</li>
                 </ul>
-                <p class="post-subtitle">Countdown: <span id="countdown"></span></p><p id="eventDate" data-event-date="{{ post.date|date:'Y-m-d H:i:s' }}" style="display:none;"></p>
+                <p class="post-subtitle">Countdown: <span id="countdown"></span></p>
+                <p id="eventDate" data-event-date="{{ post.date|date:'Y-m-d H:i:s' }}" style="display:none;"></p>
             </div>
-            
+
             <div class="d-none d-md-block col-md-6 masthead-image">
                 {% if "placeholder" in post.featured_image.url %}
                 <img src="{% static 'images/default.jpg' %}" class="scale" alt="placeholder image">
@@ -60,7 +61,7 @@
             </div>
 
             <div class="row">
-                <div class="col-md-8 card mb-4 mt-3">
+                <div class="col-12 card mb-4 mt-3">
                     <div class="card-body">
                         <h3>Comments:</h3>
                         {% if comments %}
@@ -89,22 +90,41 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-12 card mb-4 mt-3">
+                    <div class="card-body">
+                        {% if user.is_authenticated %}
+                        <h3>Leave a comment:</h3>
+                        <p>Posting as: {{ user.username }}</p>
+                        <form id="commentForm" method="post" style="margin-top: 1.3em;">
+                            {{ comment_form | crispy }}
+                            {% csrf_token %}
+                            <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
+                        </form>
+                        {% else %}
+                        <p><a href="{% url 'account_login' %}?next={{ request.path }}">Log in</a> to leave a comment.
+                        </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-4 card mb-4 mt-3">
             <div class="card-body">
-                {% if user.is_authenticated %}
-                <h3>Leave a comment:</h3>
-                <p>Posting as: {{ user.username }}</p>
-                <form id="commentForm" method="post" style="margin-top: 1.3em;">
-                    {{ comment_form | crispy }}
-                    {% csrf_token %}
-                    <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
-                </form>
+                <!-- List of Participants -->
+                <h3>List of Participants:</h3>
+                <p>Remaining places: {{ remaining_places }}</p>
+                {% if signups %}
+                <ol>
+                    {% for signup in signups %}
+                    <li>{{ signup.user.username }}</li>
+                    {% endfor %}
+                </ol>
                 {% else %}
-                <p><a href="{% url 'account_login' %}?next={{ request.path }}">Log in</a> to leave a comment.</p>
+                <p>No one has signed up yet.</p>
                 {% endif %}
-                <hr>
 
                 <!-- Sign-up/Unsubscribe Buttons -->
                 <div class="row mb-4">
@@ -129,26 +149,11 @@
                         {% endif %}
                     </div>
                 </div>
-
-
-                <!-- List of Participants -->
-                <div class="col-md-8 card mb-4 mt-3">
-                    <h3>List of Participants:</h3>
-                    <p>Remaining places: {{ remaining_places }}</p>
-                    {% if signups %}
-                    <ol>
-                        {% for signup in signups %}
-                        <li>{{ signup.user.username }}</li>
-                        {% endfor %}
-                    </ol>
-                    {% else %}
-                    <p>No one has signed up yet.</p>
-                    {% endif %}
-                </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- Delete confirmation modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
