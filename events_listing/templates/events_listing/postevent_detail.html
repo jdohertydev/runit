@@ -9,6 +9,8 @@
             <div class="col-md-6 masthead-text">
                 <h1 class="post-title">{{ post.event_name }}</h1>
                 <p class="post-subtitle">Posted by: {{ post.author.username }} | {{ post.created_on|date:"d M Y" }}</p>
+                <p class="post-subtitle">Countdown: <span id="countdown"></span></p>
+                <p id="eventDate" data-event-date="{{ post.date|date:'Y-m-d H:i:s' }}" style="display:none;"></p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
                 {% if "placeholder" in post.featured_image.url %}
@@ -29,6 +31,7 @@
                     <h3 class="card-title">Event Details</h3>
                     <hr>
                     <h5>Date and Time</h5>
+
                     <p>{{ post.date|date:"d M Y H:i" }}</p>
                     <h5>Race Type</h5>
                     <p>{{ post.get_race_type_display }}</p>
@@ -190,6 +193,7 @@
 {% endblock content %}
 
 {% block extras %}
+<script src="{% static 'js/countdown.js' %}"></script>
 <script src="{% static 'js/comments.js' %}"></script>
 <script src="{% static 'js/signup.js' %}"></script>
 {% endblock %}
