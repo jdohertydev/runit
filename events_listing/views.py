@@ -3,9 +3,10 @@ from django.views import generic
 from django.contrib import messages
 from django.utils import timezone
 from .models import PostEvent, EventSignUp, Comment
-from .forms import CommentForm
+from .forms import CommentForm, EventFilterForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.db.models import Q
 
 class PostList(generic.ListView):
     template_name = "events_listing/index.html"
@@ -14,7 +15,46 @@ class PostList(generic.ListView):
     def get_queryset(self):
         current_datetime = timezone.now()
         queryset = PostEvent.objects.filter(date__gte=current_datetime)
+        
+        query = self.request.GET.get('q')
+        race_type = self.request.GET.get('race_type')
+        location = self.request.GET.get('location')
+
+        if query:
+            # Search in PostEvent model
+            queryset = queryset.filter(
+                Q(event_name__icontains=query) |
+                Q(description__icontains=query)
+            )
+
+            # Get IDs of matching objects from other models
+            event_signup_ids = EventSignUp.objects.filter(
+                Q(user__username__icontains=query) |
+                Q(event__event_name__icontains=query) |
+                Q(event__description__icontains=query)
+            ).values_list('event_id', flat=True)
+
+            comment_ids = Comment.objects.filter(
+                Q(author__username__icontains=query) |
+                Q(body__icontains=query)
+            ).values_list('post_id', flat=True)
+
+            # Filter PostEvent queryset based on IDs from other models
+            queryset = queryset | PostEvent.objects.filter(id__in=event_signup_ids)
+            queryset = queryset | PostEvent.objects.filter(id__in=comment_ids)
+        
+        if race_type:
+            queryset = queryset.filter(race_type=race_type)
+
+        if location:
+            queryset = queryset.filter(location__icontains=location)
+
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = EventFilterForm(self.request.GET or None)
+        return context
 
 def postevent_detail(request, slug):
     queryset = PostEvent.objects.filter(status=1)

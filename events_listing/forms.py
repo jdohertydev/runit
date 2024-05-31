@@ -1,4 +1,4 @@
-from .models import Comment
+from .models import Comment, PostEvent
 from allauth.account.forms import SignupForm
 from django import forms
 
@@ -20,3 +20,12 @@ class CustomSignupForm(SignupForm):
         user.last_name = self.cleaned_data['last_name']
         user.save()
         return user
+
+class EventFilterForm(forms.Form):
+    q = forms.CharField(required=False, label='Search')
+    race_type = forms.ChoiceField(
+        required=False,
+        choices=[('', 'All')] + PostEvent.RACE_TYPE_CHOICES,
+        label='Race Type'
+    )
+    location = forms.CharField(required=False, label='Location')
