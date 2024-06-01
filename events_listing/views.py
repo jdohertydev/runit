@@ -81,9 +81,9 @@ def postevent_detail(request, slug):
 
 
 
-        elif 'unsubscribe' in request.POST:
+        elif 'unregister' in request.POST:
             EventSignUp.objects.filter(event=post, user=request.user).delete()
-            messages.add_message(request, messages.SUCCESS, 'You have unsubscribed from the event.')
+            messages.add_message(request, messages.SUCCESS, 'You have unregistered from the event.')
             return redirect('postevent_detail', slug=post.slug)
         else:
             comment_form = CommentForm(data=request.POST)

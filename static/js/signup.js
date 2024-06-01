@@ -9,9 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
         signupModal.show();
     });
 
-    document.getElementById("unsubscribeButton")?.addEventListener("click", () => {
-        actionType.innerText = "unsubscribe";
-        signupConfirm.setAttribute("data-action", "unsubscribe");
+    document.getElementById("unregisterButton")?.addEventListener("click", () => { // Change to "unregisterButton"
+        actionType.innerText = "unregister";
+        signupConfirm.setAttribute("data-action", "unregister");
         signupModal.show();
     });
 

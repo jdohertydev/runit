@@ -126,19 +126,19 @@
                 <p>No one has signed up yet.</p>
                 {% endif %}
 
-                <!-- Sign-up/Unsubscribe Buttons -->
+                <!-- Sign-up/Unregister Buttons -->
                 <div class="row mb-4">
                     <div class="col-12">
                         {% if user.is_authenticated %}
                         {% if remaining_places > 0 %}
                         {% if user_signed_up %}
-                        <button type="button" id="unsubscribeButton" class="btn btn-danger">Unsubscribe</button>
+                        <button type="button" id="unregisterButton" class="btn btn-danger">Unregister</button>
                         {% else %}
                         <button type="button" id="signupButton" class="btn btn-success">Sign Up</button>
                         {% endif %}
                         {% else %}
                         {% if user_signed_up %}
-                        <button type="button" id="unsubscribeButton" class="btn btn-danger">Unsubscribe</button>
+                        <button type="button" id="unregisterButton" class="btn btn-danger">Unregister</button>
                         {% else %}
                         <p>No more places available</p>
                         {% endif %}
@@ -174,7 +174,7 @@
     </div>
 </div>
 
-<!-- Sign-up/Unsubscribe confirmation modal -->
+<!-- Sign-up/Unregister confirmation modal -->
 <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
