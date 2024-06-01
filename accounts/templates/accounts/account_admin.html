@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Update Your Account</h2>
+<form method="post" action="{% url 'account_update' %}">
+  {% csrf_token %}
+  {{ user_form.as_p }}
+  <button type="submit" class="btn btn-primary">Update Profile</button>
+</form>
+
+<hr>
+
+<h3>Change Password</h3>
+<button class="btn btn-secondary" id="toggle-password-change">Change Password</button>
+
+<div id="password-change-section" style="display:none;">
+  <form method="post" action="{% url 'account_password_change' %}">
+    {% csrf_token %}
+    {{ password_form.as_p }}
+    <button type="submit" class="btn btn-primary">Update Password</button>
+  </form>
+</div>
+
+<hr>
+
+<h3>Delete Account</h3>
+<button class="btn btn-danger" id="toggle-account-delete">Delete Account</button>
+
+<div id="account-delete-section" style="display:none;">
+  <form method="post" action="{% url 'account_delete' %}">
+    {% csrf_token %}
+    <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+    <button type="submit" class="btn btn-danger">Delete Account</button>
+  </form>
+</div>
+{% endblock %}
+
+{% block extras %}
+<script src="{% static 'js/account_admin.js' %}"></script>
+{% endblock %}
