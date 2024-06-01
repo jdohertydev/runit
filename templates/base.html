@@ -3,9 +3,7 @@
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
-{% url 'account_update' as account_update_url %}
-{% url 'account_delete' as account_delete_url %}
-{% url 'contact' as contact_url %}
+{% url 'contact' as contact_url %} 
 
 <!DOCTYPE html>
 <html class="h-100" lang="en">
@@ -47,19 +45,7 @@
                         <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
                             href="{% url 'home' %}">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == contact_url %}active{% endif %}" aria-current="page"
-                            href="{% url 'contact' %}">Contact</a>
-                    </li>
                     {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == account_update_url %}active{% endif %}" aria-current="page"
-                            href="{% url 'account_update' %}">Update Account</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == account_delete_url %}active{% endif %}" aria-current="page"
-                            href="{% url 'account_delete' %}">Delete Account</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page"
                             href="{% url 'account_logout' %}">Logout</a>
@@ -74,6 +60,10 @@
                             href="{% url 'account_login' %}">Login</a>
                     </li>
                     {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == contact_url %}active{% endif %}" aria-current="page"
+                            href="{% url 'contact' %}">Contact</a>
+                    </li>
                 </ul>
                 <span class="navbar-text text-muted">
                     The Leading Site for Running Event Listings
