@@ -61,7 +61,7 @@ def postevent_detail(request, slug):
     post = get_object_or_404(queryset, slug=slug)
     comments = post.comments.all().order_by("-created_on")
     comment_count = post.comments.filter(approved=True).count()
-       
+
     # Pass the post object to the template context
     remaining_places = max(post.max_participants - post.signups.count(), 0)
     
@@ -79,8 +79,6 @@ def postevent_detail(request, slug):
                 messages.add_message(request, messages.ERROR, 'The event is full.')
             return redirect('postevent_detail', slug=post.slug)
 
-
-
         elif 'unregister' in request.POST:
             EventSignUp.objects.filter(event=post, user=request.user).delete()
             messages.add_message(request, messages.SUCCESS, 'You have unregistered from the event.')
@@ -95,6 +93,9 @@ def postevent_detail(request, slug):
                 messages.add_message(request, messages.SUCCESS, 'Comment submitted and awaiting approval')
                 return redirect('postevent_detail', slug=post.slug)
 
+    # Check if the event has finished
+    event_finished = post.date < timezone.now()
+
     return render(
         request,
         "events_listing/postevent_detail.html",
@@ -105,9 +106,12 @@ def postevent_detail(request, slug):
             "comment_form": comment_form,
             "user_signed_up": user_signed_up,
             "signups": post.signups.all(),
-            "remaining_places": remaining_places, 
+            "remaining_places": remaining_places,
+            "event_finished": event_finished,  # Pass the event_finished variable to the template
         },
     )
+
+    
 
 def comment_edit(request, slug, comment_id):
     """
