@@ -66,8 +66,7 @@
                         <h3>Comments:</h3>
                         {% if comments %}
                         {% for comment in comments %}
-                        <div
-                            class="p-2 comments {% if not comment.approved and comment.author == user %} faded{% elif not comment.approved %} d-none{% endif %}">
+                        <div class="p-2 comments {% if not comment.approved and comment.author == user %} faded{% elif not comment.approved %} d-none{% endif %}">
                             <p class="font-weight-bold">
                                 {{ comment.author }}
                                 <span class="font-weight-normal">{{ comment.created_on|date:"d M Y H:i" }}</span> wrote:
@@ -130,22 +129,25 @@
                 <div class="row mb-4">
                     <div class="col-12">
                         {% if user.is_authenticated %}
-                        {% if remaining_places > 0 %}
-                        {% if user_signed_up %}
-                        <button type="button" id="unregisterButton" class="btn btn-danger">Unregister</button>
+                        {% if post.date > now %}
+                            {% if remaining_places > 0 %}
+                                {% if user_signed_up %}
+                                    <button type="button" id="unregisterButton" class="btn btn-danger">Unregister</button>
+                                {% else %}
+                                    <button type="button" id="signupButton" class="btn btn-success">Sign Up</button>
+                                {% endif %}
+                            {% else %}
+                                {% if user_signed_up %}
+                                    <button type="button" id="unregisterButton" class="btn btn-danger">Unregister</button>
+                                {% else %}
+                                    <p>No more places available</p>
+                                {% endif %}
+                            {% endif %}
                         {% else %}
-                        <button type="button" id="signupButton" class="btn btn-success">Sign Up</button>
+                            <p>This event has finished.</p>
                         {% endif %}
                         {% else %}
-                        {% if user_signed_up %}
-                        <button type="button" id="unregisterButton" class="btn btn-danger">Unregister</button>
-                        {% else %}
-                        <p>No more places available</p>
-                        {% endif %}
-                        {% endif %}
-                        {% else %}
-                        <p><a href="{% url 'account_login' %}?next={{ request.path }}">Log in</a> to sign up for this
-                            event.</p>
+                        <p><a href="{% url 'account_login' %}?next={{ request.path }}">Log in</a> to sign up for this event.</p>
                         {% endif %}
                     </div>
                 </div>

@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const timeLeft = eventDate - now;
 
         if (timeLeft < 0) {
-            countdownElement.innerHTML = "Event has started!";
+            countdownElement.innerHTML = "Event has finished.";
             return;
         }
 
