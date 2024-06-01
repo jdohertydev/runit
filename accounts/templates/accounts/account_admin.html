@@ -36,18 +36,22 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+                <form method="post" action="{% url 'account_delete' %}">
+                    {% csrf_token %}
+                    <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+                    <label for="password">Enter your password:</label>
+                    <input type="password" id="password" name="password">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <form method="post" action="{% url 'account_delete' %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Delete Account</button>
+                <button type="submit" class="btn btn-danger">Delete Account</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+
 
 {% endblock %}
 

@@ -1,4 +1,4 @@
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import authenticate, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import render, redirect
@@ -42,8 +42,13 @@ def account_password_change(request):
 @login_required
 def account_delete(request):
     if request.method == 'POST':
-        user = request.user
-        user.delete()
-        messages.success(request, 'Your account was successfully deleted!')
-        return redirect('home')
-    return redirect('account_update')
+        password = request.POST.get('password')
+        user = authenticate(username=request.user.username, password=password)
+        if user is not None:
+            user.delete()
+            messages.success(request, 'Your account was successfully deleted!')
+            return redirect('home')
+        else:
+            messages.error(request, 'Incorrect password. Please try again.')
+            return redirect('account_delete')
+    return render(request, 'accounts/account_admin.html')
