@@ -9,6 +9,7 @@ dj3-cloudinary-storage==0.0.6
 Django==4.2.13
 django-allauth==0.57.2
 django-crispy-forms==2.1
+django-sendgrid-v5==1.2.3
 django-summernote==0.8.20.0
 fonttools==4.53.0
 gunicorn==20.1.0
@@ -22,8 +23,6 @@ pyphen==0.15.0
 python-http-client==3.3.7
 python3-openid==3.2.0
 requests-oauthlib==2.0.0
-sendgrid==3.6.5
-sendgrid-django==4.2.0
 sqlparse==0.5.0
 starkbank-ecdsa==2.2.0
 urllib3==1.26.18

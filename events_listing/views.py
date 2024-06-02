@@ -73,17 +73,17 @@ def postevent_detail(request, slug):
         if 'signup' in request.POST:
             if post.signups.count() < post.max_participants:
                 EventSignUp.objects.create(event=post, user=request.user)
-                messages.add_message(request, messages.SUCCESS, 'You have signed up for the event. You should receive a confirmation email shortly')
+                messages.add_message(request, messages.SUCCESS, 'You have signed up for the event. You should receive a confirmation email shortly.')
 
                 # Send confirmation email
-                # if request.user.email:
-                #     send_mail(
-                #         'Event Signup Confirmation',
-                #         f'Thank you for signing up for {post.event_name}. The event will take place on {post.date} at {post.location}.',
-                #         settings.DEFAULT_FROM_EMAIL,
-                #         [request.user.email],
-                #         fail_silently=False,
-                #     )
+                if request.user.email:
+                    send_mail(
+                        'Event Signup Confirmation',
+                        f'Thank you for signing up for {post.event_name}. The event will take place on {post.date} at {post.location}.',
+                        settings.DEFAULT_FROM_EMAIL,
+                        [request.user.email],
+                        fail_silently=False,
+                    )
             else:
                 messages.add_message(request, messages.ERROR, 'The event is full.')
             return redirect('postevent_detail', slug=post.slug)
