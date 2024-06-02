@@ -7,6 +7,8 @@ from .forms import CommentForm, EventFilterForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.db.models import Q
+from django.core.mail import send_mail
+from django.conf import settings
 
 class PostList(generic.ListView):
     template_name = "events_listing/index.html"
@@ -62,10 +64,7 @@ def postevent_detail(request, slug):
     comments = post.comments.all().order_by("-created_on")
     comment_count = post.comments.filter(approved=True).count()
 
-    # Pass the post object to the template context
     remaining_places = max(post.max_participants - post.signups.count(), 0)
-    
-    # Check if the user is signed up for the event
     user_signed_up = request.user.is_authenticated and EventSignUp.objects.filter(event=post, user=request.user).exists()
 
     comment_form = CommentForm(request.POST or None)
@@ -74,7 +73,17 @@ def postevent_detail(request, slug):
         if 'signup' in request.POST:
             if post.signups.count() < post.max_participants:
                 EventSignUp.objects.create(event=post, user=request.user)
-                messages.add_message(request, messages.SUCCESS, 'You have signed up for the event.')
+                messages.add_message(request, messages.SUCCESS, 'You have signed up for the event. You should receive a confirmation email shortly')
+
+                # Send confirmation email
+                # if request.user.email:
+                #     send_mail(
+                #         'Event Signup Confirmation',
+                #         f'Thank you for signing up for {post.event_name}. The event will take place on {post.date} at {post.location}.',
+                #         settings.DEFAULT_FROM_EMAIL,
+                #         [request.user.email],
+                #         fail_silently=False,
+                #     )
             else:
                 messages.add_message(request, messages.ERROR, 'The event is full.')
             return redirect('postevent_detail', slug=post.slug)
@@ -93,7 +102,6 @@ def postevent_detail(request, slug):
                 messages.add_message(request, messages.SUCCESS, 'Comment submitted and awaiting approval')
                 return redirect('postevent_detail', slug=post.slug)
 
-    # Check if the event has finished
     event_finished = post.date < timezone.now()
 
     return render(
@@ -107,11 +115,9 @@ def postevent_detail(request, slug):
             "user_signed_up": user_signed_up,
             "signups": post.signups.all(),
             "remaining_places": remaining_places,
-            "event_finished": event_finished,  # Pass the event_finished variable to the template
+            "event_finished": event_finished,
         },
     )
-
-    
 
 def comment_edit(request, slug, comment_id):
     """
@@ -133,7 +139,6 @@ def comment_edit(request, slug, comment_id):
             messages.add_message(request, messages.ERROR, 'Error updating comment!')
 
     return HttpResponseRedirect(reverse('postevent_detail', args=[slug]))
-
 
 def comment_delete(request, slug, comment_id):
     """

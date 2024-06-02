@@ -14,6 +14,7 @@ class EventPostAdmin(SummernoteModelAdmin):
     # Specify the order of fields in the admin form
     fields = ['event_name', 'slug', 'date', 'race_type', 'featured_image', 'author', 'location', 'course_map', 'description', 'max_participants', 'status']
 
+    # Ensures that staff status members only see events they created    
     def get_queryset(self, request):
         qs = super().get_queryset(request)
         if request.user.is_superuser:

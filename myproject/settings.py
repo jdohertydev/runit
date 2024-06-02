@@ -139,15 +139,17 @@ AUTH_PASSWORD_VALIDATORS = [
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
-# For sending email via contact form
+# For sending email
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'your-email@gmail.com'
-# EMAIL_HOST_PASSWORD = 'your-email-password'
-# DEFAULT_FROM_EMAIL = 'your-email@gmail.com'
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
+
+EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
 
 
 # Internationalization
