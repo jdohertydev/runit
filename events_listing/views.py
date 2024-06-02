@@ -90,8 +90,20 @@ def postevent_detail(request, slug):
 
         elif 'unregister' in request.POST:
             EventSignUp.objects.filter(event=post, user=request.user).delete()
-            messages.add_message(request, messages.SUCCESS, 'You have unregistered from the event.')
+            messages.add_message(request, messages.SUCCESS, 'You have unregistered from the event. You should receive a confirmation email shortly.')
+
+            # Send unregistration email
+            if request.user.email:
+                send_mail(
+                    'Event Unregistration Confirmation',
+                    f'You have successfully unregistered from {post.event_name} scheduled for {post.date} at {post.location}.',
+                    settings.DEFAULT_FROM_EMAIL,
+                    [request.user.email],
+                    fail_silently=False,
+                )
+
             return redirect('postevent_detail', slug=post.slug)
+        
         else:
             comment_form = CommentForm(data=request.POST)
             if comment_form.is_valid():
