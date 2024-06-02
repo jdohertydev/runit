@@ -116,6 +116,8 @@ def postevent_detail(request, slug):
 
     event_finished = post.date < timezone.now()
 
+    signups = post.signups.all().order_by('signed_up_on')  # Order signups in ascending order
+
     return render(
         request,
         "events_listing/postevent_detail.html",
@@ -125,7 +127,7 @@ def postevent_detail(request, slug):
             "comment_count": comment_count,
             "comment_form": comment_form,
             "user_signed_up": user_signed_up,
-            "signups": post.signups.all(),
+            "signups": signups,  # Pass the ordered signups to the template
             "remaining_places": remaining_places,
             "event_finished": event_finished,
         },
