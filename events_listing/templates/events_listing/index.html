@@ -22,7 +22,7 @@
                 <!-- Search Form -->
                 <div class="form-group">
                     <input type="text" name="q" class="form-control form-control-sm me-2" placeholder="Search events" value="{{ request.GET.q }}">
-                    <button type="submit" class="btn btn-primary btn-sm ">Search</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Search</button>
                 </div>
             </form>
         </div>
@@ -46,9 +46,6 @@
                                     <img class="card-img-top" src="{{ post.featured_image.url }}" alt="{{ post.title }}">
                                 </a>
                                 {% endif %}
-                                <div class="image-flash">
-
-                                </div>
                             </div>
                             <a href="{% url 'postevent_detail' post.slug %}" class="post-link">
                                 <h2 class="card-title">{{ post.event_name }}</h2>
