@@ -186,3 +186,46 @@ body {
     display: inline-block;
 }
 
+/* Add style to event post */
+
+* {
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+body {
+    overflow-x: hidden; /* Prevent horizontal scrolling on the body */
+}
+
+.event-card {
+    border: 2px solid #ccc; /* Gray border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth transition */
+    overflow: hidden; /* Ensures rounded corners are visible */
+}
+
+.event-card:hover {
+    transform: scale(1.03); /* Slightly enlarge on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+.event-card .card-body {
+    padding: 15px; /* Add padding inside the card */
+}
+
+.event-card img.card-img-top {
+    border-bottom: 2px solid #ccc; /* Gray border under the image */
+    width: 100%; /* Ensure the image takes full width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.container-fluid {
+    padding-right: 15px; /* Add padding to the container to prevent overflow */
+    padding-left: 15px; /* Add padding to the container to prevent overflow */
+}
+
+.row {
+    margin-right: -15px; /* Adjust margin to ensure it doesn't cause overflow */
+    margin-left: -15px; /* Adjust margin to ensure it doesn't cause overflow */
+}
+
+

@@ -35,7 +35,7 @@
                 {% for post in postevent_list %}
                 <div class="col-md-4">
                     <div class="card mb-4">
-                        <div class="card-body">
+                        <div class="card-body event-card">
                             <div class="image-container">
                                 {% if "placeholder" in post.featured_image.url %}
                                 <a href="{% url 'postevent_detail' post.slug %}">
