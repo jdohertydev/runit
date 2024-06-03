@@ -186,7 +186,7 @@ body {
     display: inline-block;
 }
 
-/* Add style to event post */
+//* Add style to event post */
 
 * {
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
@@ -201,6 +201,8 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     transition: transform 0.2s, box-shadow 0.2s; /* Smooth transition */
     overflow: hidden; /* Ensures rounded corners are visible */
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column; /* Ensure children are stacked vertically */
 }
 
 .event-card:hover {
@@ -210,6 +212,10 @@ body {
 
 .event-card .card-body {
     padding: 15px; /* Add padding inside the card */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1; /* Ensure the card body takes up available space */
 }
 
 .event-card img.card-img-top {
@@ -226,6 +232,21 @@ body {
 .row {
     margin-right: -15px; /* Adjust margin to ensure it doesn't cause overflow */
     margin-left: -15px; /* Adjust margin to ensure it doesn't cause overflow */
+    display: flex;
+    flex-wrap: wrap; /* Ensure children wrap to the next line */
+}
+
+.col-md-4 {
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px; /* Add padding to columns to ensure proper spacing */
+}
+
+.card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 
