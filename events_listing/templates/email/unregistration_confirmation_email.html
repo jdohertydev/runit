@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .email-body {
+            font-family: Arial, sans-serif;
+            color: #333333;
+            line-height: 1.6;
+        }
+        .email-header {
+            background-color: #FF6347;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .email-content {
+            padding: 20px;
+        }
+        .email-footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f1f1f1;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-body">
+        <div class="email-header">
+            <h1>Event Unregistration Confirmation</h1>
+        </div>
+        <div class="email-content">
+            <p>Dear {{ user.first_name }},</p>
+            <p>You have successfully unregistered from <strong>{{ post.event_name }}</strong>.</p>
+            <p>The event was scheduled for <strong>{{ post.date|date:"d M Y H:i" }}</strong> at <strong>{{ post.location }}</strong>.</p>
+            <p>We are sorry to see you go. If you change your mind, feel free to sign up again anytime before the event date.</p>
+        </div>
+        <div class="email-footer">
+            <p>Best regards,<br>The Event Team</p>
+        </div>
+    </div>
+</body>
+</html>

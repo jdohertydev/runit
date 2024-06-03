@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.db.models import Q
 from django.core.mail import send_mail
 from django.conf import settings
+from django.template.loader import render_to_string
 
 class PostList(generic.ListView):
     template_name = "events_listing/index.html"
@@ -78,12 +79,18 @@ def postevent_detail(request, slug):
 
                 # Send confirmation email
                 if request.user.email:
+                    email_context = {
+                        'user': request.user,
+                        'post': post,
+                    }
+                    email_html_message = render_to_string('email/signup_confirmation_email.html', email_context)
                     send_mail(
                         'Event Signup Confirmation',
-                        f'Thank you for signing up for {post.event_name}. The event will take place on {post.date} at {post.location}.',
+                        '',
                         settings.DEFAULT_FROM_EMAIL,
                         [request.user.email],
                         fail_silently=False,
+                        html_message=email_html_message,
                     )
             else:
                 messages.add_message(request, messages.ERROR, 'The event is full.')
@@ -95,12 +102,18 @@ def postevent_detail(request, slug):
 
             # Send unregistration email
             if request.user.email:
+                email_context = {
+                    'user': request.user,
+                    'post': post,
+                }
+                email_html_message = render_to_string('email/unregistration_confirmation_email.html', email_context)
                 send_mail(
                     'Event Unregistration Confirmation',
-                    f'You have successfully unregistered from {post.event_name} scheduled for {post.date} at {post.location}.',
+                    '',
                     settings.DEFAULT_FROM_EMAIL,
                     [request.user.email],
                     fail_silently=False,
+                    html_message=email_html_message,
                 )
 
             return redirect('postevent_detail', slug=post.slug)
