@@ -26,7 +26,8 @@ class PostList(generic.ListView):
             # Search in PostEvent model
             queryset = queryset.filter(
                 Q(event_name__icontains=query) |
-                Q(description__icontains=query)
+                Q(description__icontains=query) |
+                Q(author__username__icontains=query)
             )
 
             # Get IDs of matching objects from other models
