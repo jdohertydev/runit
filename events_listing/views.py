@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views import generic
+from django.views import generic, View
 from django.contrib import messages
 from django.utils import timezone
 from .models import PostEvent, EventSignUp, Comment
@@ -7,9 +7,7 @@ from .forms import CommentForm, EventFilterForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.db.models import Q
-from django.core.mail import send_mail
-from django.conf import settings
-from django.template.loader import render_to_string
+from .utils import send_signup_confirmation_email, send_unregistration_confirmation_email
 
 class PostList(generic.ListView):
     template_name = "events_listing/index.html"
@@ -24,14 +22,12 @@ class PostList(generic.ListView):
         location = self.request.GET.get('location')
 
         if query:
-            # Search in PostEvent model
             queryset = queryset.filter(
                 Q(event_name__icontains=query) |
                 Q(description__icontains=query) |
                 Q(author__username__icontains=query)
             )
 
-            # Get IDs of matching objects from other models
             event_signup_ids = EventSignUp.objects.filter(
                 Q(user__username__icontains=query) |
                 Q(event__event_name__icontains=query) |
@@ -43,7 +39,6 @@ class PostList(generic.ListView):
                 Q(body__icontains=query)
             ).values_list('post_id', flat=True)
 
-            # Filter PostEvent queryset based on IDs from other models
             queryset = queryset | PostEvent.objects.filter(id__in=event_signup_ids)
             queryset = queryset | PostEvent.objects.filter(id__in=comment_ids)
         
@@ -60,64 +55,45 @@ class PostList(generic.ListView):
         context['form'] = EventFilterForm(self.request.GET or None)
         return context
 
-def postevent_detail(request, slug):
-    queryset = PostEvent.objects.filter(status=1)
-    post = get_object_or_404(queryset, slug=slug)
-    comments = post.comments.all().order_by("-created_on")
-    comment_count = post.comments.filter(approved=True).count()
+class PostEventDetailView(View):
+    def get(self, request, slug):
+        post = get_object_or_404(PostEvent, slug=slug, status=1)
+        comments = post.comments.all().order_by("-created_on")
+        comment_count = post.comments.filter(approved=True).count()
+        remaining_places = max(post.max_participants - post.signups.count(), 0)
+        user_signed_up = request.user.is_authenticated and EventSignUp.objects.filter(event=post, user=request.user).exists()
+        comment_form = CommentForm()
 
-    remaining_places = max(post.max_participants - post.signups.count(), 0)
-    user_signed_up = request.user.is_authenticated and EventSignUp.objects.filter(event=post, user=request.user).exists()
+        event_finished = post.date < timezone.now()
+        signups = post.signups.all().order_by('signed_up_on')
 
-    comment_form = CommentForm(request.POST or None)
-    
-    if request.method == "POST":
+        context = {
+            "post": post,
+            "comments": comments,
+            "comment_count": comment_count,
+            "comment_form": comment_form,
+            "user_signed_up": user_signed_up,
+            "signups": signups,
+            "remaining_places": remaining_places,
+            "event_finished": event_finished,
+        }
+        return render(request, "events_listing/postevent_detail.html", context)
+
+    def post(self, request, slug):
+        post = get_object_or_404(PostEvent, slug=slug, status=1)
         if 'signup' in request.POST:
             if post.signups.count() < post.max_participants:
                 EventSignUp.objects.create(event=post, user=request.user)
-                messages.add_message(request, messages.SUCCESS, 'You have signed up for the event. You should receive a confirmation email shortly.')
-
-                # Send confirmation email
+                messages.success(request, 'You have signed up for the event. You should receive a confirmation email shortly.')
                 if request.user.email:
-                    email_context = {
-                        'user': request.user,
-                        'post': post,
-                    }
-                    email_html_message = render_to_string('email/signup_confirmation_email.html', email_context)
-                    send_mail(
-                        'Event Signup Confirmation',
-                        '',
-                        settings.DEFAULT_FROM_EMAIL,
-                        [request.user.email],
-                        fail_silently=False,
-                        html_message=email_html_message,
-                    )
+                    send_signup_confirmation_email(request.user, post)
             else:
-                messages.add_message(request, messages.ERROR, 'The event is full.')
-            return redirect('postevent_detail', slug=post.slug)
-
+                messages.error(request, 'The event is full.')
         elif 'unregister' in request.POST:
             EventSignUp.objects.filter(event=post, user=request.user).delete()
-            messages.add_message(request, messages.SUCCESS, 'You have unregistered from the event. You should receive a confirmation email shortly.')
-
-            # Send unregistration email
+            messages.success(request, 'You have unregistered from the event. You should receive a confirmation email shortly.')
             if request.user.email:
-                email_context = {
-                    'user': request.user,
-                    'post': post,
-                }
-                email_html_message = render_to_string('email/unregistration_confirmation_email.html', email_context)
-                send_mail(
-                    'Event Unregistration Confirmation',
-                    '',
-                    settings.DEFAULT_FROM_EMAIL,
-                    [request.user.email],
-                    fail_silently=False,
-                    html_message=email_html_message,
-                )
-
-            return redirect('postevent_detail', slug=post.slug)
-        
+                send_unregistration_confirmation_email(request.user, post)
         else:
             comment_form = CommentForm(data=request.POST)
             if comment_form.is_valid():
@@ -125,61 +101,33 @@ def postevent_detail(request, slug):
                 comment.author = request.user
                 comment.post = post
                 comment.save()
-                messages.add_message(request, messages.SUCCESS, 'Comment submitted and awaiting approval')
-                return redirect('postevent_detail', slug=post.slug)
+                messages.success(request, 'Comment submitted and awaiting approval')
 
-    event_finished = post.date < timezone.now()
-
-    signups = post.signups.all().order_by('signed_up_on')  # Order signups in ascending order
-
-    return render(
-        request,
-        "events_listing/postevent_detail.html",
-        {
-            "post": post,
-            "comments": comments,
-            "comment_count": comment_count,
-            "comment_form": comment_form,
-            "user_signed_up": user_signed_up,
-            "signups": signups,  # Pass the ordered signups to the template
-            "remaining_places": remaining_places,
-            "event_finished": event_finished,
-        },
-    )
+        return redirect('postevent_detail', slug=post.slug)
 
 def comment_edit(request, slug, comment_id):
-    """
-    View to edit comments
-    """
     if request.method == "POST":
-        queryset = PostEvent.objects.filter(status=1)
-        post = get_object_or_404(queryset, slug=slug)
+        post = get_object_or_404(PostEvent, slug=slug, status=1)
         comment = get_object_or_404(Comment, pk=comment_id)
         comment_form = CommentForm(data=request.POST, instance=comment)
-
         if comment_form.is_valid() and comment.author == request.user:
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.approved = False
             comment.save()
-            messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
+            messages.success(request, 'Comment Updated!')
         else:
-            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+            messages.error(request, 'Error updating comment!')
 
     return HttpResponseRedirect(reverse('postevent_detail', args=[slug]))
 
 def comment_delete(request, slug, comment_id):
-    """
-    View to delete comment
-    """
-    queryset = PostEvent.objects.filter(status=1)
-    post = get_object_or_404(queryset, slug=slug)
+    post = get_object_or_404(PostEvent, slug=slug, status=1)
     comment = get_object_or_404(Comment, pk=comment_id)
-
     if comment.author == request.user:
         comment.delete()
-        messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
+        messages.success(request, 'Comment deleted!')
     else:
-        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+        messages.error(request, 'You can only delete your own comments!')
 
     return HttpResponseRedirect(reverse('postevent_detail', args=[slug]))
