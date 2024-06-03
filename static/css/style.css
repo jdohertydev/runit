@@ -177,3 +177,12 @@ body {
     height: 100%;
     object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
 }
+
+
+/* Syling for search and filter */
+
+.search-filter-container .form-control {
+    width: auto;
+    display: inline-block;
+}
+
