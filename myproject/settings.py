@@ -154,10 +154,10 @@ EMAIL_USE_TLS = True  # or False if your email service uses SSL
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# Set the time zone to Spain's timezone
+TIME_ZONE = 'Europe/Madrid'
 
-USE_I18N = True
-
+# Enable timezone support
 USE_TZ = True
 
 MESSAGE_TAGS = {
