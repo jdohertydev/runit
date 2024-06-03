@@ -149,6 +149,8 @@ EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = True  # or False if your email service uses SSL
 
 EMAIL_ADMIN_ADDRESS=os.environ.get("EMAIL_ADMIN_ADDRESS")
+DEFAULT_FROM_EMAIL = os.environ.get("EMAIL_ADMIN_ADDRESS")
+SERVER_EMAIL = os.environ.get("EMAIL_ADMIN_ADDRESS")
 
 
 # Internationalization
