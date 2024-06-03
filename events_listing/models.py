@@ -12,9 +12,9 @@ class PostEvent(models.Model):
     MIXED = 'Mixed'
 
     RACE_TYPE_CHOICES = [
-        (ROAD, 'Road'),
-        (TRAIL, 'Trail'),
-        (MIXED, 'Mixed'),
+        (ROAD, ROAD),
+        (TRAIL, TRAIL),
+        (MIXED, MIXED),
     ]
 
     event_name = models.CharField(max_length=200)
