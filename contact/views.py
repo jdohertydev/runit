@@ -2,8 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import ContactForm
 from .models import ContactMessage
+from django.core.mail import send_mail
+from django.conf import settings
+import os
 
 def contact_view(request):
+    admin_email = os.environ.get("EMAIL_ADMIN_ADDRESS")
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -13,6 +17,15 @@ def contact_view(request):
             
             # Save the message to the database
             ContactMessage.objects.create(name=name, email=email, message=message)
+            
+            # Send email to admin
+            send_mail(
+                'New Contact Form Submission',
+                f'You have received a new message from {name} ({email}):\n\n{message}',
+                settings.DEFAULT_FROM_EMAIL,
+                [admin_email],
+                fail_silently=False,
+            )
             
             messages.success(request, 'Your message has been sent successfully.')
             return redirect('contact')  # Redirect to the same page after successful submission
