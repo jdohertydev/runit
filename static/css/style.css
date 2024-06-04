@@ -264,6 +264,7 @@ body {
     padding:20px 0;
     background-color:#ffffff;
     color:#4b4c4d;
+    margin-top: auto; /* pushes footer down to bottom */
   }
   
   .footer-basic ul {
