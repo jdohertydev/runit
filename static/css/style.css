@@ -94,6 +94,7 @@ body {
 .post-link {
     text-decoration: none;
     color: #445261;
+    padding-top: 12px;
 }
 
 .post-link:hover,
