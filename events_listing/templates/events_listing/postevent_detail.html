@@ -100,7 +100,7 @@
                         <form id="commentForm" method="post" style="margin-top: 1.3em;">
                             {{ comment_form | crispy }}
                             {% csrf_token %}
-                            <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
+                            <button id="submitButton" type="submit" class="btn btn-primary">Submit</button>
                         </form>
                         {% else %}
                         <p><a href="{% url 'account_login' %}?next={{ request.path }}">Log in</a> to leave a comment.
@@ -136,7 +136,7 @@
                         {% if user_signed_up %}
                         <button type="button" id="unregisterButton" class="btn btn-danger">Unregister</button>
                         {% else %}
-                        <button type="button" id="signupButton" class="btn btn-success">Sign Up</button>
+                        <button type="button" id="signupButton" class="btn btn-primary">Sign Up</button>
                         {% endif %}
                         {% else %}
                         {% if user_signed_up %}

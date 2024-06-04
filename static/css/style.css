@@ -161,12 +161,13 @@ body {
     color: rgb(222, 146, 168);
 }
 
-/* CSS for index.html*/ 
+/* CSS for index.html*/
 
 .image-container {
     position: relative;
     width: 100%;
-    padding-bottom: 50%; /* Aspect ratio: 4:3 (height / width * 100%) */
+    padding-bottom: 50%;
+    /* Aspect ratio: 4:3 (height / width * 100%) */
     overflow: hidden;
 }
 
@@ -176,7 +177,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
+    object-fit: cover;
+    /* Ensures the image covers the container while maintaining aspect ratio */
 }
 
 
@@ -190,57 +192,78 @@ body {
 /* Add style to event post */
 
 * {
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    box-sizing: border-box;
+    /* Include padding and border in the element's total width and height */
 }
 
 body {
-    overflow-x: hidden; /* Prevent horizontal scrolling on the body */
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling on the body */
 }
 
 .event-card {
-    border: 2px solid #ccc; /* Gray border */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    transition: transform 0.2s, box-shadow 0.2s; /* Smooth transition */
-    overflow: hidden; /* Ensures rounded corners are visible */
-    display: flex; /* Use flexbox for alignment */
-    flex-direction: column; /* Ensure children are stacked vertically */
+    border: 2px solid #ccc;
+    /* Gray border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    transition: transform 0.2s, box-shadow 0.2s;
+    /* Smooth transition */
+    overflow: hidden;
+    /* Ensures rounded corners are visible */
+    display: flex;
+    /* Use flexbox for alignment */
+    flex-direction: column;
+    /* Ensure children are stacked vertically */
 }
 
 .event-card:hover {
-    transform: scale(1.03); /* Slightly enlarge on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+    transform: scale(1.03);
+    /* Slightly enlarge on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* Stronger shadow on hover */
 }
 
 .event-card .card-body {
-    padding: 15px; /* Add padding inside the card */
+    padding: 15px;
+    /* Add padding inside the card */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    flex: 1; /* Ensure the card body takes up available space */
+    flex: 1;
+    /* Ensure the card body takes up available space */
 }
 
 .event-card img.card-img-top {
-    border-bottom: 2px solid #ccc; /* Gray border under the image */
-    width: 100%; /* Ensure the image takes full width */
-    height: auto; /* Maintain aspect ratio */
+    border-bottom: 2px solid #ccc;
+    /* Gray border under the image */
+    width: 100%;
+    /* Ensure the image takes full width */
+    height: auto;
+    /* Maintain aspect ratio */
 }
 
 .container-fluid {
-    padding-right: 15px; /* Add padding to the container to prevent overflow */
-    padding-left: 15px; /* Add padding to the container to prevent overflow */
+    padding-right: 15px;
+    /* Add padding to the container to prevent overflow */
+    padding-left: 15px;
+    /* Add padding to the container to prevent overflow */
 }
 
 .row {
-    margin-right: -15px; /* Adjust margin to ensure it doesn't cause overflow */
-    margin-left: -15px; /* Adjust margin to ensure it doesn't cause overflow */
+    margin-right: -15px;
+    /* Adjust margin to ensure it doesn't cause overflow */
+    margin-left: -15px;
+    /* Adjust margin to ensure it doesn't cause overflow */
     display: flex;
-    flex-wrap: wrap; /* Ensure children wrap to the next line */
+    flex-wrap: wrap;
+    /* Ensure children wrap to the next line */
 }
 
 .col-md-4 {
     display: flex;
     flex-direction: column;
-    padding: 0 15px; /* Add padding to columns to ensure proper spacing */
+    padding: 0 15px;
+    /* Add padding to columns to ensure proper spacing */
 }
 
 .card {
@@ -261,67 +284,87 @@ body {
 /* footer */
 
 .footer-basic {
-    padding:20px 0;
-    background-color:#ffffff;
-    color:#4b4c4d;
-    margin-top: auto; /* pushes footer down to bottom */
-  }
-  
-  .footer-basic ul {
-    padding:0;
-    list-style:none;
-    text-align:center;
-    font-size:18px;
-    line-height:1.6;
-    margin-bottom:0;
-  }
-  
-  .footer-basic li {
-    padding:0 10px;
-  }
-  
-  .footer-basic ul a {
-    color:inherit;
-    text-decoration:none;
-    opacity:0.8;
-  }
-  
-  .footer-basic ul a:hover {
-    opacity:1;
-  }
-  
-  .footer-basic .social {
-    text-align:center;
-    padding-bottom:25px;
-  }
-  
-  .footer-basic .social > a {
-    font-size:24px;
-    width:40px;
-    height:40px;
-    line-height:40px;
-    display:inline-block;
-    text-align:center;
-    border-radius:50%;
-    border:1px solid #ccc;
-    margin:0 8px;
-    color:inherit;
-    opacity:0.75;
-  }
-  
-  .footer-basic .social > a:hover {
-    opacity:0.9;
-  }
-  
-  .footer-basic .copyright {
-    /* margin-top:15px; */
-    text-align:center;
-    font-size:13px;
-    color:#aaa;
-    margin-bottom:0;
-  }
+    padding: 20px 0;
+    background-color: #ffffff;
+    color: #4b4c4d;
+    margin-top: auto;
+    /* pushes footer down to bottom */
+}
 
-  .footer-spacer {
+.footer-basic ul {
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.footer-basic li {
+    padding: 0 10px;
+}
+
+.footer-basic ul a {
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.footer-basic ul a:hover {
+    opacity: 1;
+}
+
+.footer-basic .social {
+    text-align: center;
+    padding-bottom: 25px;
+}
+
+.footer-basic .social>a {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    margin: 0 8px;
+    color: inherit;
+    opacity: 0.75;
+}
+
+.footer-basic .social>a:hover {
+    opacity: 0.9;
+}
+
+.footer-basic .copyright {
+    /* margin-top:15px; */
+    text-align: center;
+    font-size: 13px;
+    color: #aaa;
+    margin-bottom: 0;
+}
+
+.footer-spacer {
     background-color: #f8f9fa;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-  }
+}
+
+/* Media Queries  */
+
+/* Hide slogan on burger menu */
+
+@media (max-width: 991px) {
+    .slogan {
+        display: none;
+    }
+}
+
+/* Ensure search bar and button are in alignment */
+
+@media (max-width: 430px) {
+    .search-and-button  {
+        display: none;
+    }
+}
+
