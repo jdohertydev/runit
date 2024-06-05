@@ -2,6 +2,13 @@ body {
     background-color: #F9FAFC;
     font-family: 'Roboto', serif;
 }
+/* Custom alert colour to match style */
+
+.alert-success {
+    background-color: #cce5ff;
+    color: #004085;
+    border-color: #b8daff;
+}
 
 .brand {
     font-family: Lato, sans-serif;
