@@ -8,15 +8,18 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h3 class="card-title text-center">Update Your Account</h3>
-                    <form method="post" action="{% url 'account_update' %}">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            {{ user_form.as_p }}
-                        </div>
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary">Update Profile</button>
-                        </div>
-                    </form>
+                    <button class="btn btn-secondary w-100 mb-3" id="toggle-account-update">Update Profile</button>
+                    <div id="account-update-section" style="display:none;">
+                        <form method="post" action="{% url 'account_update' %}">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                {{ user_form.as_p }}
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Update Profile</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

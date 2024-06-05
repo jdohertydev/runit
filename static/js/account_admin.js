@@ -1,12 +1,26 @@
-var togglePasswordChangeButton = document.getElementById('toggle-password-change');
-var passwordSection = document.getElementById('password-change-section');
+// account_admin.js
+document.addEventListener("DOMContentLoaded", function() {
+    // Toggle Update Account section
+    const toggleAccountButton = document.getElementById("toggle-account-update");
+    const accountUpdateSection = document.getElementById("account-update-section");
 
-if (togglePasswordChangeButton) {
-    togglePasswordChangeButton.addEventListener('click', function() {
-        if (passwordSection.style.display === 'none' || passwordSection.style.display === '') {
-            passwordSection.style.display = 'block';
+    toggleAccountButton.addEventListener("click", function() {
+        if (accountUpdateSection.style.display === "none" || accountUpdateSection.style.display === "") {
+            accountUpdateSection.style.display = "block";
         } else {
-            passwordSection.style.display = 'none';
+            accountUpdateSection.style.display = "none";
         }
     });
-}
+
+    // Toggle Change Password section
+    const togglePasswordButton = document.getElementById("toggle-password-change");
+    const passwordChangeSection = document.getElementById("password-change-section");
+
+    togglePasswordButton.addEventListener("click", function() {
+        if (passwordChangeSection.style.display === "none" || passwordChangeSection.style.display === "") {
+            passwordChangeSection.style.display = "block";
+        } else {
+            passwordChangeSection.style.display = "none";
+        }
+    });
+});
