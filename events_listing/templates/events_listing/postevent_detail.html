@@ -7,13 +7,11 @@
     <div class="container">
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
-                <h1 class="post-title">{{ post.event_name }}</h1>
-                <ul class="post-details">
-                    <li class="post-subtitle">Date: {{ post.date|date:"d M Y H:i" }}</li>
-                    <li class="post-subtitle">Race type: {{ post.get_race_type_display }}</li>
-                    <li class="post-subtitle">Location: {{ post.location }}</li>
-                </ul>
-                <p class="post-subtitle">Countdown: <span id="countdown"></span></p>
+                <h1 class="post-title mb-4">{{ post.event_name }}</h1>
+                
+               
+                <p class="post-subtitle display-6 mt-4">Countdown: <span id="countdown"></span></p>
+
                 <p id="eventDate" data-event-date="{{ post.date|date:'Y-m-d H:i:s' }}" style="display:none;"></p>
             </div>
 
@@ -33,8 +31,14 @@
         <div class="col-md-8">
             <div class="card mb-4">
                 <div class="card-body">
+
                     <h3 class="card-title">Event Details</h3>
                     <hr>
+                    <ul>
+                        <li>Date: {{ post.date|date:"d M Y H:i" }}</li>
+                        <li>Race type: {{ post.get_race_type_display }}</li>
+                        <li>Location: {{ post.location }}</li>
+                    </ul>
                     <h5>Description</h5>
                     <p>{{ post.description|safe }}</p>
                     <h5>Max Participants</h5>
