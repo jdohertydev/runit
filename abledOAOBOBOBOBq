@@ -1,0 +1,39 @@
+[1mdiff --git a/accounts/forms.py b/accounts/forms.py[m
+[1mindex f2262b1..b901583 100644[m
+[1m--- a/accounts/forms.py[m
+[1m+++ b/accounts/forms.py[m
+[36m@@ -9,12 +9,12 @@[m [mclass CustomUserChangeForm(UserChangeForm):[m
+         model = User[m
+         fields = ('username', 'first_name', 'last_name', 'email')[m
+         help_texts = {[m
+[31m-            'username': '(this cannot be changed)',[m
+[32m+[m[32m            'username': '',[m
+         }[m
+ [m
+     def __init__(self, *args, **kwargs):[m
+         super().__init__(*args, **kwargs)[m
+[31m-        self.fields['username'].widget.attrs['readonly'] = True[m
+[32m+[m[32m        self.fields['username'].widget.attrs['disabled'] = True[m
+ [m
+ class CustomPasswordChangeForm(PasswordChangeForm):[m
+     class Meta:[m
+[1mdiff --git a/accounts/templates/accounts/account_admin.html b/accounts/templates/accounts/account_admin.html[m
+[1mindex 6b4ab72..ea20b9f 100644[m
+[1m--- a/accounts/templates/accounts/account_admin.html[m
+[1m+++ b/accounts/templates/accounts/account_admin.html[m
+[36m@@ -2,6 +2,7 @@[m
+ {% load static %}[m
+ [m
+ {% block content %}[m
+[32m+[m
+ <div class="container mt-5">[m
+     <div class="row justify-content-center">[m
+         <div class="col-md-6">[m
+[36m@@ -24,7 +25,6 @@[m
+             </div>[m
+         </div>[m
+     </div>[m
+[31m-[m
+    [m
+ [m
+     <div class="row justify-content-center">[m

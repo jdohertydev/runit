@@ -9,7 +9,7 @@ class CustomUserChangeForm(UserChangeForm):
         model = User
         fields = ('username', 'first_name', 'last_name', 'email')
         help_texts = {
-            'username': '(this cannot be changed)',
+            'username': '',
         }
 
     def __init__(self, *args, **kwargs):
