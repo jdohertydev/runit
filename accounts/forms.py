@@ -8,6 +8,13 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email')
+        help_texts = {
+            'username': '(this cannot be changed)',
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs['readonly'] = True
 
 class CustomPasswordChangeForm(PasswordChangeForm):
     class Meta:
