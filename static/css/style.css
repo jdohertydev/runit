@@ -369,6 +369,14 @@ body {
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Account_admin.html - Style the readonly input fields to appear greyed out */
+
+input[readonly] {
+    background-color: #e9ecef; /* Light grey background */
+    cursor: not-allowed; /* Change cursor to indicate non-editable */
+    color: #6c757d; /* Grey text */
+}
+
 /* Media Queries  */
 
 /* Hide slogan on burger menu */
