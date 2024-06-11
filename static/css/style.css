@@ -2,6 +2,7 @@ body {
     background-color: #F9FAFC;
     font-family: 'Roboto', serif;
 }
+
 /* Custom alert colour to match style */
 
 .alert-success {
@@ -9,6 +10,16 @@ body {
     color: #004085;
     border-color: #b8daff;
 }
+
+/* Ensure consistent font size for select and input elements */
+
+.search-filter-container .form-group select,
+.search-filter-container .form-group input {
+    font-size: 16px;
+
+}
+
+/* style for postevent_detail.html */
 
 .brand {
     font-family: Lato, sans-serif;
@@ -368,11 +379,50 @@ body {
     }
 }
 
-/* Ensure search bar and button are in alignment */
+/* Responsive styles for search and filter form on viewports < 453px */
 
-@media (max-width: 430px) {
-    .search-and-button  {
-        display: none;
+@media (max-width: 453px) {
+    .search-filter-container {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-filter-container .form-inline {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-filter-container .form-group {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .search-filter-container .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .search-filter-container .form-group select,
+    .search-filter-container .form-group input,
+    .search-filter-container .form-group button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .search-filter-container .form-group input {
+        margin-bottom: 10px;
+    }
+
+    .search-filter-container .form-group button {
+        width: 100%;
     }
 }
 
+
+/* Ensure consistent height for select and input elements */
+.search-filter-container .form-group select,
+.search-filter-container .form-group button,
+.search-filter-container .form-group input {
+    height: 38px;
+}
