@@ -4,6 +4,9 @@ from django.template.loader import render_to_string
 from django.conf import settings
 
 def send_signup_confirmation_email(user, post):
+    """
+    Sends a signup confirmation email to the user.
+    """
     email_context = {
         'user': user,
         'post': post,
@@ -19,6 +22,9 @@ def send_signup_confirmation_email(user, post):
     )
 
 def send_unregistration_confirmation_email(user, post):
+    """
+    Sends an unregistration confirmation email to the user.
+    """
     email_context = {
         'user': user,
         'post': post,

@@ -7,6 +7,12 @@ from .forms import CustomUserChangeForm, CustomPasswordChangeForm
 
 @login_required
 def account_update(request):
+    """
+    Allows users to update their profile information.
+
+    If the request method is POST and the user form is valid,
+    updates the user profile information.
+    """
     if request.method == 'POST':
         user_form = CustomUserChangeForm(request.POST, instance=request.user)
         if user_form.is_valid():
@@ -27,6 +33,12 @@ def account_update(request):
 
 @login_required
 def account_password_change(request):
+    """
+    Allows users to change their account password.
+
+    If the request method is POST and the password form is valid,
+    updates the user's password.
+    """
     if request.method == 'POST':
         password_form = CustomPasswordChangeForm(request.user, request.POST)
         if password_form.is_valid():
@@ -41,6 +53,12 @@ def account_password_change(request):
 
 @login_required
 def account_delete(request):
+    """
+    Allows users to delete their account.
+
+    If the request method is POST and the password provided is correct,
+    deletes the user account.
+    """
     if request.method == 'POST':
         password = request.POST.get('password')
         user = authenticate(username=request.user.username, password=password)

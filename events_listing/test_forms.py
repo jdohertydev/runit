@@ -1,16 +1,23 @@
 from django.test import TestCase
-from .forms import CommentForm
+from .forms import CommentForm, CustomSignupForm
 from django.contrib.auth.models import User
-from .forms import CustomSignupForm
-
 
 class TestCommentForm(TestCase):
+    """
+    Test cases for the CommentForm.
+    """
 
     def test_form_is_valid(self):
+        """
+        Test if the CommentForm is valid with valid data.
+        """
         comment_form = CommentForm({'body': 'This is a great post'})
         self.assertTrue(comment_form.is_valid())
 
     def test_form_save_method(self):
+        """
+        Test the save method of CustomSignupForm.
+        """
         form_data = {
             'username': 'testuser',
             'email': 'test@example.com',
@@ -37,7 +44,9 @@ class TestCommentForm(TestCase):
         self.assertEqual(user.last_name, 'Doe')
 
     def test_form_with_password_mismatch(self):
-        # Define form data
+        """
+        Test if CustomSignupForm fails validation with password mismatch.
+        """
         form_data = {
             'username': 'testuser',
             'email': 'test@example.com',
@@ -46,11 +55,6 @@ class TestCommentForm(TestCase):
             'first_name': 'John',
             'last_name': 'Doe',
         }
-        # Create the form instance with the defined form data
         form = CustomSignupForm(data=form_data)
-        # Assert that the form is not valid
         self.assertFalse(form.is_valid())
-        # Assert that the specific error message for password mismatch is present in the form errors
         self.assertIn("You must type the same password each time.", form.errors['password2'])
-
-

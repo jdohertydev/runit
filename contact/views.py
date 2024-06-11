@@ -7,6 +7,13 @@ from django.conf import settings
 import os
 
 def contact_view(request):
+    """
+    View to handle contact form submissions.
+
+    Renders the contact form template with a ContactForm instance
+    and handles form submission to save messages to the database
+    and send emails to the admin.
+    """
     admin_email = os.environ.get("EMAIL_ADMIN_ADDRESS")
     if request.method == 'POST':
         form = ContactForm(request.POST)

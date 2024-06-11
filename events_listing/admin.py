@@ -4,9 +4,10 @@ import csv
 from .models import PostEvent, Comment, EventSignUp
 from django_summernote.admin import SummernoteModelAdmin
 
-# Define the custom admin action
 def export_participants(modeladmin, request, queryset):
-    # Create the HttpResponse object with the appropriate CSV header
+    """
+    Custom admin action to export participants of selected events as a CSV file.
+    """
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="participants.csv"'
 
@@ -30,18 +31,22 @@ def export_participants(modeladmin, request, queryset):
 export_participants.short_description = "Export participants for selected events"
 
 class EventPostAdmin(SummernoteModelAdmin):
+    """
+    Admin configuration for the PostEvent model.
+    """
     list_display = ('event_name', 'slug', 'status')
     search_fields = ['event_name', 'description']
     list_filter = ('status', 'created_on',)
     prepopulated_fields = {'slug': ('event_name',)}
     summernote_fields = ('description',)
-    actions = [export_participants]  # Add the custom action to the admin
+    actions = [export_participants]
 
-    # Specify the order of fields in the admin form
     fields = ['event_name', 'slug', 'date', 'race_type', 'featured_image', 'author', 'location', 'course_map', 'description', 'max_participants', 'status']
 
-    # Ensures that staff status members only see events they created    
     def get_queryset(self, request):
+        """
+        Limit queryset based on user permissions.
+        """
         qs = super().get_queryset(request)
         if request.user.is_superuser:
             return qs
@@ -51,6 +56,9 @@ class EventPostAdmin(SummernoteModelAdmin):
 
 @admin.register(EventSignUp)
 class EventSignUpAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for the EventSignUp model.
+    """
     list_display = ('event', 'user', 'signed_up_on')
     list_filter = ('event', 'signed_up_on')
     search_fields = ('event__event_name', 'user__first_name', 'user__last_name')

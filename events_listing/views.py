@@ -10,10 +10,17 @@ from django.db.models import Q
 from .utils import send_signup_confirmation_email, send_unregistration_confirmation_email
 
 class PostList(generic.ListView):
+    """
+    View to display a list of post events with optional filtering.
+    """
+
     template_name = "events_listing/index.html"
     paginate_by = 6
 
     def get_queryset(self):
+        """
+        Get the queryset for the list of post events.
+        """
         current_datetime = timezone.now()
         queryset = PostEvent.objects.filter(date__gte=current_datetime)
         
@@ -51,12 +58,21 @@ class PostList(generic.ListView):
         return queryset
 
     def get_context_data(self, **kwargs):
+        """
+        Get the context data for the list of post events.
+        """
         context = super().get_context_data(**kwargs)
         context['form'] = EventFilterForm(self.request.GET or None)
         return context
 
 class PostEventDetailView(View):
+    """
+    View to display the details of a post event.
+    """
     def get(self, request, slug):
+        """
+        Handle GET requests to display the post event details.
+        """
         post = get_object_or_404(PostEvent, slug=slug, status=1)
         comments = post.comments.all().order_by("-created_on")
         comment_count = post.comments.filter(approved=True).count()
@@ -80,6 +96,9 @@ class PostEventDetailView(View):
         return render(request, "events_listing/postevent_detail.html", context)
 
     def post(self, request, slug):
+        """
+        Handle POST requests for signing up, unregistering, and commenting on a post event.
+        """
         post = get_object_or_404(PostEvent, slug=slug, status=1)
         if 'signup' in request.POST:
             if post.signups.count() < post.max_participants:
@@ -106,6 +125,9 @@ class PostEventDetailView(View):
         return redirect('postevent_detail', slug=post.slug)
 
 def comment_edit(request, slug, comment_id):
+    """
+    View to handle editing a comment on a post event.
+    """
     if request.method == "POST":
         post = get_object_or_404(PostEvent, slug=slug, status=1)
         comment = get_object_or_404(Comment, pk=comment_id)

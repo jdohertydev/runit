@@ -7,6 +7,9 @@ STATUS = ((0, "Draft"), (1, "Published"))
 # Create your models here.
 
 class PostEvent(models.Model):
+    """
+    Model representing a post for an event.
+    """
     ROAD = 'Road'
     TRAIL = 'Trail'
     MIXED = 'Mixed'
@@ -39,6 +42,9 @@ class PostEvent(models.Model):
         return f"{self.event_name} | Posted by {self.author} | Event date {self.date.strftime('%d %B %Y')}"
 
 class Comment(models.Model):
+    """
+    Model representing a comment on a post event.
+    """
     post = models.ForeignKey(
         PostEvent, on_delete=models.CASCADE, related_name="comments")
     author = models.ForeignKey(
@@ -54,6 +60,9 @@ class Comment(models.Model):
         return f"Comment '{self.body}' by {self.author}"
 
 class EventSignUp(models.Model):
+    """
+    Model representing a user sign-up for an event.
+    """
     event = models.ForeignKey(PostEvent, on_delete=models.CASCADE, related_name='signups')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='event_signups')
     signed_up_on = models.DateTimeField(auto_now_add=True)
