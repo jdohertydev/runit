@@ -377,6 +377,12 @@ input[readonly] {
     color: #6c757d; /* Grey text */
 }
 
+/* Make the email input field wider on the account update form */
+
+#id_email {
+    width: 40%;  /* Adjust the width as needed */
+}
+
 /* Media Queries  */
 
 /* Hide slogan on burger menu */
