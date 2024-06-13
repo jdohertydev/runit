@@ -10,7 +10,7 @@ from django.db.models import Q
 from .utils import send_signup_confirmation_email, send_unregistration_confirmation_email
 
 def landing_page(request):
-    return render(request, 'landing_page.html')
+    return render(request, 'events_listing/landing_page.html')
 
 def events_listing(request):
     return render(request, 'events_listing/index.html')
