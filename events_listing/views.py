@@ -9,12 +9,23 @@ from django.urls import reverse
 from django.db.models import Q
 from .utils import send_signup_confirmation_email, send_unregistration_confirmation_email
 
+class LandingPageView(View):
+    """
+    View to display the landing page.
+    """
+
+    def get(self, request):
+        """
+        Handle GET requests to display the landing page.
+        """
+        return render(request, 'events_listing/landing_page.html')
+
 class PostList(generic.ListView):
     """
     View to display a list of post events with optional filtering.
     """
 
-    template_name = "events_listing/index.html"
+    template_name = "events_listing/events_list.html"
     paginate_by = 6
 
     def get_queryset(self):
@@ -144,6 +155,9 @@ def comment_edit(request, slug, comment_id):
     return HttpResponseRedirect(reverse('postevent_detail', args=[slug]))
 
 def comment_delete(request, slug, comment_id):
+    """
+    View to handle deleting a comment on a post event.
+    """
     post = get_object_or_404(PostEvent, slug=slug, status=1)
     comment = get_object_or_404(Comment, pk=comment_id)
     if comment.author == request.user:
