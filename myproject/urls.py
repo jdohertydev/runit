@@ -27,7 +27,7 @@ urlpatterns = [
 ]
 
 # Custom error handlers
-# handler400 = 'myproject.views.custom_400_view'
-# handler403 = 'myproject.views.custom_403_view'
+handler400 = 'myproject.views.custom_400_view'
+handler403 = 'myproject.views.custom_403_view'
 handler404 = 'myproject.views.custom_404_view'
-# handler500 = 'myproject.views.custom_500_view'
+handler500 = 'myproject.views.custom_500_view'
