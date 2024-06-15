@@ -180,7 +180,7 @@ body {
     color: rgb(222, 146, 168);
 }
 
-/* CSS for index.html*/
+/* CSS for events_page.html*/
 
 .image-container {
     position: relative;
@@ -369,7 +369,7 @@ body {
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* index.html */
+/* events_page.html */
 
 .page-display {
     cursor: default; /* Prevent cursor change on hover */
@@ -446,4 +446,10 @@ input[readonly] {
 .search-filter-container .form-group button,
 .search-filter-container .form-group input {
     height: 38px;
+}
+
+/* landing_page.html */
+
+.splash-screen {
+
 }
