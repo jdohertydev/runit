@@ -53,6 +53,8 @@ As a thought process of the strategy plane, 5 epics were created and utilised. P
 
 ## Epics
 
+*** INSERT PICTURE FOR KANBAN BOARD ***
+
 - [EPIC 1: Event Discovery and Browsing](https://github.com/jdohertydev/runit/issues/1)
 - [EPIC 2: User Registration and Login](https://github.com/jdohertydev/runit/issues/2)
 - [EPIC 3: Event Registration](https://github.com/jdohertydev/runit/issues/3)
@@ -60,6 +62,24 @@ As a thought process of the strategy plane, 5 epics were created and utilised. P
 - [EPIC 5: User Engagement and Community](https://github.com/jdohertydev/runit/issues/5)
 
 ## User Stories
+
+## User Stories and Project Metrics
+
+User stories were created based on the Epics, utilising the MoSCoW prioritisation technique. Each user story was estimated for relative effort using a sequence inspired by Fibonacci numbers (1, 2, 3, 5, 8, 13, etc.), which helps capture the uncertainty and variability in estimating task complexity. This non-linear sequence was chosen to provide a clear initial size assessment for each user story.
+
+### Kanban Board Labels
+
+Each user story on our Kanban Board is labelled with two key attributes:
+
+- **MoSCoW Prioritisation**:
+  - **Must-Have:** Critical requirements that are essential for project success (14 story points).
+  - **Should-Have:** Important requirements that significantly add value (3 story points).
+  - **Could-Have:** Desirable features that provide additional benefits (0 story points).
+  - **Won't-Have:** Features explicitly excluded from the project scope (23 story points).
+
+### Total Story Points
+
+The total estimation for the project is 40 Story Points.
 
 ### EPIC 1: Event Discovery and Browsing
 
@@ -149,21 +169,21 @@ As a runner, I want to pay for event registration fees securely online.
 <details>
 <summary>USER STORY: View Registrations</summary>
 
-As an event organizer, I want to view registrations for my events so that I can manage participant details effectively.
+As an event organiser, I want to view registrations for my events so that I can manage participant details effectively.
 
 </details>
 
 <details>
 <summary>USER STORY: Send Notifications</summary>
 
-As an event organizer, I want to send notifications to participants so that I can communicate important updates or changes.
+As an event organiser, I want to send notifications to participants so that I can communicate important updates or changes.
 
 </details>
 
 <details>
 <summary>USER STORY: Manage Event Logistics</summary>
 
-As an event organizer, I want to manage events on the platform so that I can effectively organize and oversee race logistics.
+As an event organiser, I want to manage events on the platform so that I can effectively organise and oversee race logistics.
 
 </details>
 
@@ -189,3 +209,29 @@ As a user, I want to participate in discussion forums to connect with other runn
 As a user, I want to share my experiences and provide feedback on events so that others can make informed decisions.
 
 </details>
+
+## The Scope Plane
+
+After determining the strategy, the scope was meticulously defined and planned out.
+
+### Features to be Implemented
+
+- **Update Account Details**: Users can modify their personal information, such as name, email address, and password.
+
+- **Event Details Page**: Users can view comprehensive information about a specific event, including date, time, location, description, and any additional details.
+
+- **User Login**: Registered users can securely log in to their accounts to access personalized features and information.
+
+- **User Registration**: New users (runners) can create an account on the platform to gain access to event listings and other site features.
+
+- **Event Sign-Up**: Registered users can enroll in and confirm their participation for a selected event through the platform.
+
+- **View Registrations**: Event organisers can see a list of participants who have registered for their event, along with relevant details.
+
+- **View Remaining Places Available**: Users can check the number of available slots remaining for an event before registering.
+
+- **Cancel Registration**: Registered runners can withdraw from participating in an event they previously signed up for.
+
+- **Search Events**: Users can conduct searches using various criteria to find specific types of running events that match their interests.
+
+- **Event Filtering**: Users can narrow down the list of events based on specific categories or criteria, helping them find events that align with their preferences.
