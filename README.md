@@ -295,3 +295,10 @@ Events Page Listing
 Accounts
 
 Contact
+
+The Surface Plane
+
+Once the Strategy, Scope, Structure and Skeleton Planes were in place, it was time to work on the Surface Plane (Design).
+
+Logo and tag line
+
