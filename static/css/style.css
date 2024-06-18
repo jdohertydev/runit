@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 body {
     background-color: #F9FAFC;
     font-family: 'Roboto', serif;
@@ -372,22 +374,28 @@ body {
 /* events_page.html */
 
 .page-display {
-    cursor: default; /* Prevent cursor change on hover */
-    pointer-events: none; /* Disable pointer events */
+    cursor: default;
+    /* Prevent cursor change on hover */
+    pointer-events: none;
+    /* Disable pointer events */
 }
 
 /* Account_admin.html - Style the readonly input fields to appear greyed out */
 
 input[readonly] {
-    background-color: #e9ecef; /* Light grey background */
-    cursor: not-allowed; /* Change cursor to indicate non-editable */
-    color: #6c757d; /* Grey text */
+    background-color: #e9ecef;
+    /* Light grey background */
+    cursor: not-allowed;
+    /* Change cursor to indicate non-editable */
+    color: #6c757d;
+    /* Grey text */
 }
 
 /* Make the email input field wider on the account update form */
 
 #id_email {
-    width: 40%;  /* Adjust the width as needed */
+    width: 40%;
+    /* Adjust the width as needed */
 }
 
 /* Media Queries  */
@@ -450,6 +458,9 @@ input[readonly] {
 
 /* landing_page.html */
 
-.splash-screen {
+.splash-screen {}
 
+
+.hero-text {
+    font-weight: 500;
 }
