@@ -235,3 +235,63 @@ After determining the strategy, the scope was meticulously defined and planned o
 - **Search Events**: Users can conduct searches using various criteria to find specific types of running events that match their interests.
 
 - **Event Filtering**: Users can narrow down the list of events based on specific categories or criteria, helping them find events that align with their preferences.
+
+The Structure Plane
+
+Site Maps
+
+Site map for users logged in
+
+INSERT IMAGE
+
+- Home
+- Events
+- Accounts
+- Contact
+
+INSERT IMAGE
+
+Site map for user not logged in 
+
+- Home
+- Events
+- Register
+- Login
+- Contact
+
+Database Schemas
+
+INSERT IMAGE
+
+## Relationships
+
+### postevent_postevent Table
+
+- **postevent_comment**: One-to-many relationship. Each `PostEvent` can have multiple `Comments`. The `post_id` in the `postevent_comment` table references the `id` of `postevent_postevent`.
+
+- **postevent_eventsignup**: One-to-many relationship. Each `PostEvent` can have multiple sign-ups. The `event_id` in the `postevent_eventsignup` table references the `id` of `postevent_postevent`.
+
+### auth_user Table
+
+- **postevent_postevent**: The `author_id` field in the `postevent_postevent` table references the `id` of `auth_user`, linking each `PostEvent` to its author.
+
+- **postevent_comment**: The `author_id` field in the `postevent_comment` table references the `id` of `auth_user`, linking each `Comment` to its author.
+
+- **postevent_eventsignup**: The `user_id` field in the `postevent_eventsignup` table references the `id` of `auth_user`, linking each sign-up (`EventSignUp`) to the user who signed up.
+
+These relationships ensure data integrity and establish connections between related data in the database schema.
+
+
+The Skeleton Plane
+
+Wire-frames
+
+Landing Page
+
+Events
+
+Events Page Listing
+
+Accounts
+
+Contact
