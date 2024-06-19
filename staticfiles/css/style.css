@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 body {
     background-color: #F9FAFC;
     font-family: 'Roboto', serif;
 }
+
 /* Custom alert colour to match style */
 
 .alert-success {
@@ -9,6 +12,16 @@ body {
     color: #004085;
     border-color: #b8daff;
 }
+
+/* Ensure consistent font size for select and input elements */
+
+.search-filter-container .form-group select,
+.search-filter-container .form-group input {
+    font-size: 16px;
+
+}
+
+/* style for postevent_detail.html */
 
 .brand {
     font-family: Lato, sans-serif;
@@ -169,7 +182,7 @@ body {
     color: rgb(222, 146, 168);
 }
 
-/* CSS for index.html*/
+/* CSS for events_page.html*/
 
 .image-container {
     position: relative;
@@ -287,6 +300,24 @@ body {
 .navbar {
     background-color: #f8f9fa;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: flex-end; /* Align items at the bottom */
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: flex-end; /* Align logo at the bottom */
+}
+
+.navbar-brand img.brand-logo {
+    height: 50px; /* Adjust height */
+    width: auto; /* Maintain aspect ratio */ 
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: flex-end; /* Align nav items at the bottom */
+    
 }
 
 /* footer */
@@ -358,6 +389,33 @@ body {
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* events_page.html */
+
+.page-display {
+    cursor: default;
+    /* Prevent cursor change on hover */
+    pointer-events: none;
+    /* Disable pointer events */
+}
+
+/* Account_admin.html - Style the readonly input fields to appear greyed out */
+
+input[readonly] {
+    background-color: #e9ecef;
+    /* Light grey background */
+    cursor: not-allowed;
+    /* Change cursor to indicate non-editable */
+    color: #6c757d;
+    /* Grey text */
+}
+
+/* Make the email input field wider on the account update form */
+
+#id_email {
+    width: 40%;
+    /* Adjust the width as needed */
+}
+
 /* Media Queries  */
 
 /* Hide slogan on burger menu */
@@ -368,11 +426,60 @@ body {
     }
 }
 
-/* Ensure search bar and button are in alignment */
+/* Responsive styles for search and filter form on viewports < 453px */
 
-@media (max-width: 430px) {
-    .search-and-button  {
-        display: none;
+@media (max-width: 453px) {
+    .search-filter-container {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
     }
+
+    .search-filter-container .form-inline {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-filter-container .form-group {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .search-filter-container .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .search-filter-container .form-group select,
+    .search-filter-container .form-group input,
+    .search-filter-container .form-group button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .search-filter-container .form-group input {
+        margin-bottom: 10px;
+    }
+
+    .search-filter-container .form-group button {
+        width: 100%;
+    }
+}
+
+
+/* Ensure consistent height for select and input elements */
+.search-filter-container .form-group select,
+.search-filter-container .form-group button,
+.search-filter-container .form-group input {
+    height: 38px;
+}
+
+/* landing_page.html */
+
+.splash-screen {}
+
+
+.hero-text {
+    font-weight: 500;
 }
 
