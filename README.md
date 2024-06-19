@@ -2,19 +2,19 @@
 
 "Run It!" is a website dedicated to listing running events. Runners can effortlessly find details about local running events, ask questions, and sign up directly through the platform. Event organisers can also use "Run It!" to post their events and manage their participant lists.
 
-The live version of the website can be viewed at: https://runit-jdohertydev-773091e00a18.herokuapp.com/.
+The live version of the website can be viewed at: [Run It!](https://runit-jdohertydev-773091e00a18.herokuapp.com/).
 
-*** INSERT IMAGE SHOWING RESPONSIVENESS*** 
+***INSERT IMAGE SHOWING RESPONSIVENESS***
 
 ## Table of Contents
 
-*** TO BE UPDATED ***
+***TO BE UPDATED***
 
 ## User Experience (UX)
 
 ### The Idea
 
-**Run it!** is designed to be a comprehensive running event listing website. Users can effortlessly find free running events in their area and book their spots. Additionally, they can post questions about specific events, add likes, and easily contact the site webmaster.
+**Run It!** is designed to be a comprehensive running event listing website. Users can effortlessly find free running events in their area and book their spots. Additionally, they can post questions about specific events, add likes, and easily contact the site webmaster.
 
 ### The Ideal User
 
@@ -22,7 +22,7 @@ The live version of the website can be viewed at: https://runit-jdohertydev-7730
 - Runners of all levels interested in participating in running events.
 - Race Organisers who want to list events and manage bookings through the site admin.
 
-**The ideal user:**
+**The Ideal User:**
 - Enjoys running and wants to participate in events.
 - Desires to manage their own registrations.
 - Aims to connect with other runners in their community.
@@ -32,22 +32,16 @@ The live version of the website can be viewed at: https://runit-jdohertydev-7730
 
 1. **Facilitate Event Discovery:**
    - Provide a user-friendly interface for runners to easily find and book running events in their area.
-
 2. **Enhance User Engagement:**
    - Enable users to post questions, add likes, and interact with other runners and event organisers within the platform.
-
 3. **Streamline Event Management:**
    - Offer race organisers robust tools to list events, manage bookings, and communicate with participants efficiently.
-
 4. **Promote Community Connection:**
    - Foster a community of runners by allowing users to connect, share experiences, and support each other through the platform.
-
 5. **Ensure Smooth Registration Process:**
    - Simplify the registration process for runners, making it easy for them to sign up for events and manage their registrations.
-
 6. **Support Event Promotion:**
    - Provide race organisers with effective ways to promote their events, reaching a wider audience of potential participants.
-
 7. **Maintain High-Quality User Support:**
    - Ensure that users can easily contact the site webmaster for assistance, providing reliable support for both runners and race organisers.
 
@@ -57,7 +51,7 @@ As a thought process of the strategy plane, 5 epics were created and utilised. P
 
 ## Epics
 
-*** INSERT PICTURE FOR KANBAN BOARD ***
+***INSERT PICTURE FOR KANBAN BOARD***
 
 - [EPIC 1: Event Discovery and Browsing](https://github.com/jdohertydev/runit/issues/1)
 - [EPIC 2: User Registration and Login](https://github.com/jdohertydev/runit/issues/2)
@@ -67,15 +61,15 @@ As a thought process of the strategy plane, 5 epics were created and utilised. P
 
 ## User Stories
 
-## User Stories and Project Metrics
+### User Stories and Project Metrics
 
 User stories were created based on the Epics, utilising the MoSCoW prioritisation technique. Each user story was estimated for relative effort using a sequence inspired by Fibonacci numbers (1, 2, 3, 5, 8, 13, etc.), which helps capture the uncertainty and variability in estimating task complexity. This non-linear sequence was chosen to provide a clear initial size assessment for each user story.
 
 ### Kanban Board Labels
 
-Each user story on our Kanban Board is labelled with two key attributes:
+Each user story on the Kanban Board is labelled with two key attributes:
 
-- **MoSCoW Prioritisation**:
+- **MoSCoW Prioritisation:**
   - **Must-Have:** Critical requirements that are essential for project success (14 story points).
   - **Should-Have:** Important requirements that significantly add value (3 story points).
   - **Could-Have:** Desirable features that provide additional benefits (0 story points).
@@ -220,42 +214,33 @@ After determining the strategy, the scope was meticulously defined and planned o
 
 ### Features to be Implemented
 
-- **Update Account Details**: Users can modify their personal information, such as name, email address, and password.
+- **Update Account Details:** Users can modify their personal information, such as name, email address, and password.
+- **Event Details Page:** Users can view comprehensive information about a specific event, including date, time, location, description, and any additional details.
+- **User Login:** Registered users can securely log in to their accounts to access personalized features and information.
+- **User Registration:** New users (runners) can create an account on the platform to gain access to event listings and other site features.
+- **Event Sign-Up:** Registered users can enroll in and confirm their participation for a selected event through the platform.
+- **View Registrations:** Event organisers can see a list of participants who have registered for their event, along with relevant details.
+- **View Remaining Places Available:** Users can check the number of available slots remaining for an event before registering.
+- **Cancel Registration:** Registered runners can withdraw from participating in an event they previously signed up for.
+- **Search Events:** Users can conduct searches using various criteria to find specific types of running events that match their interests.
+- **Event Filtering:** Users can narrow down the list of events based on specific categories or criteria, helping them find events that align with their preferences.
 
-- **Event Details Page**: Users can view comprehensive information about a specific event, including date, time, location, description, and any additional details.
+## The Structure Plane
 
-- **User Login**: Registered users can securely log in to their accounts to access personalized features and information.
+### Site Maps
 
-- **User Registration**: New users (runners) can create an account on the platform to gain access to event listings and other site features.
+#### Site Map for Users Logged In
 
-- **Event Sign-Up**: Registered users can enroll in and confirm their participation for a selected event through the platform.
-
-- **View Registrations**: Event organisers can see a list of participants who have registered for their event, along with relevant details.
-
-- **View Remaining Places Available**: Users can check the number of available slots remaining for an event before registering.
-
-- **Cancel Registration**: Registered runners can withdraw from participating in an event they previously signed up for.
-
-- **Search Events**: Users can conduct searches using various criteria to find specific types of running events that match their interests.
-
-- **Event Filtering**: Users can narrow down the list of events based on specific categories or criteria, helping them find events that align with their preferences.
-
-The Structure Plane
-
-Site Maps
-
-Site map for users logged in
-
-INSERT IMAGE
+***INSERT IMAGE***
 
 - Home
 - Events
 - Accounts
 - Contact
 
-INSERT IMAGE
+#### Site Map for User Not Logged In
 
-Site map for user not logged in 
+***INSERT IMAGE***
 
 - Home
 - Events
@@ -263,64 +248,121 @@ Site map for user not logged in
 - Login
 - Contact
 
-Database Schemas
+### Database Schemas
 
-INSERT IMAGE
+***INSERT IMAGE***
 
 ## Relationships
 
 ### postevent_postevent Table
 
-- **postevent_comment**: One-to-many relationship. Each `PostEvent` can have multiple `Comments`. The `post_id` in the `postevent_comment` table references the `id` of `postevent_postevent`.
-
-- **postevent_eventsignup**: One-to-many relationship. Each `PostEvent` can have multiple sign-ups. The `event_id` in the `postevent_eventsignup` table references the `id` of `postevent_postevent`.
+- **postevent_comment:** One-to-many relationship. Each `PostEvent` can have multiple `Comments`. The `post_id` in the `postevent_comment` table references the `id` of `postevent_postevent`.
+- **postevent_eventsignup:** One-to-many relationship. Each `PostEvent` can have multiple sign-ups. The `event_id` in the `postevent_eventsignup` table references the `id` of `postevent_postevent`.
 
 ### auth_user Table
 
-- **postevent_postevent**: The `author_id` field in the `postevent_postevent` table references the `id` of `auth_user`, linking each `PostEvent` to its author.
-
-- **postevent_comment**: The `author_id` field in the `postevent_comment` table references the `id` of `auth_user`, linking each `Comment` to its author.
-
-- **postevent_eventsignup**: The `user_id` field in the `postevent_eventsignup` table references the `id` of `auth_user`, linking each sign-up (`EventSignUp`) to the user who signed up.
+- **postevent_postevent:** The `author_id` field in the `postevent_postevent` table references the `id` of `auth_user`, linking each `PostEvent` to its author.
+- **postevent_comment:** The `author_id` field in the `postevent_comment` table references the `id` of `auth_user`, linking each `Comment` to its author.
+- **postevent_eventsignup:** The `user_id` field in the `postevent_eventsignup` table references the `id` of `auth_user`, linking each sign-up (`EventSignUp`) to the user who signed up.
 
 These relationships ensure data integrity and establish connections between related data in the database schema.
 
+## The Skeleton Plane
 
-The Skeleton Plane
+### Wireframes
 
-Wire-frames ***ADD IMAGES***
+***ADD IMAGES***
 
-Landing Page
+- Landing Page
+- Events
+- Events Page Listing
+- Accounts
+- Contact
 
-Events
+## The Surface Plane
 
-Events Page Listing
+Once the Strategy, Scope, Structure, and Skeleton Planes were in place, it was time to work on the Surface Plane (Design).
 
-Accounts
+### Logo and Tagline (Looka)
 
-Contact
+***INSERT IMAGE***
 
-The Surface Plane
+### Color Palette
 
-Once the Strategy, Scope, Structure and Skeleton Planes were in place, it was time to work on the Surface Plane (Design).
+***INSERT IMAGE***
 
-Logo and tag line (Looka) 
+### Fonts
 
-*** Insert image ***
-
-Color pallette
-
-*** Insert image ***
-
-Fonts
-
-Roboto
+**Roboto**
 
 Roboto was chosen for its modern, clean aesthetic and versatility. Designed with a mechanical skeleton and largely geometric forms, Roboto offers a contemporary look that is both visually appealing and highly readable on various screen sizes and resolutions. Its wide range of weights and styles, from thin to black, including italics, makes it a flexible choice for diverse design needs, whether for web, mobile, or print applications. Serif was selected as a fallback font in case the primary font (Roboto) fails to load for any reason, such as network issues or the font not being installed on the user's device. This fallback ensures that the text remains legible and maintains a consistent style.
 
-Features
+## Features
 
+***TO BE COMPLETED***
 
+Header
 
+Logo
+Slogan
+- hidden for mobile devices
+Menu items that change depending on login state
 
+Footer
+
+Login Status
+
+Custom Error Pages
+
+Events List Page
+
+Only show races that are live
+Filter race type
+- resizes for mobile device
+Search keywords
+- resizes for mobile device
+Event Card
+- always stays the same size
+- shadowbox effect
+- clickable image - photo used to attract user
+Next / previous navigation depending on event state
+
+Events Post Page
+
+Masthead banner
+- Shows event name, image and countdown lock
+Event Details shows all the key information about event.
+Comments section
+- only registered users can comment
+- approval
+- edit
+- delete
+
+List of Participants
+- only registered users can sign up.
+- users can sign up / unregister - email confirmation is sent
+- When a user signs up, the number of places reduces by 1. If all places are allocated, the event is listed as sold out
+- when the event has finished, it is no longer possible to sign up
+
+Account Page
+- User can update profile
+   - not able to change username
+- Change password
+- Delete account
+   - modal - extra security
+
+Contact Us Page
+
+Autopopulates name and email address if logged in
+validates email address and ensures user writes something
+response is sent to backend
+- Contact messages
+
+Django Admin
+
+ Post events
+ - Add post event
+   - Summer notes
+ - Users can export cvs files of participants registered on their event
+ - only users who posed the event can see these lists unless superuser
 
