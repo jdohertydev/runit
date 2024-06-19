@@ -284,7 +284,7 @@ These relationships ensure data integrity and establish connections between rela
 
 The Skeleton Plane
 
-Wire-frames
+Wire-frames ***ADD IMAGES***
 
 Landing Page
 
@@ -300,5 +300,21 @@ The Surface Plane
 
 Once the Strategy, Scope, Structure and Skeleton Planes were in place, it was time to work on the Surface Plane (Design).
 
-Logo and tag line
+Logo and tag line (Looka) 
+
+*** Insert image ***
+
+Color pallette
+
+*** Insert image ***
+
+Fonts
+
+Roboto
+
+Roboto was chosen for its modern, clean aesthetic and versatility. Designed with a mechanical skeleton and largely geometric forms, Roboto offers a contemporary look that is both visually appealing and highly readable on various screen sizes and resolutions. Its wide range of weights and styles, from thin to black, including italics, makes it a flexible choice for diverse design needs, whether for web, mobile, or print applications. Serif was selected as a fallback font in case the primary font (Roboto) fails to load for any reason, such as network issues or the font not being installed on the user's device. This fallback ensures that the text remains legible and maintains a consistent style.
+
+
+
+
 
