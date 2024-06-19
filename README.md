@@ -4,7 +4,7 @@
 
 The live version of the website can be viewed at: [Run It!](https://runit-jdohertydev-773091e00a18.herokuapp.com/).
 
-***INSERT IMAGE SHOWING RESPONSIVENESS***
+![Am I responsive](/readme-images/am-i-responsive.png)
 
 ## Table of Contents
 
@@ -51,7 +51,7 @@ As a thought process of the strategy plane, 5 epics were created and utilised. P
 
 ## Epics
 
-***INSERT PICTURE FOR KANBAN BOARD***
+![Run It! Kanban Board](/readme-images/kanban-board-run-it.png)
 
 - [EPIC 1: Event Discovery and Browsing](https://github.com/jdohertydev/runit/issues/1)
 - [EPIC 2: User Registration and Login](https://github.com/jdohertydev/runit/issues/2)
@@ -231,26 +231,15 @@ After determining the strategy, the scope was meticulously defined and planned o
 
 #### Site Map for Users Logged In
 
-***INSERT IMAGE***
+![Site map for users who are logged in](/readme-images/site-map-logged-in.png)
 
-- Home
-- Events
-- Accounts
-- Contact
+#### Site Map for Users Not Logged In
 
-#### Site Map for User Not Logged In
+![Site map for users who are not logged in](/readme-images/site-map-not-logged-in.png)
 
-***INSERT IMAGE***
+### Database Schema
 
-- Home
-- Events
-- Register
-- Login
-- Contact
-
-### Database Schemas
-
-***INSERT IMAGE***
+![Database Schema](/readme-images/run-it-database-layout.png)
 
 ## Relationships
 
@@ -271,25 +260,33 @@ These relationships ensure data integrity and establish connections between rela
 
 ### Wireframes
 
-***ADD IMAGES***
+Landing Page
 
-- Landing Page
-- Events
-- Events Page Listing
-- Accounts
-- Contact
+![Landing Page](/readme-images/wire-frame-landing-page.png)
+
+Events
+
+![Events](/readme-images/wire-frame-events.png)
+
+Events Page Listing
+
+![Events Page Listing](/readme-images/wire-frame-events-page-listing.png)
+
+Accounts
+
+![Accounts](/readme-images/wire-frame-account.png)
+
+Contact
+
+![Contact](/readme-images/wire-frame-contact.png)
 
 ## The Surface Plane
 
 Once the Strategy, Scope, Structure, and Skeleton Planes were in place, it was time to work on the Surface Plane (Design).
 
-### Logo and Tagline (Looka)
-
-***INSERT IMAGE***
-
 ### Color Palette
 
-***INSERT IMAGE***
+![Color Palette](/readme-images/colour-pallette.png)
 
 ### Fonts
 
@@ -301,18 +298,29 @@ Roboto was chosen for its modern, clean aesthetic and versatility. Designed with
 
 ***TO BE COMPLETED***
 
+### Logo and Tagline (Looka)
+
+![Logo and Tagline ](/readme-images/logo-with-slogan.png)
+
 Header
 
-Logo
+![Header](/readme-images/header.png)
+
 Slogan
 - hidden for mobile devices
 Menu items that change depending on login state
 
-Footer
-
 Login Status
 
+Footer
+
+![Footer](/readme-images/footer.png)
+
+
+
 Custom Error Pages
+
+![Custom Error Pages](/readme-images/example-of-custom-error-page.png)
 
 Events List Page
 
