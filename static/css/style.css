@@ -466,7 +466,6 @@ input[readonly] {
     }
 }
 
-
 /* Ensure consistent height for select and input elements */
 .search-filter-container .form-group select,
 .search-filter-container .form-group button,
@@ -476,7 +475,7 @@ input[readonly] {
 
 /* landing_page.html */
 
-.splash-screen {}
+/* .splash-screen {} */
 
 
 .hero-text {

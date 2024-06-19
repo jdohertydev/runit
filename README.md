@@ -286,6 +286,8 @@ Once the Strategy, Scope, Structure, and Skeleton Planes were in place, it was t
 
 ### Color Palette
 
+I decided to use the color palette provided by [Looka](https://looka.com/). I find that the dark grayscale colors enhance the website's aesthetic appeal.
+
 ![Color Palette](/readme-images/colour-pallette.png)
 
 ### Fonts
@@ -296,24 +298,51 @@ Roboto was chosen for its modern, clean aesthetic and versatility. Designed with
 
 ## Features
 
-***TO BE COMPLETED***
-
 ### Favicon
+
+I used [Favicon Generator](https://favicon.io/favicon-converter/) to create the favicon and I integrated the corresponding code into base.html:
+
+```HTML
+<link rel="icon" type="image/x-icon" href="{% static 'images/favicon/favicon.ico' %}">
+```
 
 ![Favicon](/readme-images/favicon.png)
 
+
 ### Logo and Tagline (Looka)
+
+I used [Looka](https://looka.com/) to create the logo used:
 
 ![Logo and Tagline ](/readme-images/logo-with-slogan.png)
 
 ### Header
 
+The header code is centralised in base.html, ensuring consistency and facilitating future updates or modifications across the website.
+
 ![Header](/readme-images/header.png)
 
 ### Slogan
 
-- hidden for mobile devices
-Menu items that change depending on login state
+![Slogan](/readme-images/logo-with-slogan.png)
+
+The slogan used serves to support the essence and values of my brand, leaving a memorable impression on visitors while reinforcing its identity and purpose. When viewing the website on mobile viewports, the slogan is removed to optimize screen space.
+
+![Slogan](/readme-images/slogan-hideen-on-mobile-view.png)
+
+```CSS
+@media (max-width: 991px) {
+    .slogan {
+        display: none;
+    }
+}
+```
+
+### Dynamic menu items that adapt based on the user's login status
+
+![Logged in](/readme-images/logged-in.png.png)
+
+![Logged out](/readme-images/not-logged-in.png)
+
 
 ### Login Status
 
@@ -327,16 +356,120 @@ Menu items that change depending on login state
 
 ### Events List Page
 
-Only show races that are live
-Filter race type
-- resizes for mobile device
-Search keywords
-- resizes for mobile device
-Event Card
-- always stays the same size
-- shadowbox effect
-- clickable image - photo used to attract user
-Next / previous navigation depending on event state
+#### Display Only Live Races
+
+Within `def get_queryset(self)` (events_listing/views.py), the following code ensures that no events that have already taken place are displayed:
+
+```python
+def get_queryset(self):
+    """
+    Get the queryset for the list of post events.
+    """
+    current_datetime = timezone.now()
+    queryset = PostEvent.objects.filter(date__gte=current_datetime)
+```
+
+This method retrieves a queryset of PostEvent objects whose date field is greater than or equal to the current date and time, effectively filtering out past events. I believe this makes for a better user experience.
+
+#### Filter by Race Type
+
+To enhance user experience, users can search for races by type (road, trail, mix) and also use keywords to find events.
+
+![Filter by Race Type full screen](/readme-images/filter-and-search-function.png)
+
+JavaScript was implemented to automatically load results when the user selected a race type, enhancing the user experience.
+
+```javascript
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('race_type').addEventListener('change', function() {
+        document.getElementById('filterForm').submit();
+    });
+});
+```
+
+On mobile devices, a media query was utilized to optimize the available space within the viewport.
+
+```css
+@media (max-width: 453px) {
+    .search-filter-container {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-filter-container .form-inline {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-filter-container .form-group {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .search-filter-container .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .search-filter-container .form-group select,
+    .search-filter-container .form-group input,
+    .search-filter-container .form-group button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .search-filter-container .form-group input {
+        margin-bottom: 10px;
+    }
+
+    .search-filter-container .form-group button {
+        width: 100%;
+    }
+}
+
+/* Ensure consistent height for select and input elements */
+.search-filter-container .form-group select,
+.search-filter-container .form-group button,
+.search-filter-container .form-group input {
+    height: 38px;
+}
+```
+
+
+![Filter by Race Type mobile device](/readme-images/resized-filter-and-search.png)
+
+#### Event Card
+
+Although a minor design concern, CSS was employed to standardize the size of all event cards, ensuring that the text adjusts accordingly. This was accomplished using CSS.
+
+```CSS
+
+.col-md-4 {
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+    /* Add padding to columns to ensure proper spacing */
+}
+
+```
+Event Card without styling
+
+![Event Card without styling](/readme-images/event-card-without-styling.png)
+
+Event Card with styling
+
+![Event Card with styling](/readme-images/event-card-resizing-to-be-same-size.png)
+
+#### Shadowbox Effect
+
+The shadow box effect serves to enhance visual appeal and usability by adding depth and dimensionality to elements. It helps users easily identify interactive elements and distinguish them from static content, ensuring a more intuitive browsing experience.
+
+![Shadowbox Effect](/readme-images/event-card-shadow-box.png)
+
+#### Navigation options for Next/Previous events based on event status.
+
+![Navigation options for Next/Previous events based on event status](/readme-images/previous-next-nav.png)
 
 ### Events Post Page
 
