@@ -1,10 +1,14 @@
 # Key Project Information
 
+"Run It!" is a website dedicated to listing running events. Runners can effortlessly find details about local running events, ask questions, and sign up directly through the platform. Event organisers can also use "Run It!" to post their events and manage their participant lists.
+
+The live version of the website can be viewed at: https://runit-jdohertydev-773091e00a18.herokuapp.com/.
+
+*** INSERT IMAGE SHOWING RESPONSIVENESS*** 
+
 ## Table of Contents
-1. [User Experience (UX)](#user-experience-ux)
-2. [The Strategy Plane](#the-strategy-plane)
-3. [Epics](#epics)
-4. [User Stories](#user-stories)
+
+*** TO BE UPDATED ***
 
 ## User Experience (UX)
 
@@ -314,7 +318,7 @@ Roboto
 
 Roboto was chosen for its modern, clean aesthetic and versatility. Designed with a mechanical skeleton and largely geometric forms, Roboto offers a contemporary look that is both visually appealing and highly readable on various screen sizes and resolutions. Its wide range of weights and styles, from thin to black, including italics, makes it a flexible choice for diverse design needs, whether for web, mobile, or print applications. Serif was selected as a fallback font in case the primary font (Roboto) fails to load for any reason, such as network issues or the font not being installed on the user's device. This fallback ensures that the text remains legible and maintains a consistent style.
 
-
+Features
 
 
 
