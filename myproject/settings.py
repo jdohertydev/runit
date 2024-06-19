@@ -99,6 +99,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
+SITE_NAME = 'Run It!'
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

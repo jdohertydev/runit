@@ -355,7 +355,7 @@ Contact Us Page
 
 Autopopulates name and email address if logged in
 validates email address and ensures user writes something
-response is sent to backend
+response is sent to backend and emails webmaster
 - Contact messages
 
 Django Admin
