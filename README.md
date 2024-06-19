@@ -298,31 +298,34 @@ Roboto was chosen for its modern, clean aesthetic and versatility. Designed with
 
 ***TO BE COMPLETED***
 
+### Favicon
+
+![Favicon](/readme-images/favicon.png)
+
 ### Logo and Tagline (Looka)
 
 ![Logo and Tagline ](/readme-images/logo-with-slogan.png)
 
-Header
+### Header
 
 ![Header](/readme-images/header.png)
 
-Slogan
+### Slogan
+
 - hidden for mobile devices
 Menu items that change depending on login state
 
-Login Status
+### Login Status
 
-Footer
-
-![Footer](/readme-images/footer.png)
-
-
-
-Custom Error Pages
+### Custom Error Pages
 
 ![Custom Error Pages](/readme-images/example-of-custom-error-page.png)
 
-Events List Page
+### Footer
+
+![Footer](/readme-images/footer.png)
+
+### Events List Page
 
 Only show races that are live
 Filter race type
@@ -335,7 +338,7 @@ Event Card
 - clickable image - photo used to attract user
 Next / previous navigation depending on event state
 
-Events Post Page
+### Events Post Page
 
 Masthead banner
 - Shows event name, image and countdown lock
@@ -352,21 +355,21 @@ List of Participants
 - When a user signs up, the number of places reduces by 1. If all places are allocated, the event is listed as sold out
 - when the event has finished, it is no longer possible to sign up
 
-Account Page
+###  Account Page
 - User can update profile
    - not able to change username
 - Change password
 - Delete account
    - modal - extra security
 
-Contact Us Page
+### Contact Us Page
 
 Autopopulates name and email address if logged in
 validates email address and ensures user writes something
 response is sent to backend and emails webmaster
 - Contact messages
 
-Django Admin
+### Django Admin
 
  Post events
  - Add post event
