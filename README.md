@@ -308,8 +308,7 @@ I used [Favicon Generator](https://favicon.io/favicon-converter/) to create the 
 
 ![Favicon](/readme-images/favicon.png)
 
-
-### Logo and Tagline (Looka)
+### Logo and Tagline
 
 I used [Looka](https://looka.com/) to create the logo used:
 
@@ -344,6 +343,26 @@ The user can see if they are logged in or not. Seeing their login status is cruc
 ![Logged in](/readme-images/logged-in.png.png)
 
 ![Logged out](/readme-images/not-logged-in.png)
+
+### Sticky Navbar
+
+A sticky navbar enhances user experience (UX) by providing constant, easy access to navigation options, which facilitates smoother and more efficient browsing. It eliminates the need for users to scroll back to the top of the page to navigate, saving time and effort, especially on smaller viewing ports.
+
+```CSS
+
+/* Make header sticky */
+
+.navbar {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
+    z-index: 1030; /* Ensure it stays on top of other content */
+    background-color: #f8f9fa; /* Keep the background color */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Keep the shadow */
+}
+
+```
+
 
 ### Custom Error Pages
 
