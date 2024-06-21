@@ -857,6 +857,8 @@ To ensure Python files (.py extensions) are PEP8 valid, the following protocol w
 4. Run Black to format Python files with a specific line length of 79 characters (`$ black --line-length 79 .`)
 5. Manual check all .py files with CI Python Linter.
 
+Using this method, I successfully validated all my Python code. The only exception I encountered was in the settings.py file, where the `AUTH_PASSWORD_VALIDATORS` variable exceeded the recommended 79 characters.
+
 HTML Validation
 CSS Validation
 JS Validation
