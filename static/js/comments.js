@@ -1,3 +1,11 @@
+/**
+ * Enables dynamic editing and deletion of comments on a web page.
+ *
+ * This script provides functionality for editing and deleting comments dynamically
+ * without requiring a page reload. It listens for click events on edit and delete buttons
+ * associated with each comment and handles them accordingly.
+ */
+
 const editButtons = document.getElementsByClassName("btn-edit");
 const commentText = document.getElementById("id_body");
 const commentForm = document.getElementById("commentForm");

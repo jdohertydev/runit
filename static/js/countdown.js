@@ -1,3 +1,11 @@
+/**
+ * Initializes and updates a countdown timer for an event based on a specified date.
+ *
+ * This script calculates the time remaining until a specified event date and updates
+ * the countdown timer on the web page in real-time. It uses the 'DOMContentLoaded' event
+ * to ensure all DOM elements are loaded before performing calculations and updates.
+**/
+
 document.addEventListener("DOMContentLoaded", function() {
     const eventDateElement = document.getElementById('eventDate');
     const eventDate = new Date(eventDateElement.getAttribute('data-event-date')).getTime();
