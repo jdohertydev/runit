@@ -357,13 +357,9 @@ A sticky navbar enhances user experience (UX) by providing constant, easy access
     position: sticky;
     top: 0;
     z-index: 1030; /* Ensure it stays on top of other content */
-    background-color: #f8f9fa; /* Keep the background color */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Keep the shadow */
 }
 
 ```
-
-
 ### Custom Error Pages
 
 I have created custom error pages for 400, 403, 404, and 500 errors that enhance user experience by offering helpful navigation options, maintaining brand consistency, and reducing frustration through humorous running-related puns. This involved creating custom templates and linking them via the urls.py file and views.py.
@@ -844,4 +840,8 @@ export_participants.short_description = "Export participants for selected events
 #### Screenhot of exported csv file
 
 ![Screenhot of exported csv file](/readme-images/participants-list-csv.png)
+
+### Future Features
+
+For future releases, I envision incorporating a payment system, which would enhance user experience by allowing seamless transactions. Additionally, integrating social media connectivity will enable users to log in using their social media accounts and effortlessly share the races they participate in.
 
