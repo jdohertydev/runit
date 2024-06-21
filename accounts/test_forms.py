@@ -15,7 +15,9 @@ class TestCustomUserChangeForm(TestCase):
         Create a test user.
         """
         self.user = User.objects.create_user(
-            username="testuser", email="test@example.com", password="testpassword"
+            username="testuser",
+            email="test@example.com",
+            password="testpassword",
         )
         self.form_data = {
             "username": "newusername",

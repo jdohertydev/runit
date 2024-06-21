@@ -14,7 +14,11 @@ class Migration(migrations.Migration):
             model_name="postevent",
             name="race_type",
             field=models.CharField(
-                choices=[("Road", "Road"), ("Trail", "Trail"), ("Mixed", "Mixed")],
+                choices=[
+                    ("Road", "Road"),
+                    ("Trail", "Trail"),
+                    ("Mixed", "Mixed"),
+                ],
                 default="Road",
                 max_length=10,
             ),

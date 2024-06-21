@@ -9,7 +9,10 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ("events_listing", "0004_alter_comment_options_alter_postevent_options"),
+        (
+            "events_listing",
+            "0004_alter_comment_options_alter_postevent_options",
+        ),
     ]
 
     operations = [

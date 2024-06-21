@@ -25,7 +25,9 @@ def export_participants(modeladmin, request, queryset):
     )
 
     for event in queryset:
-        signups = EventSignUp.objects.filter(event=event).order_by("signed_up_on")
+        signups = EventSignUp.objects.filter(event=event).order_by(
+            "signed_up_on"
+        )
         for index, signup in enumerate(signups, start=1):
             writer.writerow(
                 [
@@ -41,7 +43,9 @@ def export_participants(modeladmin, request, queryset):
     return response
 
 
-export_participants.short_description = "Export participants for selected events"
+export_participants.short_description = (
+    "Export participants for selected events"
+)
 
 
 class EventPostAdmin(SummernoteModelAdmin):
@@ -93,7 +97,11 @@ class EventSignUpAdmin(admin.ModelAdmin):
 
     list_display = ("event", "user", "signed_up_on")
     list_filter = ("event", "signed_up_on")
-    search_fields = ("event__event_name", "user__first_name", "user__last_name")
+    search_fields = (
+        "event__event_name",
+        "user__first_name",
+        "user__last_name",
+    )
 
 
 # Register models

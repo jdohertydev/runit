@@ -26,7 +26,10 @@ def account_update(request):
                 [user.email],
                 html_message=render_to_string(
                     "emails/account_updated_email.html",
-                    {"username": user.username, "site_name": "Your Website/App Name"},
+                    {
+                        "username": user.username,
+                        "site_name": "Your Website/App Name",
+                    },
                 ),
                 fail_silently=False,
             )
@@ -77,7 +80,9 @@ def account_password_change(request):
                 fail_silently=False,
             )
 
-            messages.success(request, "Your password was successfully updated!")
+            messages.success(
+                request, "Your password was successfully updated!"
+            )
             return redirect("account_update")
         else:
             messages.error(request, "Please correct the error below.")

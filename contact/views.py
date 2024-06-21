@@ -24,7 +24,9 @@ def contact_view(request):
             message = form.cleaned_data["message"]
 
             # Save the message to the database
-            ContactMessage.objects.create(name=name, email=email, message=message)
+            ContactMessage.objects.create(
+                name=name, email=email, message=message
+            )
 
             # Send email to admin
             send_mail(
@@ -35,7 +37,9 @@ def contact_view(request):
                 fail_silently=False,
             )
 
-            messages.success(request, "Your message has been sent successfully.")
+            messages.success(
+                request, "Your message has been sent successfully."
+            )
             return redirect(
                 "contact"
             )  # Redirect to the same page after successful submission

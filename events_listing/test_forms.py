@@ -34,7 +34,9 @@ class TestCommentForm(TestCase):
         class MockRequest:
             def __init__(self):
                 self.user = None
-                self.session = {}  # Add a session attribute to avoid AttributeError
+                self.session = (
+                    {}
+                )  # Add a session attribute to avoid AttributeError
 
         request = MockRequest()
         user = form.save(request)
@@ -59,5 +61,6 @@ class TestCommentForm(TestCase):
         form = CustomSignupForm(data=form_data)
         self.assertFalse(form.is_valid())
         self.assertIn(
-            "You must type the same password each time.", form.errors["password2"]
+            "You must type the same password each time.",
+            form.errors["password2"],
         )
