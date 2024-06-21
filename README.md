@@ -845,9 +845,18 @@ export_participants.short_description = "Export participants for selected events
 
 For future releases, I envision incorporating a payment system, which would enhance user experience by allowing seamless transactions. Additionally, integrating social media connectivity will enable users to log in using their social media accounts and effortlessly share the races they participate in.
 
-## Validation
+## Validation, Testing & Bugs
 
-PEP8 Validation
+ ### Validation
+
+To ensure Python files (.py extensions) are PEP8 valid, the following protocol was followed:
+
+1. Installing Black (`$ pip install black`)
+2. Update requirements (`$ pip freeze >> requirements.txt`)
+3. Run Black (`$ black .`)
+4. Run Black to format Python files with a specific line length of 79 characters (`$ black --line-length 79 .`)
+5. Manual check all .py files with CI Python Linter.
+
 HTML Validation
 CSS Validation
 JS Validation

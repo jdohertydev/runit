@@ -33,7 +33,6 @@ def contact_view(request):
                 "New Contact Form Submission",
                 f"You have received a new message from {name} ({email}):\n\n"
                 f"{message}",
-
                 settings.DEFAULT_FROM_EMAIL,
                 [admin_email],
                 fail_silently=False,
