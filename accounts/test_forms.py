@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from .forms import CustomUserChangeForm, CustomPasswordChangeForm
 
+
 class TestCustomUserChangeForm(TestCase):
     """
     Test cases for CustomUserChangeForm.
@@ -13,12 +14,14 @@ class TestCustomUserChangeForm(TestCase):
 
         Create a test user.
         """
-        self.user = User.objects.create_user(username='testuser', email='test@example.com', password='testpassword')
+        self.user = User.objects.create_user(
+            username="testuser", email="test@example.com", password="testpassword"
+        )
         self.form_data = {
-            'username': 'newusername',
-            'first_name': 'John',
-            'last_name': 'Doe',
-            'email': 'john.doe@example.com'
+            "username": "newusername",
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "john.doe@example.com",
         }
 
     def test_form_with_valid_data(self):
@@ -34,11 +37,11 @@ class TestCustomUserChangeForm(TestCase):
         """
         form = CustomUserChangeForm(data={}, instance=self.user)
         self.assertFalse(form.is_valid())
-        self.assertEqual(form.errors['username'], ['This field is required.'])
+        self.assertEqual(form.errors["username"], ["This field is required."])
 
     def test_form_username_readonly(self):
         """
         Test username field readonly attribute.
         """
         form = CustomUserChangeForm(instance=self.user)
-        self.assertTrue(form.fields['username'].widget.attrs.get('readonly'))
+        self.assertTrue(form.fields["username"].widget.attrs.get("readonly"))

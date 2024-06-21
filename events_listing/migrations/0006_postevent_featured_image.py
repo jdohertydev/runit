@@ -7,13 +7,15 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('events_listing', '0005_eventsignup'),
+        ("events_listing", "0005_eventsignup"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='postevent',
-            name='featured_image',
-            field=cloudinary.models.CloudinaryField(default='placeholder', max_length=255, verbose_name='image'),
+            model_name="postevent",
+            name="featured_image",
+            field=cloudinary.models.CloudinaryField(
+                default="placeholder", max_length=255, verbose_name="image"
+            ),
         ),
     ]

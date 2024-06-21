@@ -6,14 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('events_listing', '0001_initial'),
+        ("events_listing", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='postevent',
-            name='race_type',
-            field=models.CharField(choices=[('Road', 'Road'), ('Trail', 'Trail'), ('Mixed', 'Mixed')], default='Road', max_length=10),
+            model_name="postevent",
+            name="race_type",
+            field=models.CharField(
+                choices=[("Road", "Road"), ("Trail", "Trail"), ("Mixed", "Mixed")],
+                default="Road",
+                max_length=10,
+            ),
             preserve_default=False,
         ),
     ]

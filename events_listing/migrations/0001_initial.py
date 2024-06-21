@@ -15,19 +15,39 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='PostEvent',
+            name="PostEvent",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('event_name', models.CharField(max_length=200)),
-                ('date', models.DateTimeField()),
-                ('slug', models.SlugField(max_length=200, unique=True)),
-                ('location', models.CharField(max_length=200)),
-                ('description', models.TextField()),
-                ('max_participants', models.PositiveIntegerField()),
-                ('course_map', models.URLField(blank=True, null=True)),
-                ('created_on', models.DateTimeField(auto_now_add=True)),
-                ('status', models.IntegerField(choices=[(0, 'Draft'), (1, 'Published')], default=0)),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='event_posts', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("event_name", models.CharField(max_length=200)),
+                ("date", models.DateTimeField()),
+                ("slug", models.SlugField(max_length=200, unique=True)),
+                ("location", models.CharField(max_length=200)),
+                ("description", models.TextField()),
+                ("max_participants", models.PositiveIntegerField()),
+                ("course_map", models.URLField(blank=True, null=True)),
+                ("created_on", models.DateTimeField(auto_now_add=True)),
+                (
+                    "status",
+                    models.IntegerField(
+                        choices=[(0, "Draft"), (1, "Published")], default=0
+                    ),
+                ),
+                (
+                    "author",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="event_posts",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]
