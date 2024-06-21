@@ -150,10 +150,10 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.ethereal.email'
-EMAIL_PORT = 587  # or the appropriate port for your email service
+EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
-EMAIL_USE_TLS = True  # or False if your email service uses SSL
+EMAIL_USE_TLS = True 
 
 EMAIL_ADMIN_ADDRESS = os.environ.get("EMAIL_ADMIN_ADDRESS")
 DEFAULT_FROM_EMAIL = os.environ.get("EMAIL_ADMIN_ADDRESS")

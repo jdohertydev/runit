@@ -568,16 +568,111 @@ document.addEventListener("DOMContentLoaded", function() {
 
 ```
 
-- Shows event name, image and countdown lock
-Event Details shows all the key information about event.
-Comments section
-- only registered users can comment
-- approval
-- edit
-- delete
+#### Event Details 
 
-List of Participants
-- only registered users can sign up.
+The event details section effectively prioritizes essential information for the user, following a logic from most to least important.
+
+![Event Details](/readme-images/event-details.png)
+
+### Comments section
+
+Users will encounter different states based on their login status.
+
+Comments section - not logged in
+
+![Comments section - not logged in](/readme-images/comments-not-logged-in.png)
+
+Comments section - logged in
+
+![Comments section - logged in](/readme-images/comments-logged-in.png)
+
+To prevent spam or attacks, users need an account to post content, and additionally, the superuser must approve these posts for added security.
+
+Comments section - awaiting approval
+
+![Comments section - awaiting approval](/readme-images/alert-waiting-aproval.png)
+
+Comments section - approved ny superuser
+
+![Comments section - approved](/readme-images/admin-comment-approved.png)
+
+
+Full CRUD (Create, Read, Update, Delete) features have been implemented, allowing users to edit and delete their posts as needed.
+
+Edit
+
+![Comments section - edit](/readme-images/edit-comment.png)
+
+Delete
+
+Extra precaution has been implemented in the form of a modal to confirm if the user wants to delete their post.
+
+```HTML
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete comment?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete your comment? This action cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+```
+![Comments section - delete](/readme-images/delete-comment.png)
+
+### List of Participants
+
+It is crucial that only registered users can sign up for events to bolster security and prevent potential spam attacks. 
+
+List of particpants - unregistered
+
+![List of particpants - unregistered](/readme-images/list-of-participants-unregister.png)
+
+List of particpants - registered
+
+![List of particpants - registered](/readme-images/list-of-participants-sign-up.png)
+
+I've chosen to make the list of participants public, which is common in the running community, as it encourages runners to join when they see friends participating. There could potentially be compliance issues with the General Data Protection Regulation (GDPR) that need to be addressed before launching this site live.
+
+When users sign up or unregister, they will receive an automated email to confirm this sending an automatic confirmation email when runners sign up is beneficial because it provides immediate assurance to users that their registration was successful, reduces uncertainty, and helps verify the accuracy of their provided email address.
+
+Email template - Sign up
+
+![Email template - Sign up](/readme-images/sign-up-confirmation-email.png)
+
+Email template - Unregister
+
+![Email template - Unregister](/readme-images//unregister-confirmation.png)
+
+To do this, I used a free service called [Ethereal](https://ethereal.email) as it offers temporary email addresses that receive emails without needing a real account. It's free, easy to use, and provides a web interface to view received emails, making it ideal for debugging and testing SMTP sending from applications without privacy concerns. TThe main functionality of this code is configured in the settings.py file:
+
+```Python
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.ethereal.email'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = True 
+
+EMAIL_ADMIN_ADDRESS = os.environ.get("EMAIL_ADMIN_ADDRESS")
+DEFAULT_FROM_EMAIL = os.environ.get("EMAIL_ADMIN_ADDRESS")
+SERVER_EMAIL = os.environ.get("EMAIL_ADMIN_ADDRESS")
+
+```
+The variables `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD`, and `EMAIL_ADMIN_ADDRESS` store sensitive information. To enhance security, they were moved to the env.py file and linked using `os.environ.get()`.
+
+
 - users can sign up / unregister - email confirmation is sent
 - When a user signs up, the number of places reduces by 1. If all places are allocated, the event is listed as sold out
 - when the event has finished, it is no longer possible to sign up
