@@ -845,3 +845,11 @@ export_participants.short_description = "Export participants for selected events
 
 For future releases, I envision incorporating a payment system, which would enhance user experience by allowing seamless transactions. Additionally, integrating social media connectivity will enable users to log in using their social media accounts and effortlessly share the races they participate in.
 
+## Validation
+
+PEP8 Validation
+HTML Validation
+CSS Validation
+JS Validation
+WAVE Validation
+Lighthouse
