@@ -7,7 +7,8 @@ from django_summernote.admin import SummernoteModelAdmin
 
 def export_participants(modeladmin, request, queryset):
     """
-    Custom admin action to export participants of selected events as a CSV file.
+    Custom admin action to export participants
+    of selected events as a CSV file.
     """
     response = HttpResponse(content_type="text/csv")
     response["Content-Disposition"] = 'attachment; filename="participants.csv"'

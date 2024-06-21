@@ -7,7 +7,8 @@ class CustomUserChangeForm(UserChangeForm):
     """
     Form to customize user profile editing.
 
-    This form extends UserChangeForm to hide the password field and make the username field readonly.
+    This form extends UserChangeForm to hide
+    the password field and make the username field readonly.
     """
 
     password = None  # Hide the password field

@@ -32,6 +32,7 @@ def custom_500_view(request):
     """
     Handle 500 Internal Server errors.
 
-    This view renders a custom 500 error page when an internal server error occurs.
+    This view renders a custom 500 error
+    page when an internal server error occurs.
     """
     return render(request, "500.html", status=500)

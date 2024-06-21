@@ -41,7 +41,8 @@ class PostEvent(models.Model):
         ordering = ["date"]
 
     def __str__(self):
-        return f"{self.event_name} | Posted by {self.author} | Event date {self.date.strftime('%d %B %Y')}"
+        return (f"{self.event_name} | Posted by {self.author} | "
+                f"Event date {self.date.strftime('%d %B %Y')}")
 
 
 class Comment(models.Model):

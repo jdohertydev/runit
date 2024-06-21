@@ -121,7 +121,8 @@ class PostEventDetailView(View):
 
     def post(self, request, slug):
         """
-        Handle POST requests for signing up, unregistering, and commenting on a post event.
+        Handle POST requests for signing up, unregistering,
+        and commenting on a post event.
         """
         post = get_object_or_404(PostEvent, slug=slug, status=1)
         if "signup" in request.POST:
@@ -129,7 +130,8 @@ class PostEventDetailView(View):
                 EventSignUp.objects.create(event=post, user=request.user)
                 messages.success(
                     request,
-                    "You have signed up for the event. You should receive a confirmation email shortly.",
+                    ("You have signed up for the event. "
+                        "You should receive a confirmation email shortly."),
                 )
                 if request.user.email:
                     send_signup_confirmation_email(request.user, post)
@@ -139,7 +141,8 @@ class PostEventDetailView(View):
             EventSignUp.objects.filter(event=post, user=request.user).delete()
             messages.success(
                 request,
-                "You have unregistered from the event. You should receive a confirmation email shortly.",
+                ("You have unregistered from the event. "
+                    "You should receive a confirmation email shortly."),
             )
             if request.user.email:
                 send_unregistration_confirmation_email(request.user, post)

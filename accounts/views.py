@@ -61,7 +61,7 @@ def account_password_change(request):
             # Render email content from template
             context = {
                 "username": user.username,
-                "site_name": settings.SITE_NAME,  # Replace with your site name or retrieve dynamically
+                "site_name": settings.SITE_NAME,
             }
             html_message = render_to_string(
                 "emails/password_changed_email.html", context
@@ -115,7 +115,7 @@ def account_delete(request):
             # Render email content from template
             context = {
                 "username": user.username,
-                "site_name": settings.SITE_NAME,  # Replace with your site name or retrieve dynamically
+                "site_name": settings.SITE_NAME,
             }
             html_message = render_to_string(
                 "emails/account_deleted_email.html", context

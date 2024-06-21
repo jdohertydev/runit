@@ -7,5 +7,6 @@
 tasks:
   - init: pip install -r requirements.txt
   - command: |
-      pip install black
+      pip install black pylint
       black --check .
+      pylint RUNIT accounts
