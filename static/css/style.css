@@ -302,6 +302,13 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: flex-end; /* Align items at the bottom */
+    
+    /* make navbar sticky*/
+
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
+    z-index: 1030; /* Ensure it stays on top of other content */
 }
 
 .navbar-brand {
