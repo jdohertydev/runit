@@ -574,36 +574,36 @@ The event details section effectively prioritizes essential information for the 
 
 ![Event Details](/readme-images/event-details.png)
 
-### Comments section
+#### Comments section
 
 Users will encounter different states based on their login status.
 
-Comments section - not logged in
+#### Comments section - not logged in
 
 ![Comments section - not logged in](/readme-images/comments-not-logged-in.png)
 
-Comments section - logged in
+#### Comments section - logged in
 
 ![Comments section - logged in](/readme-images/comments-logged-in.png)
 
 To prevent spam or attacks, users need an account to post content, and additionally, the superuser must approve these posts for added security.
 
-Comments section - awaiting approval
+#### Comments section - awaiting approval
 
 ![Comments section - awaiting approval](/readme-images/alert-waiting-aproval.png)
 
-Comments section - approved ny superuser
+#### Comments section - approved ny superuser
 
 ![Comments section - approved](/readme-images/admin-comment-approved.png)
 
 
 Full CRUD (Create, Read, Update, Delete) features have been implemented, allowing users to edit and delete their posts as needed.
 
-Edit
+#### Edit
 
 ![Comments section - edit](/readme-images/edit-comment.png)
 
-Delete
+#### Delete
 
 Extra precaution has been implemented in the form of a modal to confirm if the user wants to delete their post.
 
@@ -630,15 +630,15 @@ Extra precaution has been implemented in the form of a modal to confirm if the u
 ```
 ![Comments section - delete](/readme-images/delete-comment.png)
 
-### List of Participants
+#### List of Participants
 
 It is crucial that only registered users can sign up for events to bolster security and prevent potential spam attacks. 
 
-List of particpants - unregistered
+##### List of particpants - unregistered
 
 ![List of particpants - unregistered](/readme-images/list-of-participants-unregister.png)
 
-List of particpants - registered
+##### List of particpants - registered
 
 ![List of particpants - registered](/readme-images/list-of-participants-sign-up.png)
 
@@ -646,11 +646,11 @@ I've chosen to make the list of participants public, which is common in the runn
 
 When users sign up or unregister, they will receive an automated email to confirm this sending an automatic confirmation email when runners sign up is beneficial because it provides immediate assurance to users that their registration was successful, reduces uncertainty, and helps verify the accuracy of their provided email address.
 
-Email template - Sign up
+##### Email template - Sign up
 
 ![Email template - Sign up](/readme-images/sign-up-confirmation-email.png)
 
-Email template - Unregister
+##### Email template - Unregister
 
 ![Email template - Unregister](/readme-images/unregister-confirmation.png)
 
@@ -692,26 +692,137 @@ A key design feature was ensuring careful management of event capacity. This was
 {% endif %}
 
 ```
-
 ###  Account Page
-- User can update profile
-   - not able to change username
-- Change password
-- Delete account
-   - modal - extra security
+
+![Account page ](/readme-images/accounts-page-general.png)
+
+From the account page, users have full CRUD availability, enabling them to change their name and email address, update their password, and delete their account as needed. It was decided not to allow users to change their username to avoid confusion and tracking difficulties in user activity and interactions over time. Email confirmations are sent to verify each user action.
+
+#### Update profile
+
+![Update profile](/readme-images/accounts-update-status.png)
+
+##### Update profile confirmation email
+
+![Update profile confirmation email](/readme-images/account-update-email.png)
+
+##### Change password
+
+![Change password](/readme-images/account-change-password-status.png)
+
+##### Change password confirmation email
+
+![Change password confirmation email](/readme-images/password-changed-email.png)
+
+##### Delete account
+
+Since deleting an account is irreversible, I added an additional layer of protection for the user through a modal box, where the user must enter their current password again.
+
+###### Delete account modal
+
+![Delete account modal](/readme-images/delete-modal.png)
+
+##### Delete account email confirmation
+
+![Delete account email confirmation](/readme-images/delete-account-confirmation-email.png)
 
 ### Contact Us Page
 
-Autopopulates name and email address if logged in
-validates email address and ensures user writes something
-response is sent to backend and emails webmaster
-- Contact messages
+The 'Contact Us' page serves as a 'last resort' form where users can easily send a message to the site webmaster. If the user is already logged in, they are not required to enter their name or email address and this information cannot be edited.
+
+#### Contact us form when user is logged in
+
+![Contact us form when user is logged in](/readme-images/contact-us-form-logged-in.png)
+
+##### Contact us form when user is not logged in
+
+![Contact us form when user is not logged in](/readme-images/contact-us-form.png)
+
+Standard validation is employed to ensure that no fields are left blank and that a valid email address has been entered.
+
+The webmaster will receive a copy of the message in their email account, and the message will also be available in Django's backend.
+
+##### Email message
+
+![Email message](/readme-images/contact-form-email.png)
+
+##### Django Backend
+
+![Django Backend](/readme-images/contact-form-email-backend.png)
 
 ### Django Admin
 
- Post events
- - Add post event
-   - Summer notes
- - Users can export cvs files of participants registered on their event
- - only users who posed the event can see these lists unless superuser
+The site has been designed so that the superuser manually grants users 'staff status,' enabling them to post running events and manage their own events. It is crucial to ensure that staff users only have access to their own events to uphold privacy and data protection. To achieve this, the following code was used in admin.py:
+
+```Python
+
+    def get_queryset(self, request):
+        """
+        Limit queryset based on user permissions.
+        """
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        elif request.user.is_staff:
+            return qs.filter(author=request.user)
+        return qs.none()
+
+```
+#### Superuser view of post events
+
+![Superuser view of post events](/readme-images/post-event-admin-view.png)
+
+#### Staff user view of post events
+
+![Staff user view of post events](/readme-images/post-event-staff-user-view.png)
+
+#### Post events - Add post event
+
+Approved users can post their own events by completing the following form:
+
+![Post events - Add post event](/readme-images/add-post-event-admin-view.png)
+
+By integrating Summernote into Django, it enhances content creation through a user-friendly WYSIWYG editor, simplifies integration, allows for customization, ensures security, improves user experience, and supports scalability for comprehensive content management requirements.
+
+#### Export list of participants
+
+As a race organizer, it's crucial to have easy access to an up-to-date list of participants. To facilitate this, a module named `export_participants` was created in admin.py. This module allows users to export a CSV file by selecting it from a dropdown menu.
+
+```Python
+
+def export_participants(modeladmin, request, queryset):
+    """
+    Custom admin action to export participants of selected events as a CSV file.
+    """
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="participants.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Event Name', 'Event Date', 'Participant Number', 'First Name', 'Last Name', 'Signup Date'])
+
+    for event in queryset:
+        signups = EventSignUp.objects.filter(event=event).order_by('signed_up_on')
+        for index, signup in enumerate(signups, start=1):
+            writer.writerow([
+                event.event_name, 
+                event.date.strftime('%d %B %Y %H:%M'), 
+                index, 
+                signup.user.first_name, 
+                signup.user.last_name,
+                signup.signed_up_on.strftime('%d %B %Y %H:%M')
+            ])
+
+    return response
+
+export_participants.short_description = "Export participants for selected events"
+
+```
+
+#### View in admin - export csv
+
+![View in admin - export csv](/readme-images/export-participants-list-admin.png)
+
+#### Screenhot of exported csv file
+
+![Screenhot of exported csv file](/readme-images/participants-list-csv.png)
 
