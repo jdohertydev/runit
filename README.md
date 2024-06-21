@@ -325,7 +325,7 @@ The header code is centralised in base.html, ensuring consistency and facilitati
 
 ![Slogan](/readme-images/logo-with-slogan.png)
 
-The slogan used serves to support the essence and values of my brand, leaving a memorable impression on visitors while reinforcing its identity and purpose. When viewing the website on mobile viewports, the slogan is removed to optimize screen space.
+The slogan used serves to support the essence and values of my brand, leaving a memorable impression on visitors while reinforcing its identity and purpose. When viewing the website on smaller viewports, the slogan is removed to optimize screen space.
 
 ![Slogan](/readme-images/slogan-hideen-on-mobile-view.png)
 
@@ -339,18 +339,45 @@ The slogan used serves to support the essence and values of my brand, leaving a 
 
 ### Dynamic menu items that adapt based on the user's login status
 
+The user can see if they are logged in or not. Seeing their login status is crucial for users as it enhances their experience by providing context, access to personalized content, security, and seamless navigation on the website.
+
 ![Logged in](/readme-images/logged-in.png.png)
 
 ![Logged out](/readme-images/not-logged-in.png)
 
-
-### Login Status
-
 ### Custom Error Pages
 
+I have created custom error pages for 400, 403, 404, and 500 errors that enhance user experience by offering helpful navigation options, maintaining brand consistency, and reducing frustration through humorous running-related puns. This involved creating custom templates and linking them via the urls.py file and views.py.
+
+url.py
+
+```Python
+
+# Custom error handlers
+handler400 = 'myproject.views.custom_400_view'
+handler403 = 'myproject.views.custom_403_view'
+handler404 = 'myproject.views.custom_404_view'
+handler500 = 'myproject.views.custom_500_view'
+
+```
+views.py
+
+```Python
+
+def custom_404_view(request, exception):
+    """
+    Handle 404 Not Found errors.
+
+    This view renders a custom 404 error page when a page is not found.
+    """
+    return render(request, '404.html', status=404)
+
+```
 ![Custom Error Pages](/readme-images/example-of-custom-error-page.png)
 
 ### Footer
+
+The consistent footer, embedded in base.html, appears on every page, reinforcing brand identity and ensuring users can easily find social media links anywhere on the site.
 
 ![Footer](/readme-images/footer.png)
 
