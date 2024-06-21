@@ -652,9 +652,9 @@ Email template - Sign up
 
 Email template - Unregister
 
-![Email template - Unregister](/readme-images//unregister-confirmation.png)
+![Email template - Unregister](/readme-images/unregister-confirmation.png)
 
-To do this, I used a free service called [Ethereal](https://ethereal.email) as it offers temporary email addresses that receive emails without needing a real account. It's free, easy to use, and provides a web interface to view received emails, making it ideal for debugging and testing SMTP sending from applications without privacy concerns. TThe main functionality of this code is configured in the settings.py file:
+To do this, I used a free service called [Ethereal](https://ethereal.email) as it offers temporary email addresses that receive emails without needing a real account. It's free, easy to use, and provides a web interface to view received emails, making it ideal for debugging and testing SMTP sending from applications without privacy concerns. The main functionality of this code is configured in the settings.py file:
 
 ```Python
 
@@ -672,10 +672,26 @@ SERVER_EMAIL = os.environ.get("EMAIL_ADMIN_ADDRESS")
 ```
 The variables `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD`, and `EMAIL_ADMIN_ADDRESS` store sensitive information. To enhance security, they were moved to the env.py file and linked using `os.environ.get()`.
 
+A key design feature was ensuring careful management of event capacity. This was achieved by allowing users to sign up only once and restricting signups to not exceed the maximum number of participants set for each event. When a user signs up, the number of places reduces by 1. If all places are allocated, the event is listed as sold out.
 
-- users can sign up / unregister - email confirmation is sent
-- When a user signs up, the number of places reduces by 1. If all places are allocated, the event is listed as sold out
-- when the event has finished, it is no longer possible to sign up
+![List of participants - full capacity ](/readme-images/list-of-participants-full-capacity.png)
+
+```Python
+
+{% if remaining_places > 0 %}
+{% if user_signed_up %}
+<button type="button" id="unregisterButton" class="btn btn-danger">Unregister</button>
+{% else %}
+<button type="button" id="signupButton" class="btn btn-primary">Sign Up</button>
+{% endif %}
+{% else %}
+{% if user_signed_up %}
+<button type="button" id="unregisterButton" class="btn btn-danger">Unregister</button>
+{% else %}
+<p>No more places available</p>
+{% endif %}
+
+```
 
 ###  Account Page
 - User can update profile
