@@ -494,13 +494,80 @@ The shadow box effect serves to enhance visual appeal and usability by adding de
 
 ![Shadowbox Effect](/readme-images/event-card-shadow-box.png)
 
-#### Navigation options for Next/Previous events based on event status.
+#### Navigation options for Next/Previous events based on event status
+
+Using Python logic, the site will display next and previous buttons based on the number of events currently in the database.
+
+```Python
+
+{% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a href="?page={{ page_obj.previous_page_number }}" class="page-link text-primary">&lt;</a>
+            </li>
+            {% endif %}
+            
+            <li class="page-item">
+                <span class="page-link text-primary page-display">
+                    Page {{ page_obj.number }}
+                </span>
+            </li>
+            
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a href="?page={{ page_obj.next_page_number }}" class="page-link text-primary">&gt;</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+
+```
 
 ![Navigation options for Next/Previous events based on event status](/readme-images/previous-next-nav.png)
 
 ### Events Post Page
 
-Masthead banner
+#### Masthead banner
+
+The masthead banner captures the user's attention by featuring the event name, an event image, and a countdown clock.
+
+![Masthead banner](/readme-images/masthead-image.png)
+
+The countdown clock in JavaScript begins when the DOM content loads. It calculates the time remaining until an event, retrieved from the 'eventDate' element in the HTML, begins. The countdown is updated every second in the 'countdownElement' until the event time elapses. Once the event has passed, it notifies the user that the event has finished. This concept was inspired by [Cronorunner](https://www.cronorunner.com/).
+
+```JavaScript
+
+document.addEventListener("DOMContentLoaded", function() {
+    const eventDateElement = document.getElementById('eventDate');
+    const eventDate = new Date(eventDateElement.getAttribute('data-event-date')).getTime();
+    const countdownElement = document.getElementById('countdown');
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const timeLeft = eventDate - now;
+
+        if (timeLeft < 0) {
+            countdownElement.innerHTML = "Event has finished.";
+            return;
+        }
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+});
+
+```
+
 - Shows event name, image and countdown lock
 Event Details shows all the key information about event.
 Comments section
