@@ -10,23 +10,24 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from pathlib import Path
 import os
 import sys
-from pathlib import Path
-
-# Django core imports
 from django.contrib.messages import constants as messages
-from django.urls import reverse_lazy
-
-# Third-party imports
 import dj_database_url
+
+if os.path.isfile("env.py"):
+    import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-secret-key")
+SECRET_KEY = "django-insecure-rbhhk88+3l+w%2q0+uxe62zyq_-67w=bmmn-xb*yn)!o_7%6m4"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -59,8 +60,8 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
-LOGIN_REDIRECT_URL = reverse_lazy("landing_page")
-LOGOUT_REDIRECT_URL = reverse_lazy("landing_page")
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
@@ -97,19 +98,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "myproject.wsgi.application"
 
-# Custom project settings
 SITE_NAME = "Run It!"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+DATABASES = {
+    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+}
 
-DATABASES = {"default": dj_database_url.parse(os.getenv("DATABASE_URL"))}
-
-# Use SQLite for testing
 if "test" in sys.argv:
     DATABASES["default"]["ENGINE"] = "django.db.backends.sqlite3"
 
-# CSRF trusted origins
 CSRF_TRUSTED_ORIGINS = [
     "https://*.gitpod.io",
     "https://*.codeanyapp.com",
@@ -119,7 +118,6 @@ CSRF_TRUSTED_ORIGINS = [
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -135,33 +133,27 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Disable email verification for allauth
 ACCOUNT_EMAIL_VERIFICATION = "none"
 
 # Email settings
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.ethereal.email"  # Update with your actual SMTP settings
+EMAIL_HOST = "smtp.ethereal.email"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = True
 
-EMAIL_ADMIN_ADDRESS = os.getenv("EMAIL_ADMIN_ADDRESS")
-DEFAULT_FROM_EMAIL = os.getenv("EMAIL_ADMIN_ADDRESS")
-SERVER_EMAIL = os.getenv("EMAIL_ADMIN_ADDRESS")
+EMAIL_ADMIN_ADDRESS = os.environ.get("EMAIL_ADMIN_ADDRESS")
+DEFAULT_FROM_EMAIL = os.environ.get("EMAIL_ADMIN_ADDRESS")
+SERVER_EMAIL = os.environ.get("EMAIL_ADMIN_ADDRESS")
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
-
 LANGUAGE_CODE = "en-us"
-
-# Set the time zone to Spain's timezone
 TIME_ZONE = "Europe/Madrid"
-
-# Enable timezone support
 USE_TZ = True
 
-# Message tags for Django messages framework
+# Message tags
 MESSAGE_TAGS = {
     messages.SUCCESS: "alert-success",
     messages.ERROR: "alert-danger",
@@ -169,15 +161,15 @@ MESSAGE_TAGS = {
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default primary key field type
+# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Customize signup form for allauth
+# Custom account forms
 ACCOUNT_FORMS = {
     "signup": "events_listing.forms.CustomSignupForm",
 }
