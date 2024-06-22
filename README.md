@@ -860,6 +860,124 @@ To ensure Python files (.py extensions) are PEP8 valid, the following protocol w
 Using this method, I successfully validated all my Python code. The only exception I encountered was in the settings.py file, where the `AUTH_PASSWORD_VALIDATORS` variable exceeded the recommended 79 characters.
 
 HTML Validation
+
+<table>
+  <tr>
+    <th style="border: 1px solid black; padding: 8px;">Directory</th>
+    <th style="border: 1px solid black; padding: 8px;">File</th>
+    <th style="border: 1px solid black; padding: 8px;">State</th>
+    <th style="border: 1px solid black; padding: 8px;">Result</th>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">accounts/templates/accounts</td>
+    <td style="border: 1px solid black; padding: 8px;">account_admin.html</td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">accounts/templates/emails</td>
+    <td style="border: 1px solid black; padding: 8px;">account_deleted_email.html</td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">accounts/templates/emails</td>
+    <td style="border: 1px solid black; padding: 8px;">account_updated_email.html</td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">accounts/templates/emails</td>
+    <td style="border: 1px solid black; padding: 8px;">password_changed_email.html</td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">contact/templates/contact</td>
+    <td style="border: 1px solid black; padding: 8px;">contact.html</td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">events_listing/templates/email</td>
+    <td style="border: 1px solid black; padding: 8px;">signup_confirmation_email.html</td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">events_listing/templates/email</td>
+    <td style="border: 1px solid black; padding: 8px;">unregistration_confirmation_email.html</td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">events_listing/templates/events_listing</td>
+    <td style="border: 1px solid black; padding: 8px;">events_list.html</td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">events_listing/templates/events_listing</td>
+    <td style="border: 1px solid black; padding: 8px;">landing_page.html</td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">events_listing/templates/events_listing</td>
+    <td style="border: 1px solid black; padding: 8px;">postevent_detail.html</td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">templates</td>
+    <td style="border: 1px solid black; padding: 8px;">400.html</td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">templates</td>
+    <td style="border: 1px solid black; padding: 8px;">403.html</td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">templates</td>
+    <td style="border: 1px solid black; padding: 8px;">404.html</td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">templates</td>
+    <td style="border: 1px solid black; padding: 8px;">500.html</td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">templates</td>
+    <td style="border: 1px solid black; padding: 8px;">base.html</td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">templates/account</td>
+    <td style="border: 1px solid black; padding: 8px;">login.html</td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">templates/account</td>
+    <td style="border: 1px solid black; padding: 8px;">signup.html</td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">templates/account</td>
+    <td style="border: 1px solid black; padding: 8px;">logout.html</td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;"></td>
+  </tr>
+</table>
+
 CSS Validation
 JS Validation
 WAVE Validation
