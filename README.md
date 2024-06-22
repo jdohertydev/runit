@@ -896,7 +896,7 @@ HTML Validation
     <td style="border: 1px solid black; padding: 8px;">contact/templates/contact</td>
     <td style="border: 1px solid black; padding: 8px;">contact.html</td>
     <td style="border: 1px solid black; padding: 8px;"></td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
   <tr>
     <td style="border: 1px solid black; padding: 8px;">events_listing/templates/email</td>
@@ -914,19 +914,19 @@ HTML Validation
     <td style="border: 1px solid black; padding: 8px;">events_listing/templates/events_listing</td>
     <td style="border: 1px solid black; padding: 8px;">events_list.html</td>
     <td style="border: 1px solid black; padding: 8px;"></td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
   <tr>
     <td style="border: 1px solid black; padding: 8px;">events_listing/templates/events_listing</td>
     <td style="border: 1px solid black; padding: 8px;">landing_page.html</td>
     <td style="border: 1px solid black; padding: 8px;"></td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
   <tr>
     <td style="border: 1px solid black; padding: 8px;">events_listing/templates/events_listing</td>
     <td style="border: 1px solid black; padding: 8px;">postevent_detail.html</td>
     <td style="border: 1px solid black; padding: 8px;"></td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
   <tr>
     <td style="border: 1px solid black; padding: 8px;">templates</td>

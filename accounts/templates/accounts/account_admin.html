@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
 <div class="container mt-5">
     <!-- Update Profile Section -->
@@ -25,7 +24,6 @@
             </div>
         </div>
     </div>
-
     <!-- Change Password Section -->
     <div class="row justify-content-center mt-4">
         <div class="col-md-6">
@@ -48,7 +46,6 @@
             </div>
         </div>
     </div>
-
     <!-- Delete Account Section -->
     <div class="row justify-content-center mt-4">
         <div class="col-md-6">
@@ -61,7 +58,6 @@
         </div>
     </div>
 </div>
-
 <!-- Delete confirmation modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -88,7 +84,6 @@
     </div>
 </div>
 {% endblock %}
-
 {% block extras %}
 <script src="{% static 'js/account_admin.js' %}"></script>
 {% endblock %}

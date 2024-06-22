@@ -2,19 +2,14 @@
 {% block content %}
 {% load static %}
 {% load crispy_forms_tags %}
-
 <div class="masthead">
     <div class="container">
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
-                <h1 class="post-title mb-4">{{ post.event_name }}</h1>
-                
-               
+                <h1 class="post-title mb-4">{{ post.event_name }}</h1>               
                 <p class="post-subtitle display-6 mt-4">Countdown: <span id="countdown"></span></p>
-
                 <p id="eventDate" data-event-date="{{ post.date|date:'Y-m-d H:i:s' }}" style="display:none;"></p>
             </div>
-
             <div class="d-none d-md-block col-md-6 masthead-image">
                 {% if "placeholder" in post.featured_image.url %}
                 <img src="{% static 'images/default.jpg' %}" class="scale" alt="placeholder image">
@@ -25,13 +20,11 @@
         </div>
     </div>
 </div>
-
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-8">
             <div class="card mb-4">
                 <div class="card-body">
-
                     <h3 class="card-title">Event Details</h3>
                     <hr>
                     <ul>
@@ -40,7 +33,7 @@
                         <li>Location: {{ post.location }}</li>
                     </ul>
                     <h5>Description</h5>
-                    <p>{{ post.description|safe }}</p>
+                    {{ post.description|safe }}
                     <h5>Max Participants</h5>
                     <p>{{ post.max_participants }}</p>
                     <h5>Course Map</h5>
@@ -52,7 +45,6 @@
                     <p>Posted by: {{ post.author.username }} | {{ post.created_on|date:"d M Y" }}</p>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-12">
                     <strong class="text-secondary">
@@ -63,7 +55,6 @@
                     <hr>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-12 card mb-4 mt-3">
                     <div class="card-body">
@@ -94,7 +85,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-12 card mb-4 mt-3">
                     <div class="card-body">
@@ -114,7 +104,6 @@
                 </div>
             </div>
         </div>
-
         <div class="col-md-4 card mb-4 mt-3">
             <div class="card-body">
                 <!-- List of Participants -->
@@ -129,7 +118,6 @@
                 {% else %}
                 <p>No one has signed up yet.</p>
                 {% endif %}
-
                 <!-- Sign-up/Unregister Buttons -->
                 <div class="row mb-4">
                     <div class="col-12">
@@ -155,13 +143,10 @@
                         {% endif %}
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
-
-
 <!-- Delete confirmation modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -180,7 +165,6 @@
         </div>
     </div>
 </div>
-
 <!-- Sign-up/Unregister confirmation modal -->
 <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -199,9 +183,7 @@
         </div>
     </div>
 </div>
-
 {% endblock content %}
-
 {% block extras %}
 <script src="{% static 'js/countdown.js' %}"></script>
 <script src="{% static 'js/comments.js' %}"></script>

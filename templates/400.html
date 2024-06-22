@@ -1,13 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block content %}
-
 <div class="container">
     <h1>400 - Bad Request</h1>
     <p>Oops! Your browser stumbled and took a wrong turn. This request is as confusing as running a marathon in the wrong direction!</p>
     <p>Double-check the URL or head back to the starting line. If you keep getting lost, feel free to <a href="{% url 'contact' %}">contact us</a> for directions.</p>
     <a href="{% url 'landing_page' %}">Return to Home</a>
 </div>
-
 {% endblock %}

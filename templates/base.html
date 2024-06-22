@@ -6,10 +6,8 @@
 {% url 'account_update' as account_update_url %}
 {% url 'contact' as contact_url %}
 {% url 'events_list' as events_url %}
-
 <!DOCTYPE html>
 <html class="h-100" lang="en">
-
 <head>
     <title>Run It! | The Leading Site for Running Event Listings</title>
     <meta charset="UTF-8">
@@ -31,7 +29,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-
 <body class="d-flex flex-column h-100 main-bg">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -75,7 +72,6 @@
             </div>
         </div>
     </nav>
-
     <!-- Displaying Django messages -->
     <div class="container">
         <div class="row">
@@ -89,7 +85,6 @@
             </div>
         </div>
     </div>
-
     <main class="flex-shrink-0 main-bg">
         {% if user.is_authenticated %}
         <p class="text-end m-3">You are logged in as {{ user }} | <a href="{% url 'account_logout' %}">Logout</a></p>
@@ -102,7 +97,6 @@
         {% endblock content %}
 
     </main>
-
     <!-- Footer -->
     <div class="footer-basic footer-spacer">
         <footer>
@@ -123,15 +117,12 @@
             <p class="copyright">Run it! © 2024</p>
         </footer>
     </div>
-
     <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
         </script>
-
     <!-- Extra Scripts -->
     {% block extras %}
     {% endblock %}
 </body>
-
 </html>
