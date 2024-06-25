@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
-                <h1 class="post-title mb-4">{{ post.event_name }}</h1>               
+                <h1 class="post-title mb-4">{{ post.event_name }}</h1>
                 <p class="post-subtitle display-6 mt-4">Countdown: <span id="countdown"></span></p>
                 <p id="eventDate" data-event-date="{{ post.date|date:'Y-m-d H:i:s' }}" style="display:none;"></p>
             </div>
@@ -33,7 +33,9 @@
                         <li>Location: {{ post.location }}</li>
                     </ul>
                     <h5>Description</h5>
-                    {{ post.description|safe }}
+                    <article class="card-text">
+                        {{ post.description|safe }}
+                    </article>
                     <h5>Max Participants</h5>
                     <p>{{ post.max_participants }}</p>
                     <h5>Course Map</h5>
