@@ -1294,12 +1294,191 @@ The result showed that there were no functionality issues, all navigation links 
 
 Bugs were reported on the Kanban board with all bugs being resolved. Two items required attention:
 
+Bugs Screenshot
+
+![Bugs screenshot](/readme-images/bugs-screenshot.png)
+
 | Issue                                                          | Page                        | Solution                                                          |
 |----------------------------------------------------------------|-----------------------------|-------------------------------------------------------------------|
 | After an event has passed, the option to register/unregister still is useable   | postevents_details.html     | Implement an if statement to check if the date has passed when the page loads. If it has, remove the button accordingly.               |
-| Navbar's 'sticky' behavior obscures main content               | base.html                   | Create a div called ´main-content´ and add top padding within ´style.css.´ |
+| Navbar's 'sticky' behaviour obscures main content               | base.html                   | Create a div called `main-content` and add top padding within `style.css`. |
 
+## Deployment 
 
+### 6.1. Transfer of Progress from IDE 
+
+**Task:** Ensure Regular Commits to Avoid Data/Progress Loss.
+
+**Method:**
+- Use `git add [filename]` to stage specific files. Alternatively, use `git add .` to stage all changed files.
+- Execute `git commit -m "[commit description]"` to queue commits with descriptive messages.
+- Utilize `git push` to push all commits to the remote repository on GitHub.
+
+### 6.2. Offline Cloning
+
+**Task:** Use Repository on Local Machine.
+
+**Method:**
+1. Navigate to GitHub and locate your repository.
+2. Click on "Code" -> "HTTPS" -> Copy button to copy the repository link.
+3. Open your local coding environment and type `git clone [copied link]` to clone the repository locally.
+
+### 6.3.2. ElephantSQL
+
+**Task:** Obtain Database URL for Project's Database.
+
+**Method:**
+1. Select a database provider (e.g., ElephantSQL).
+2. Navigate to [ElephantSQL](https://www.elephantsql.com/) and register a new account.
+3. Log in to ElephantSQL with your newly created account credentials.
+4. Navigate to "+ Create New Instance".
+5. Select Name, Plan, and Region for your database instance.
+6. Confirm the instance by clicking "Create Instance".
+7. Obtain the database URL in the format `postgres://NAME:PASSKEY@flora.db.elephantsql.com/NAME`.
+8. Update `settings.py` in the project directory with the obtained database URL.
+
+### 6.3.3. Cloudinary
+
+**Task:** Obtain Cloudinary URL for Project's Static Storage.
+
+**Method:**
+1. Select a static storage provider (e.g., Cloudinary).
+2. Navigate to [Cloudinary Console](https://console.cloudinary.com/) and register a new account.
+3. Log in to Cloudinary with your newly created account credentials.
+4. Navigate to "+ Add a new environment".
+5. Confirm your selection.
+6. Obtain the Cloudinary URL in the format `cloudinary://USER:PASSKEY@ENVIRONMENT`.
+7. Update `settings.py` in the project directory with the obtained Cloudinary URL.
+
+### 6.3.4. Settings.py & File-tree
+
+**Task:** Prepare `settings.py` and file structure for deployment.
+
+**Method:**
+1. Create a file named `env.py` to store all sensitive information.
+2. Refer to the example of `env.py` file.
+3. Add `env.py` to `.gitignore` to prevent it from being uploaded to GitHub.
+4. Update `settings.py` with `import os`.
+5. For every secured variable, add the code `VARIABLE = os.environ.get("VARIABLE")`.
+6. Ensure this process for Gmail, ElephantSQL, Cloudinary, DEBUG, and Django Secret Key.
+7. Update default database settings in `settings.py`:
+   ```python
+   if "DATABASE_URL" in os.environ:
+       DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
+   else:
+       DATABASES = {
+           "default": {
+               "ENGINE": "django.db.backends.sqlite3",
+               "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+           }
+       }
+
+8. Update default static settings in settings.py:
+```Python
+STATIC_URL = "/static/"
+STATICFILES_STORAGE = "cloudinary_storage.storage.StaticHashedCloudinaryStorage"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
+MEDIA_URL = "/media/"
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+```
+9. Update email settings in settings.py:
+```Python
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = True
+```
+10. Migrate your database models to ElephantSQL using python manage.py migrate command.
+11. Create directories ./static and ./templates.
+12 Commit and push changes to GitHub.
+
+### Deployment to Heroku
+
+**Task:** Ensure Users Can View Live Version of Aneta's Glimmer Project.
+
+**Method:**
+1. Register and log in to [Heroku](https://www.heroku.com/).
+2. Navigate to "New" > "Create New App".
+3. Select a unique name for your app.
+4. Navigate to "Settings" > "Reveal Config Vars".
+5. Add all variables from `env.py` to Config Vars of your Heroku App.
+6. Add a variable pair `PORT:8000`.
+7. For testing deployment, add a variable pair `COLLECT_STATIC:1`.
+8. Add the Heroku app URL into `ALLOWED_HOSTS` in `settings.py`.
+9. In the root directory, create a file named `Procfile`.
+10. Navigate to "Deploy" > "GitHub" > "Connect".
+11. Navigate to "Deploy" > "Deploy Branch".
+12. Optionally, enable automatic deploys.
+13. Check the deployment log - if successful, you will be prompted with an option to view the live page.
+
+(Source: [tomik-z-cech](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#6-deployment))
+
+## Technologies Used
+
+| Technology         | Description                                                                                   |
+|--------------------|-----------------------------------------------------------------------------------------------|
+| Django             | Primary framework used for backend development in the project.                                 |
+| Python             | Core backend programming language employed throughout the project.                            |
+| HTML               | Markup language utilized for creating frontend templates.                                      |
+| CSS                | External stylesheet (`./static/css/style.css`) applied to style the project.                   |
+| JavaScript         | Frontend scripting language employed for interactive web elements.                             |
+| Bootstrap v. 5.3   | Frontend framework adopted for building responsive, mobile-first web applications.             |
+| Heroku             | Cloud platform utilized for deploying the project.                                              |
+| Balsamiq           | Software tool utilized for designing wireframes and mockups.                                    |
+| Git                | Version control system used to manage changes and project history.                              |
+| GitHub             | Hosting service for storing Git repositories and facilitating collaboration.                   |
+| Gitpod             | Online IDE initially used for developing the project.                                           |
+| Requirements.txt   | File listing Python packages required for the project, facilitating environment setup.         |
+
+#### Requirements.txt
+
+The following modules were used in development of the Run it! website:
+
+| Module Name              | Description                                                                                     |
+|--------------------------|-------------------------------------------------------------------------------------------------|
+| asgiref==3.8.1           | ASGI specification reference implementation, used for building asynchronous Python web applications. |
+| astroid==3.2.2           | Abstract Syntax Tree (AST) manipulation library for Python, used in static analysis tools like pylint. |
+| black==24.4.2            | Code formatter for Python, ensuring consistent code style across projects.                     |
+| Brotli==1.1.0            | Python bindings for the Brotli compression algorithm, providing lossless data compression.       |
+| chardet==5.2.0           | Character encoding auto-detection in Python, used to determine the encoding of text files.       |
+| click==8.1.7             | Command line interface creation kit for Python, simplifying the process of writing command line tools. |
+| cloudinary==1.36.0       | Python SDK for Cloudinary, a cloud service for managing media assets.                            |
+| crispy-bootstrap5==0.7   | Django forms plugin that seamlessly integrates Bootstrap 5 styles with crispy-forms.             |
+| cssselect2==0.7.0        | CSS selector library for Python, facilitating the selection of HTML elements using CSS selectors. |
+| dj-database-url==0.5.0   | Django utility for utilizing database URLs in configuration, simplifying database connection settings. |
+| dj3-cloudinary-storage==0.0.6 | Django storage backend for Cloudinary, allowing seamless integration of Cloudinary with Django projects. |
+| Django==4.2.13           | High-level Python web framework that encourages rapid development and clean, pragmatic design.   |
+| django-allauth==0.57.2   | Django package for handling authentication, registration, account management, and social authentication. |
+| django-crispy-forms==2.1 | Django forms application that helps manage forms rendering in a DRY (Don't Repeat Yourself) manner. |
+| django-sendgrid-v5==1.2.3| Django integration with SendGrid API for sending transactional and marketing email.              |
+| django-summernote==0.8.20.0 | Django integration with Summernote WYSIWYG editor for text and HTML content editing.             |
+| fonttools==4.53.0        | Library for manipulating fonts in Python, used for reading, writing, and converting font files. |
+| gunicorn==20.1.0         | Python WSGI HTTP server for UNIX, used to run Python web applications in production environments. |
+| html5lib==1.1            | HTML parser library for Python, used for parsing HTML documents and cleaning up markup.          |
+| oauthlib==3.2.2          | Library for implementing OAuth 1.0 and OAuth 2.0 in Python, facilitating authentication processes. |
+| pathspec==0.12.1         | Library for matching file paths against Unix shell-style patterns, used in git and other tools. |
+| pillow==10.3.0           | Python Imaging Library (PIL) fork that adds support for opening, manipulating, and saving many different image file formats. |
+| psycopg2==2.9.9          | PostgreSQL adapter for Python, allowing Python to connect to PostgreSQL databases.             |
+| pydyf==0.10.0            | Python library for creating and modifying PDF files.                                             |
+| PyJWT==2.8.0             | JSON Web Token (JWT) implementation in Python, used for securely transmitting information between parties. |
+| pyphen==0.15.0           | Library for hyphenating words in Python, used for text processing and formatting.               |
+| python-http-client==3.3.7| Simple HTTP client library for Python, facilitating making HTTP requests.                        |
+| python3-openid==3.2.0    | Python 3 implementation of the OpenID Connect protocol for user authentication.                 |
+| requests-oauthlib==2.0.0 | OAuth library for Python requests, providing OAuth client support for Python applications.       |
+| sqlparse==0.5.0          | Non-validating SQL parser for Python, used for parsing SQL queries and formatting SQL code.      |
+| starkbank-ecdsa==2.2.0   | Library for ECDSA cryptography in Python, used for cryptographic operations.                    |
+| urllib3==1.26.18         | HTTP client library for Python, used for handling HTTP requests and responses.                  |
+| whitenoise==5.3.0        | Simplified static file serving for Python web applications, enhancing Django's static file handling. |
+| zopfli==0.2.3            | Compression library for Python, providing higher compression ratios than typical zlib.          |
+
+## Credits
+
+* My mentor, Akshat Garg
+* ChatGPT, which acted as a virtual teacher
+* A fellow Code Institute student, tomik-z-cech, whose readme served as a blueprint for mine
 
 
 
