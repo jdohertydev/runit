@@ -346,7 +346,9 @@ The user can see if they are logged in or not. Seeing their login status is cruc
 
 ### Sticky Navbar
 
-A sticky navbar enhances user experience (UX) by providing constant, easy access to navigation options, which facilitates smoother and more efficient browsing. It eliminates the need for users to scroll back to the top of the page to navigate, saving time and effort, especially on smaller viewing ports.
+A sticky navbar enhances the user experience (UX) by providing constant, easy access to navigation options, which facilitates smoother and more efficient browsing. It eliminates the need for users to scroll back to the top of the page to navigate, saving time and effort, especially on smaller viewing ports.
+
+Originally, I manually coded this feature using the following code:
 
 ```CSS
 
@@ -360,6 +362,8 @@ A sticky navbar enhances user experience (UX) by providing constant, easy access
 }
 
 ```
+However, after encountering some issues getting the navbar to stay stuck to the top, I read that I could utilize the power of Bootstrap and simply add the class```fixed-top```.
+
 ### Custom Error Pages
 
 I have created custom error pages for 400, 403, 404, and 500 errors that enhance user experience by offering helpful navigation options, maintaining brand consistency, and reducing frustration through humorous running-related puns. This involved creating custom templates and linking them via the urls.py file and views.py.
