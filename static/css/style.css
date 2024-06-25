@@ -481,8 +481,6 @@ input[readonly] {
     font-weight: 500;
 }
 
-/* .splash-screen {} */
-
 .main-content {
     padding-top: 15px; /* Adjust the value according to your navbar height */
 }
