@@ -861,7 +861,111 @@ To ensure Python files (.py extensions) are PEP8 valid, the following protocol w
 4. Run Black to format Python files with a specific line length of 79 characters (`$ black --line-length 79 .`)
 5. Manual check all .py files with CI Python Linter.
 
-Using this method, I successfully validated all my Python code. The only exception I encountered was in the settings.py file, where the `AUTH_PASSWORD_VALIDATORS` variable exceeded the recommended 79 characters.
+Using this method, I successfully validated all my Python code. The only exception I encountered was in the settings.py file*, where the `AUTH_PASSWORD_VALIDATORS` variable exceeded the recommended 79 characters.
+
+<table>
+  <tr>
+    <th style="border: 1px solid black; padding: 8px;">Directory</th>
+    <th style="border: 1px solid black; padding: 8px;">File</th>
+    <th style="border: 1px solid black; padding: 8px;">Result</th>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">accounts</td>
+    <td style="border: 1px solid black; padding: 8px;">forms.py</td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">accounts</td>
+    <td style="border: 1px solid black; padding: 8px;">test_forms.py</td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">accounts</td>
+    <td style="border: 1px solid black; padding: 8px;">urls.py</td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">accounts</td>
+    <td style="border: 1px solid black; padding: 8px;">views.py</td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">contact</td>
+    <td style="border: 1px solid black; padding: 8px;">forms.py</td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">contact</td>
+    <td style="border: 1px solid black; padding: 8px;">models.py</td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">contact</td>
+    <td style="border: 1px solid black; padding: 8px;">test_forms.py</td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">contact</td>
+    <td style="border: 1px solid black; padding: 8px;">urls.py</td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">contact</td>
+    <td style="border: 1px solid black; padding: 8px;">views.py</td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">events_listing</td>
+    <td style="border: 1px solid black; padding: 8px;">admin.py</td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">events_listing</td>
+    <td style="border: 1px solid black; padding: 8px;">forms.py</td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">events_listing</td>
+    <td style="border: 1px solid black; padding: 8px;">models.py</td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">events_listing</td>
+    <td style="border: 1px solid black; padding: 8px;">test_forms.py</td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">events_listing</td>
+    <td style="border: 1px solid black; padding: 8px;">urls.py</td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">events_listing</td>
+    <td style="border: 1px solid black; padding: 8px;">utils.py</td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">events_listing</td>
+    <td style="border: 1px solid black; padding: 8px;">views.py</td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">myproject</td>
+    <td style="border: 1px solid black; padding: 8px;">settings.py</td>
+    <td style="border: 1px solid black; padding: 8px;">FAIL *</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">myproject</td>
+    <td style="border: 1px solid black; padding: 8px;">urls.py</td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">myproject</td>
+    <td style="border: 1px solid black; padding: 8px;">views.py</td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
+  </tr>
+</table>
+
 
 HTML Validation
 
