@@ -46,26 +46,26 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == events_url %}active{% endif %}" aria-current="page"
+                        <a class="nav-link {% if request.path == events_url %}active" aria-current="page{% endif %}"
                             href="{% url 'events_list' %}">Events</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == account_update_url %}active{% endif %}"
-                            aria-current="page" href="{% url 'account_update' %}">Account</a>
+                        <a class="nav-link {% if request.path == account_update_url %}active"
+                            aria-current="page{% endif %}" href="{% url 'account_update' %}">Account</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
+                        <a class="nav-link {% if request.path == signup_url %}active" aria-current="page{% endif %}"
                             href="{% url 'account_signup' %}">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page"
+                        <a class="nav-link {% if request.path == login_url %}active" aria-current="page{% endif %}"
                             href="{% url 'account_login' %}">Login</a>
                     </li>
                     {% endif %}
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == contact_url %}active{% endif %}" aria-current="page"
+                        <a class="nav-link {% if request.path == contact_url %}active" aria-current="page{% endif %}"
                             href="{% url 'contact' %}">Contact</a>
                     </li>
                 </ul>
