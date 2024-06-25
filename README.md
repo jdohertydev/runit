@@ -1462,7 +1462,7 @@ The website was tested on all major browsers, including Google Chrome, Mozilla F
 
 #### Comparing Chrome and Edge
 
-
+![Comparing Chrome and Edge](/readme-images/edge-vs-chrome-screenshot.png)
 
 The result showed that there were no functionality issues, all navigation links worked, and the form responded appropriately to empty fields. 
 
