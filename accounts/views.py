@@ -35,7 +35,7 @@ def account_update(request):
                     "emails/account_updated_email.html",
                     {
                         "username": user.username,
-                        "site_name": "Your Website/App Name",
+                        "site_name": settings.SITE_NAME,
                     },
                 ),
                 fail_silently=False, # This controls whether exceptions are raised on email sending errors
