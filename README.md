@@ -522,7 +522,6 @@ def get_queryset(self):
     current_datetime = timezone.now()
     queryset = PostEvent.objects.filter(date__gte=current_datetime)
 ```
-
 This method retrieves a queryset of PostEvent objects whose date field is greater than or equal to the current date and time, effectively filtering out past events. I believe this makes for a better user experience.
 
 #### Filter by Race Type
@@ -1377,7 +1376,7 @@ Status: **PASS**
 
 #### Test Cases
 
-To restrict access to appropriate content, the `@login_required` decorator was implemented. Additionally, staff users can only view events they have created, as managed through Django Admin (see Django Admin section)".
+To restrict access to appropriate content, the `@login_required` decorator was implemented. Additionally, staff users can only view events they have created, as managed through Django Admin (see [django-admin](#django-admin))".
 
 #### Viewport Testing
 
