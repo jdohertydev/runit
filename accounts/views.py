@@ -13,6 +13,20 @@ from django.conf import settings
 
 @login_required
 def account_update(request):
+    """
+    View function to handle updating user account information.
+
+    On POST request, updates user profile information using CustomUserChangeForm,
+    sends an email notification to the user, and redirects to account_update page.
+    On GET request, displays the user_form and password_form.
+
+    Args:
+        request (HttpRequest): The request object sent by the user.
+
+    Returns:
+        HttpResponse: Rendered template response.
+
+    """
     if request.method == "POST":
         user_form = CustomUserChangeForm(request.POST, instance=request.user)
         if user_form.is_valid():
@@ -52,11 +66,26 @@ def account_update(request):
 
 @login_required
 def account_password_change(request):
+    """
+    View function to handle changing user password.
+
+    On POST request, changes user password using CustomPasswordChangeForm,
+    updates session authentication hash, sends an email notification to the user,
+    and redirects to account_update page.
+    On GET request, displays the password_form.
+
+    Args:
+        request (HttpRequest): The request object sent by the user.
+
+    Returns:
+        HttpResponse: Rendered template response.
+
+    """
     if request.method == "POST":
         password_form = CustomPasswordChangeForm(request.user, request.POST)
         if password_form.is_valid():
             user = password_form.save()
-            update_session_auth_hash(request, user)  # Important!
+            update_session_auth_hash(request, user)
 
             # Render email content from template
             context = {
@@ -108,6 +137,21 @@ def account_password_change(request):
 
 @login_required
 def account_delete(request):
+    """
+    View function to handle deleting user account.
+
+    On POST request, authenticates user with provided password,
+    deletes user account, sends an email notification to the user,
+    and redirects to landing_page on successful deletion.
+    On GET request, displays the account deletion form.
+
+    Args:
+        request (HttpRequest): The request object sent by the user.
+
+    Returns:
+        HttpResponse: Rendered template response.
+
+    """
     if request.method == "POST":
         password = request.POST.get("password")
         user = authenticate(username=request.user.username, password=password)
