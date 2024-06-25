@@ -1248,7 +1248,7 @@ Contrast ratio
   </tr>
 </table>
 
-### Automated Testing
+#### Automated Testing
 
 Unit testing was used to implement automated tests on custom `forms.py` files. The `test.py` file was copied and renamed to `test_forms.py` in each directory. The tests were then run via the command prompt using the command `python manage.py test <directory_name>`.
 
@@ -1256,13 +1256,13 @@ Example of Unittest being run
 
 ![Example of Unittest being run](/readme-images/screenshot-automated-test.png)
 
-#### Accounts
+##### Accounts
 
 The test suite for `CustomUserChangeForm` in the given code includes three main test cases. Firstly, it tests the form with valid data to ensure it validates correctly. Secondly, it tests the form with blank data to verify that required fields trigger appropriate validation errors. Lastly, it checks that the username field is set as read-only, ensuring that this attribute is correctly applied to the form. The tests use a setup method to create a sample user and set initial form data for testing.
 
 Status: **PASS**
 
-#### Contact
+##### Contact
 
 The tests for the `ContactForm` class ensure the form's validation logic works correctly. They include verifying that the form is valid when all fields are filled with correct data, checking that the form is invalid when submitted with blank data and confirming that appropriate error messages are displayed for required fields. Additionally, the tests ensure that the form is invalid when an invalid email address is provided, verifying that the correct error message is shown for the email field.
 
@@ -1278,7 +1278,6 @@ Status: **PASS**
 
 To restrict access to appropriate content, the `@login_required` decorator was implemented. Additionally, staff users can only view events they have created, as managed through Django Admin (see Django Admin section)".
 
-
 #### Viewport Testing
 
 Viewport Testing involved physically testing the project's responsiveness across various devices with different viewports. The test included mobile phones with small and large viewports, as well as tablets. Additionally, testing was conducted on PCs with resolutions of 1366px * 768px (HD) and 1920px * 1080px (Full HD).
@@ -1292,4 +1291,17 @@ The website was tested on all major browsers, including Google Chrome, Mozilla F
 The result showed that there were no functionality issues, all navigation links worked, and the form responded appropriately to empty fields. 
 
 ### Bugs
+
+Bugs were reported on the Kanban board with all bugs being resolved. Two items required attention:
+
+| Issue                                                          | Page                        | Solution                                                          |
+|----------------------------------------------------------------|-----------------------------|-------------------------------------------------------------------|
+| After an event has passed, the option to register/unregister still is useable   | postevents_details.html     | Implement an if statement to check if the date has passed when the page loads. If it has, remove the button accordingly.               |
+| Navbar's 'sticky' behavior obscures main content               | base.html                   | Create a div called ´main-content´ and add top padding within ´style.css.´ |
+
+
+
+
+
+
 
