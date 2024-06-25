@@ -851,7 +851,7 @@ For future releases, I envision incorporating a payment system, which would enha
 
 ## Validation, Testing & Bugs
 
- ### Validation
+### Validation
 
 To ensure Python files (.py extensions) are PEP8 valid, the following protocol was followed:
 
@@ -1098,4 +1098,166 @@ All JS files are located in 'static/js', making them easy to locate and manually
 All files passed, with two files highlighting `One undefined variable - 27 bootstrap`.
 
 WAVE Validation
+
+Ask mentor
+
 Lighthouse
+
+Ask mentor
+Contrast ratio
+
+### Testing
+
+#### User stories testing
+
+<table border="1" cellspacing="0" cellpadding="8">
+  <tr>
+    <th>Epic</th>
+    <th>User Story</th>
+    <th>Acceptance Criteria</th>
+    <th>Result</th>
+  </tr>
+  <tr>
+    <td rowspan="2">EPIC 1: Event Discovery and Browsing</td>
+    <td>As a runner, I want to filter events by categories so that I can narrow down the list to relevant races.</td>
+    <td>
+      <ul>
+        <li>Users can filter events by categories such as road race, trail, or mixed.</li>
+        <li>Filtered events are displayed correctly according to the selected categories.</li>
+      </ul>
+    </td>
+    <td>PASS</td>
+  </tr>
+  <tr>
+    <td>As a runner, I want to search for events based on various criteria so that I can find races that interest me.</td>
+    <td>
+      <ul>
+        <li>Users can search for events such as keywords, location, date, and event type.</li>
+        <li>Search results are filtered accurately based on the user's input.</li>
+      </ul>
+    </td>
+    <td>PASS</td>
+  </tr>
+  <tr>
+    <td>EPIC 1: Event Discovery and Browsing</td>
+    <td>As a runner, I want to view detailed information about an event so that I can decide if I want to participate.</td>
+    <td>
+      <ul>
+        <li>Event details page displays accurate information including date, location, distance, and event description.</li>
+        <li>Users can navigate to the event details page from the search results or event listings.</li>
+      </ul>
+    </td>
+    <td>PASS</td>
+  </tr>
+  <tr>
+    <td rowspan="3">EPIC 2: User Registration and Login</td>
+    <td>As a runner, I want to register for an account so that I can access the platform's features.</td>
+    <td>
+      <ul>
+        <li>Users can register for an account by providing their name, email, username, and password.</li>
+        <li>Registration form validates input fields and displays appropriate error messages for invalid entries.</li>
+      </ul>
+    </td>
+    <td>PASS</td>
+  </tr>
+  <tr>
+    <td>As a registered user, I want to log in to the website so that I can access my account.</td>
+    <td>
+      <ul>
+        <li>Registered users can log in using their email/username and password.</li>
+        <li>Logged-in users are redirected to the homepage/dashboard after successful authentication.</li>
+      </ul>
+    </td>
+    <td>PASS</td>
+  </tr>
+  <tr>
+    <td>As a site user, I can update my account details and also delete my account.</td>
+    <td>
+      <ul>
+        <li>Account Update:</li>
+        <ul>
+          <li>Users can access the account update form from their account page.</li>
+          <li>The form includes fields for updating personal details (e.g., name, email, password).</li>
+          <li>All fields are pre-populated with the user's current information.</li>
+          <li>Users can submit the form to save changes.</li>
+          <li>Upon successful update, users receive a confirmation message.</li>
+          <li>Validation errors are displayed if the form submission is invalid (e.g., email format, required fields).</li>
+          <li>Password fields should have proper validation (e.g., minimum length, matching confirmation).</li>
+          <li>Users can see the changes reflected immediately on their account page after update.</li>
+          <li>This area will not be visible to users not logged in.</li>
+        </ul>
+        <li>Account Deletion:</li>
+        <ul>
+          <li>Users can access the account deletion option from their account page.</li>
+          <li>A confirmation prompt appears to confirm the deletion action.</li>
+          <li>Users must re-enter their password to confirm the deletion.</li>
+          <li>Upon successful deletion, the user's account and all associated data are permanently removed.</li>
+          <li>Users receive a confirmation message that their account has been deleted.</li>
+          <li>Users are redirected to the homepage after account deletion.</li>
+        </ul>
+      </ul>
+    </td>
+    <td>PASS</td>
+  </tr>
+  <tr>
+    <td rowspan="2">EPIC 3: Event Registration</td>
+    <td>As a registered runner, I want to cancel my registration for an event in case I am unable to attend, so that it can be made available to other runners.</td>
+    <td>
+      <ul>
+        <li>A "Cancel Registration" option is available on the events listing page.</li>
+        <li>When selecting the "Cancel Registration" option, the user is prompted to confirm the cancellation to prevent accidental cancellations.</li>
+        <li>After confirming the cancellation, the registration is marked as cancelled in the system, and the event's available registration count is incremented accordingly.</li>
+        <li>A confirmation message is displayed to the user upon successful cancellation, and the cancelled registration is removed from their list of registered events.</li>
+      </ul>
+    </td>
+    <td>PASS</td>
+  </tr>
+  <tr>
+    <td>As a user, I want to see the number of remaining places for an event so that I can gauge availability and make informed decisions about registering for the event.</td>
+    <td>
+      <ul>
+        <li>On the event details page, the number of remaining places is displayed prominently.</li>
+        <li>If all places have been allocated, the message "Remaining places: 0" is displayed instead of the remaining places count.</li>
+        <li>The remaining places count is updated in real-time as places are allocated.</li>
+      </ul>
+    </td>
+    <td>PASS</td>
+  </tr>
+  <tr>
+    <td>EPIC 3: User Registration and Login</td>
+    <td>As a registered user, I can sign up for an event by clicking a 'sign-up' button so that I can participate in the race.</td>
+    <td>
+      <ul>
+        <li>Users can click button to sign up.</li>
+        <li>User's full name is added to participants list.</li>
+        <li>User receives an email confirmation of sign-up and unregister.</li>
+      </ul>
+    </td>
+    <td>PASS</td>
+  </tr>
+  <tr>
+    <td>EPIC 4: Event Management for Organizers</td>
+    <td>As an event organizer, I want to view registrations for my events so that I can manage participant details effectively.</td>
+    <td>
+      <ul>
+        <li>Organizers can view a list of registered participants for their events.</li>
+        <li>Participant list displays accurate registration details including name, email, and registration status.</li>
+      </ul>
+    </td>
+    <td>PASS</td>
+  </tr>
+</table>
+
+#### Test Cases
+
+To restrict access to appropriate content, the `@login_required` decorator was implemented. Additionally, staff users can only view events they have created, as managed through Django Admin (see Django Admin section)".
+
+
+#### Viewport Testing
+
+Viewport Testing involved physically testing the project's responsiveness across various devices with different viewports. The test included mobile phones with small and large viewports, as well as tablets. Additionally, testing was conducted on PCs with resolutions of 1366px * 768px (HD) and 1920px * 1080px (Full HD).
+
+The expected outcome was for the project to display correctly without any distortion on all tested devices. The  result confirmed that there were **no issues** or content distortions observed across any of the tested devices. Therefore, the overall result of the viewport testing was deemed successful, with the project passing all criteria without any discrepancies.
+
+### Bugs
+

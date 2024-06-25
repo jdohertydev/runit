@@ -19,13 +19,6 @@ def account_update(request):
     On POST request, updates user profile information using CustomUserChangeForm,
     sends an email notification to the user, and redirects to account_update page.
     On GET request, displays the user_form and password_form.
-
-    Args:
-        request (HttpRequest): The request object sent by the user.
-
-    Returns:
-        HttpResponse: Rendered template response.
-
     """
     if request.method == "POST":
         user_form = CustomUserChangeForm(request.POST, instance=request.user)
