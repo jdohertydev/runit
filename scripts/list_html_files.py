@@ -1,5 +1,13 @@
 import os
 
+"""
+Script to find HTML files within a directory.
+
+This script recursively searches through a specified directory and its subdirectories
+to find all files with the extension '.html'. It then returns a list of paths to these
+HTML files. It was used to populate the tables in the readme.
+"""
+
 def find_html_files(directory):
     html_files = []
     for root, dirs, files in os.walk(directory):

@@ -1,5 +1,13 @@
 import os
 
+"""
+Script to find py files within a directory.
+
+This script recursively searches through a specified directory and its subdirectories
+to find all files with the extension '.py'. It then returns a list of paths to these
+py files. It was used to populate the tables in the readme.
+"""
+
 def find_py_files(directory):
     py_files = []
     for root, dirs, files in os.walk(directory):

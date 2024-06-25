@@ -1,4 +1,4 @@
-# Key Project Information
+# Run It! 
 
 "Run It!" is a website dedicated to listing running events. Runners can effortlessly find details about local running events, ask questions, and sign up directly through the platform. Event organisers can also use "Run It!" to post their events and manage their participant lists.
 
@@ -8,7 +8,7 @@ The live version of the website can be viewed at [Run It!](https://runit-jdohert
 
 ## Table of Contents
 
-- [Key Project Information](#key-project-information)
+- [Run It!](#run-it)
   - [Table of Contents](#table-of-contents)
   - [User Experience (UX)](#user-experience-ux)
     - [The Idea](#the-idea)
@@ -117,7 +117,6 @@ The live version of the website can be viewed at [Run It!](https://runit-jdohert
   - [Technologies Used](#technologies-used)
     - [Requirements.txt](#requirementstxt)
   - [Credits](#credits)
-
 
 ## User Experience (UX)
 
