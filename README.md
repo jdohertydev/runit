@@ -1259,5 +1259,11 @@ Viewport Testing involved physically testing the project's responsiveness across
 
 The expected outcome was for the project to display correctly without any distortion on all tested devices. The  result confirmed that there were **no issues** or content distortions observed across any of the tested devices. Therefore, the overall result of the viewport testing was deemed successful, with the project passing all criteria without any discrepancies.
 
+### Compatibility Testing
+
+The website was tested on all major browsers, including Google Chrome, Mozilla Firefox, Microsoft Edge, Opera, and Safari. The expected outcome was that the project would function correctly in all these browsers.
+
+The result showed that there were no functionality issues, all navigation links worked, and the form responded appropriately to empty fields. 
+
 ### Bugs
 
