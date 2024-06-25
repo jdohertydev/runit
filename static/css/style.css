@@ -264,6 +264,7 @@ body {
 }
 
 .container-fluid {
+    
     padding-right: 15px;
     /* Add padding to the container to prevent overflow */
     padding-left: 15px;
@@ -481,6 +482,10 @@ input[readonly] {
 }
 
 /* .splash-screen {} */
+
+.main-content {
+    padding-top: 15px; /* Adjust the value according to your navbar height */
+}
 
 /* Remove space between masthead and content for smaller devices */
 
