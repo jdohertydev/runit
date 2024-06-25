@@ -1248,6 +1248,32 @@ Contrast ratio
   </tr>
 </table>
 
+### Automated Testing
+
+Unit testing was used to implement automated tests on custom `forms.py` files. The `test.py` file was copied and renamed to `test_forms.py` in each directory. The tests were then run via the command prompt using the command `python manage.py test <directory_name>`.
+
+Example of Unittest being run
+
+![Example of Unittest being run](/readme-images/screenshot-automated-test.png)
+
+#### Accounts
+
+The test suite for `CustomUserChangeForm` in the given code includes three main test cases. Firstly, it tests the form with valid data to ensure it validates correctly. Secondly, it tests the form with blank data to verify that required fields trigger appropriate validation errors. Lastly, it checks that the username field is set as read-only, ensuring that this attribute is correctly applied to the form. The tests use a setup method to create a sample user and set initial form data for testing.
+
+Status: **PASS**
+
+#### Contact
+
+The tests for the `ContactForm` class ensure the form's validation logic works correctly. They include verifying that the form is valid when all fields are filled with correct data, checking that the form is invalid when submitted with blank data and confirming that appropriate error messages are displayed for required fields. Additionally, the tests ensure that the form is invalid when an invalid email address is provided, verifying that the correct error message is shown for the email field.
+
+Status: **PASS**
+
+#### Events Listing
+
+The tests for the `CommentForm` and `CustomSignupForm` classes ensure that these forms behave correctly under different scenarios. The `CommentForm` test verifies that the form is valid when submitted with valid data, specifically checking if the form accepts a comment body. On the other hand, the tests for `CustomSignupForm` cover various aspects: the first test validates that the form is valid when provided with matching passwords, and further checks ensure that the form's save method correctly creates a new user instance with the submitted data. The final test for `CustomSignupForm` ensures that the form fails validation when the passwords provided do not match, confirming that the appropriate error message is displayed in such cases. These tests collectively ensure that both forms handle input validation and data saving as expected in their respective contexts.
+
+Status: **PASS**
+
 #### Test Cases
 
 To restrict access to appropriate content, the `@login_required` decorator was implemented. Additionally, staff users can only view events they have created, as managed through Django Admin (see Django Admin section)".
