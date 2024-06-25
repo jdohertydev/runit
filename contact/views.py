@@ -35,7 +35,7 @@ def contact_view(request):
                 f"{message}",
                 settings.DEFAULT_FROM_EMAIL,
                 [admin_email],
-                fail_silently=False,
+                fail_silently=False, # This controls whether exceptions are raised on email sending errors
             )
 
             messages.success(

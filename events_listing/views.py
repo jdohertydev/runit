@@ -92,7 +92,7 @@ class PostEventDetailView(View):
         """
         Handle GET requests to display the post event details.
         """
-        post = get_object_or_404(PostEvent, slug=slug, status=1)
+        post = get_object_or_404(PostEvent, slug=slug, status=1) # status 1 indicates whether it is published or not
         comments = post.comments.all().order_by("-created_on")
         comment_count = post.comments.filter(approved=True).count()
         remaining_places = max(post.max_participants - post.signups.count(), 0)

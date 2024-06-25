@@ -38,7 +38,7 @@ def account_update(request):
                         "site_name": "Your Website/App Name",
                     },
                 ),
-                fail_silently=False,
+                fail_silently=False, # This controls whether exceptions are raised on email sending errors
             )
 
             messages.success(request, "Your profile was successfully updated!")
@@ -99,7 +99,7 @@ def account_password_change(request):
                 settings.DEFAULT_FROM_EMAIL,
                 [user.email],
                 html_message=html_message,
-                fail_silently=False,
+                fail_silently=False, # This controls whether exceptions are raised on email sending errors
             )
 
             messages.success(
@@ -168,7 +168,7 @@ def account_delete(request):
                 settings.DEFAULT_FROM_EMAIL,
                 [user.email],
                 html_message=html_message,
-                fail_silently=False,
+                fail_silently=False, # This controls whether exceptions are raised on email sending errors
             )
 
             user.delete()
