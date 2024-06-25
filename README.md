@@ -859,7 +859,11 @@ To ensure Python files (.py extensions) are PEP8 valid, the following protocol w
 2. Update requirements (`$ pip freeze >> requirements.txt`)
 3. Run Black (`$ black .`)
 4. Run Black to format Python files with a specific line length of 79 characters (`$ black --line-length 79 .`)
-5. Manual check all .py files with CI Python Linter.
+5. Manual check all .py files with CI Python Linter. "I created `list_py_files.py` to extract the file names of all .py files in the project and tested it only on the files I worked on."
+
+CI Python Linter Screenshot
+
+![ci-python-linter-screenshot.png](/readme-images/ci-python-linter-screenshot.png)
 
 Using this method, I successfully validated all my Python code. The only exception I encountered was in the settings.py file*, where the `AUTH_PASSWORD_VALIDATORS` variable exceeded the recommended 79 characters.
 
@@ -966,123 +970,105 @@ Using this method, I successfully validated all my Python code. The only excepti
   </tr>
 </table>
 
-
 HTML Validation
+
+To validate the HTML code, all static files had to be deployed and checked manually (logged out and logged in where appropriate) using the [Markup Validation Service](https://validator.w3.org/). I created list_html_files.py to extract the file names of all .html files in the project and tested it only on the files I worked on."
 
 <table>
   <tr>
     <th style="border: 1px solid black; padding: 8px;">Directory</th>
     <th style="border: 1px solid black; padding: 8px;">File</th>
-    <th style="border: 1px solid black; padding: 8px;">State</th>
     <th style="border: 1px solid black; padding: 8px;">Result</th>
   </tr>
   <tr>
-    <td style="border: 1px solid black; padding: 8px;">accounts/templates/accounts</td>
+    <td style="border: 1px solid black; padding: 8px;">accounts</td>
     <td style="border: 1px solid black; padding: 8px;">account_admin.html</td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
   <tr>
-    <td style="border: 1px solid black; padding: 8px;">accounts/templates/emails</td>
+    <td style="border: 1px solid black; padding: 8px;">accounts</td>
     <td style="border: 1px solid black; padding: 8px;">account_deleted_email.html</td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
   <tr>
-    <td style="border: 1px solid black; padding: 8px;">accounts/templates/emails</td>
+    <td style="border: 1px solid black; padding: 8px;">accounts</td>
     <td style="border: 1px solid black; padding: 8px;">account_updated_email.html</td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
   <tr>
-    <td style="border: 1px solid black; padding: 8px;">accounts/templates/emails</td>
+    <td style="border: 1px solid black; padding: 8px;">accounts</td>
     <td style="border: 1px solid black; padding: 8px;">password_changed_email.html</td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
   <tr>
-    <td style="border: 1px solid black; padding: 8px;">contact/templates/contact</td>
+    <td style="border: 1px solid black; padding: 8px;">contact</td>
     <td style="border: 1px solid black; padding: 8px;">contact.html</td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
     <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
   <tr>
-    <td style="border: 1px solid black; padding: 8px;">events_listing/templates/email</td>
+    <td style="border: 1px solid black; padding: 8px;">events_listing</td>
     <td style="border: 1px solid black; padding: 8px;">signup_confirmation_email.html</td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
   <tr>
-    <td style="border: 1px solid black; padding: 8px;">events_listing/templates/email</td>
+    <td style="border: 1px solid black; padding: 8px;">events_listing</td>
     <td style="border: 1px solid black; padding: 8px;">unregistration_confirmation_email.html</td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
   <tr>
-    <td style="border: 1px solid black; padding: 8px;">events_listing/templates/events_listing</td>
+    <td style="border: 1px solid black; padding: 8px;">events_listing</td>
     <td style="border: 1px solid black; padding: 8px;">events_list.html</td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
     <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
   <tr>
-    <td style="border: 1px solid black; padding: 8px;">events_listing/templates/events_listing</td>
+    <td style="border: 1px solid black; padding: 8px;">events_listing</td>
     <td style="border: 1px solid black; padding: 8px;">landing_page.html</td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
     <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
   <tr>
-    <td style="border: 1px solid black; padding: 8px;">events_listing/templates/events_listing</td>
+    <td style="border: 1px solid black; padding: 8px;">events_listing</td>
     <td style="border: 1px solid black; padding: 8px;">postevent_detail.html</td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
     <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
   <tr>
     <td style="border: 1px solid black; padding: 8px;">templates</td>
     <td style="border: 1px solid black; padding: 8px;">400.html</td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
   <tr>
     <td style="border: 1px solid black; padding: 8px;">templates</td>
     <td style="border: 1px solid black; padding: 8px;">403.html</td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
   <tr>
     <td style="border: 1px solid black; padding: 8px;">templates</td>
     <td style="border: 1px solid black; padding: 8px;">404.html</td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
   <tr>
     <td style="border: 1px solid black; padding: 8px;">templates</td>
     <td style="border: 1px solid black; padding: 8px;">500.html</td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
   <tr>
     <td style="border: 1px solid black; padding: 8px;">templates</td>
     <td style="border: 1px solid black; padding: 8px;">base.html</td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
   <tr>
-    <td style="border: 1px solid black; padding: 8px;">templates/account</td>
-    <td style="border: 1px solid black; padding: 8px;">login.html</td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;">templates</td>
+    <td style="border: 1px solid black; padding: 8px;">account/login.html</td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
   <tr>
-    <td style="border: 1px solid black; padding: 8px;">templates/account</td>
-    <td style="border: 1px solid black; padding: 8px;">signup.html</td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;">templates</td>
+    <td style="border: 1px solid black; padding: 8px;">account/signup.html</td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
   <tr>
-    <td style="border: 1px solid black; padding: 8px;">templates/account</td>
-    <td style="border: 1px solid black; padding: 8px;">logout.html</td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
-    <td style="border: 1px solid black; padding: 8px;"></td>
+    <td style="border: 1px solid black; padding: 8px;">templates</td>
+    <td style="border: 1px solid black; padding: 8px;">account/logout.html</td>
+    <td style="border: 1px solid black; padding: 8px;">PASS</td>
   </tr>
 </table>
 
