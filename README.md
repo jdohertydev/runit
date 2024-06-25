@@ -2,13 +2,122 @@
 
 "Run It!" is a website dedicated to listing running events. Runners can effortlessly find details about local running events, ask questions, and sign up directly through the platform. Event organisers can also use "Run It!" to post their events and manage their participant lists.
 
-The live version of the website can be viewed at: [Run It!](https://runit-jdohertydev-773091e00a18.herokuapp.com/).
+The live version of the website can be viewed at [Run It!](https://runit-jdohertydev-773091e00a18.herokuapp.com/).
 
 ![Am I responsive](/readme-images/am-i-responsive.png)
 
 ## Table of Contents
 
-***TO BE UPDATED***
+- [Key Project Information](#key-project-information)
+  - [Table of Contents](#table-of-contents)
+  - [User Experience (UX)](#user-experience-ux)
+    - [The Idea](#the-idea)
+    - [The Ideal User](#the-ideal-user)
+    - [Site Goals](#site-goals)
+  - [The Strategy Plane](#the-strategy-plane)
+  - [Epics](#epics)
+  - [User Stories](#user-stories)
+    - [User Stories and Project Metrics](#user-stories-and-project-metrics)
+    - [Kanban Board Labels](#kanban-board-labels)
+    - [Total Story Points](#total-story-points)
+    - [EPIC 1: Event Discovery and Browsing](#epic-1-event-discovery-and-browsing)
+    - [EPIC 2: User Registration and Login](#epic-2-user-registration-and-login)
+    - [EPIC 3: Event Registration](#epic-3-event-registration)
+    - [EPIC 4: Event Management for Organisers](#epic-4-event-management-for-organisers)
+    - [EPIC 5: User Engagement and Community](#epic-5-user-engagement-and-community)
+  - [The Scope Plane](#the-scope-plane)
+    - [Features to be Implemented](#features-to-be-implemented)
+  - [The Structure Plane](#the-structure-plane)
+    - [Site Maps](#site-maps)
+      - [Site Map for Users Logged In](#site-map-for-users-logged-in)
+      - [Site Map for Users Not Logged In](#site-map-for-users-not-logged-in)
+    - [Database Schema](#database-schema)
+  - [Relationships](#relationships)
+    - [postevent\_postevent Table](#postevent_postevent-table)
+    - [auth\_user Table](#auth_user-table)
+  - [The Skeleton Plane](#the-skeleton-plane)
+    - [Wireframes](#wireframes)
+  - [The Surface Plane](#the-surface-plane)
+    - [Color Palette](#color-palette)
+    - [Fonts](#fonts)
+  - [Features](#features)
+    - [Favicon](#favicon)
+    - [Logo and Tagline](#logo-and-tagline)
+    - [Header](#header)
+    - [Slogan](#slogan)
+    - [Dynamic menu items that adapt based on the user's login status](#dynamic-menu-items-that-adapt-based-on-the-users-login-status)
+    - [Sticky Navbar](#sticky-navbar)
+    - [Custom Error Pages](#custom-error-pages)
+    - [Footer](#footer)
+    - [Events List Page](#events-list-page)
+      - [Display Only Live Races](#display-only-live-races)
+      - [Filter by Race Type](#filter-by-race-type)
+      - [Event Card](#event-card)
+      - [Shadowbox Effect](#shadowbox-effect)
+      - [Navigation options for Next/Previous events based on event status](#navigation-options-for-nextprevious-events-based-on-event-status)
+    - [Events Post Page](#events-post-page)
+      - [Masthead banner](#masthead-banner)
+      - [Event Details](#event-details)
+      - [Comments section](#comments-section)
+      - [Comments section - not logged in](#comments-section---not-logged-in)
+      - [Comments section - logged in](#comments-section---logged-in)
+      - [Comments section - awaiting approval](#comments-section---awaiting-approval)
+      - [Comments section - approved ny superuser](#comments-section---approved-ny-superuser)
+      - [Edit](#edit)
+      - [Delete](#delete)
+      - [List of Participants](#list-of-participants)
+        - [List of particpants - unregistered](#list-of-particpants---unregistered)
+        - [List of particpants - registered](#list-of-particpants---registered)
+        - [Email template - Sign up](#email-template---sign-up)
+        - [Email template - Unregister](#email-template---unregister)
+    - [Account Page](#account-page)
+      - [Update profile](#update-profile)
+        - [Update profile confirmation email](#update-profile-confirmation-email)
+        - [Change password](#change-password)
+        - [Change password confirmation email](#change-password-confirmation-email)
+        - [Delete account](#delete-account)
+          - [Delete account modal](#delete-account-modal)
+        - [Delete account email confirmation](#delete-account-email-confirmation)
+    - [Contact Us Page](#contact-us-page)
+      - [Contact us form when user is logged in](#contact-us-form-when-user-is-logged-in)
+        - [Contact us form when user is not logged in](#contact-us-form-when-user-is-not-logged-in)
+        - [Email message](#email-message)
+        - [Django Backend](#django-backend)
+    - [Django Admin](#django-admin)
+      - [Superuser view of post events](#superuser-view-of-post-events)
+      - [Staff user view of post events](#staff-user-view-of-post-events)
+      - [Post events - Add post event](#post-events---add-post-event)
+      - [Export list of participants](#export-list-of-participants)
+      - [View in admin - export csv](#view-in-admin---export-csv)
+      - [Screenhot of exported csv file](#screenhot-of-exported-csv-file)
+    - [Future Features](#future-features)
+  - [Validation, Testing \& Bugs](#validation-testing--bugs)
+    - [Validation](#validation)
+      - [CI Python Linter Screenshot](#ci-python-linter-screenshot)
+      - [HTML Validation](#html-validation)
+      - [CSS Validation Results](#css-validation-results)
+      - [JS Validation](#js-validation)
+    - [Testing](#testing)
+      - [User stories testing](#user-stories-testing)
+      - [Automated Testing](#automated-testing)
+        - [Accounts](#accounts)
+        - [Contact](#contact)
+      - [Events Listing](#events-listing)
+      - [Test Cases](#test-cases)
+      - [Viewport Testing](#viewport-testing)
+    - [Compatibility Testing](#compatibility-testing)
+    - [Bugs](#bugs)
+  - [Deployment](#deployment)
+    - [6.1. Transfer of Progress from IDE](#61-transfer-of-progress-from-ide)
+    - [6.2. Offline Cloning](#62-offline-cloning)
+    - [6.3.2. ElephantSQL](#632-elephantsql)
+    - [6.3.3. Cloudinary](#633-cloudinary)
+    - [6.3.4. Settings.py \& File-tree](#634-settingspy--file-tree)
+    - [Deployment to Heroku](#deployment-to-heroku)
+  - [Technologies Used](#technologies-used)
+    - [Requirements.txt](#requirementstxt)
+  - [Credits](#credits)
+
 
 ## User Experience (UX)
 
@@ -24,7 +133,7 @@ The live version of the website can be viewed at: [Run It!](https://runit-jdoher
 
 **The Ideal User:**
 - Enjoys running and wants to participate in events.
-- Desires to manage their own registrations.
+- Desires to manage their registrations.
 - Aims to connect with other runners in their community.
 - Seeks to promote and manage their events via the platform.
 
@@ -218,7 +327,7 @@ After determining the strategy, the scope was meticulously defined and planned o
 - **Event Details Page:** Users can view comprehensive information about a specific event, including date, time, location, description, and any additional details.
 - **User Login:** Registered users can securely log in to their accounts to access personalized features and information.
 - **User Registration:** New users (runners) can create an account on the platform to gain access to event listings and other site features.
-- **Event Sign-Up:** Registered users can enroll in and confirm their participation for a selected event through the platform.
+- **Event Sign-Up:** Registered users can enrol in and confirm their participation for a selected event through the platform.
 - **View Registrations:** Event organisers can see a list of participants who have registered for their event, along with relevant details.
 - **View Remaining Places Available:** Users can check the number of available slots remaining for an event before registering.
 - **Cancel Registration:** Registered runners can withdraw from participating in an event they previously signed up for.
@@ -335,7 +444,6 @@ The slogan used serves to support the essence and values of my brand, leaving a 
     }
 }
 ```
-
 ### Dynamic menu items that adapt based on the user's login status
 
 The user can see if they are logged in or not. Seeing their login status is crucial for users as it enhances their experience by providing context, access to personalized content, security, and seamless navigation on the website.
@@ -432,7 +540,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 ```
-
 On mobile devices, a media query was utilized to optimize the available space within the viewport.
 
 ```css
@@ -481,8 +588,6 @@ On mobile devices, a media query was utilized to optimize the available space wi
     height: 38px;
 }
 ```
-
-
 ![Filter by Race Type mobile device](/readme-images/resized-filter-and-search.png)
 
 #### Event Card
@@ -586,7 +691,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 ```
-
 #### Event Details 
 
 The event details section effectively prioritizes essential information for the user, following a logic from most to least important.
@@ -614,7 +718,6 @@ To prevent spam or attacks, users need an account to post content, and additiona
 #### Comments section - approved ny superuser
 
 ![Comments section - approved](/readme-images/admin-comment-approved.png)
-
 
 Full CRUD (Create, Read, Update, Delete) features have been implemented, allowing users to edit and delete their posts as needed.
 
@@ -836,7 +939,6 @@ def export_participants(modeladmin, request, queryset):
 export_participants.short_description = "Export participants for selected events"
 
 ```
-
 #### View in admin - export csv
 
 ![View in admin - export csv](/readme-images/export-participants-list-admin.png)
@@ -861,7 +963,7 @@ To ensure Python files (.py extensions) are PEP8 valid, the following protocol w
 4. Run Black to format Python files with a specific line length of 79 characters (`$ black --line-length 79 .`)
 5. Manual check all .py files with CI Python Linter. "I created `list_py_files.py` to extract the file names of all .py files in the project and tested it only on the files I worked on."
 
-CI Python Linter Screenshot
+#### CI Python Linter Screenshot
 
 ![ci-python-linter-screenshot.png](/readme-images/ci-python-linter-screenshot.png)
 
@@ -970,7 +1072,7 @@ Using this method, I successfully validated all my Python code. The only excepti
   </tr>
 </table>
 
-HTML Validation
+#### HTML Validation
 
 To validate the HTML code, all static files had to be deployed and checked manually (logged out and logged in where appropriate) using the [Markup Validation Service](https://validator.w3.org/). I created list_html_files.py to extract the file names of all .html files in the project and tested it only on the files I worked on."
 
@@ -1076,12 +1178,11 @@ CSS Validation
 
 To validate the CSS used in the project, I first ran `python manage.py collectstatic` from the command line and deployed the project on Heroku. Then, I selected the 'View Source' option by right-clicking on the webpage, located 'style.css', and opened it in a separate window. Finally, I ran this code through [The W3C CSS Validation Service - Jigsaw](https://jigsaw.w3.org/css-validator/) for validation. The results were as follows:
 
-
-CSS Validation Results
+#### CSS Validation Results
 
 ![CSS Validation Results](/readme-images/css-validator-results.png)
 
-JS Validation
+#### JS Validation
 
 All JS files are located in 'static/js', making them easy to locate and manually validate using [JS Hint](https://jshint.com/).
 
@@ -1433,7 +1534,7 @@ EMAIL_USE_TLS = True
 | Gitpod             | Online IDE initially used for developing the project.                                           |
 | Requirements.txt   | File listing Python packages required for the project, facilitating environment setup.         |
 
-#### Requirements.txt
+### Requirements.txt
 
 The following modules were used in development of the Run it! website:
 
@@ -1476,11 +1577,6 @@ The following modules were used in development of the Run it! website:
 
 ## Credits
 
-* My mentor, Akshat Garg
-* ChatGPT, which acted as a virtual teacher
-* A fellow Code Institute student, tomik-z-cech, whose readme served as a blueprint for mine
-
-
-
-
-
+* My mentor, Akshat Garg.
+* ChatGPT, which acted as a virtual teacher.
+* A fellow Code Institute student, tomik-z-cech, whose readme served as a blueprint for mine.
