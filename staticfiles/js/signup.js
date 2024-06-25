@@ -1,3 +1,15 @@
+/**
+ * Handles race sign-up and unregistration functionality.
+ *
+ * This script listens for the 'DOMContentLoaded' event to ensure all DOM elements are loaded,
+ * then attaches event listeners to the sign-up and unregistration buttons. When a user clicks
+ * one of these buttons, a modal is displayed, and upon confirmation, the respective action is
+ * performed by submitting a form with the appropriate data.
+ *
+ * The script utilizes Bootstrap's modal for user confirmation and dynamically creates a form
+ * to handle the sign-up and unregistration actions securely using a CSRF token.
+ */
+
 document.addEventListener("DOMContentLoaded", () => {
     const signupModal = new bootstrap.Modal(document.getElementById("signupModal"));
     const signupConfirm = document.getElementById("signupConfirm");

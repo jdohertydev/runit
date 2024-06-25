@@ -302,6 +302,7 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: flex-end; /* Align items at the bottom */
+    
 }
 
 .navbar-brand {
@@ -466,7 +467,6 @@ input[readonly] {
     }
 }
 
-
 /* Ensure consistent height for select and input elements */
 .search-filter-container .form-group select,
 .search-filter-container .form-group button,
@@ -476,10 +476,16 @@ input[readonly] {
 
 /* landing_page.html */
 
-.splash-screen {}
-
-
 .hero-text {
     font-weight: 500;
 }
 
+/* .splash-screen {} */
+
+/* Remove space between masthead and content for smaller devices */
+
+@media (max-width: 768px) {
+    .masthead{
+        height: auto;
+    }  
+}
