@@ -1,4 +1,12 @@
-// account_admin.js
+
+/**
+ * Initialize event listeners for toggling sections on DOMContentLoaded.
+ * 
+ * This script listens for the DOMContentLoaded event to ensure the DOM elements
+ * are fully loaded and then sets up event listeners for toggling visibility
+ * of 'Update Account' and 'Change Password' sections.
+ */
+
 document.addEventListener("DOMContentLoaded", function() {
     // Toggle Update Account section
     const toggleAccountButton = document.getElementById("toggle-account-update");

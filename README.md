@@ -1082,5 +1082,20 @@ CSS Validation Results
 ![CSS Validation Results](/readme-images/css-validator-results.png)
 
 JS Validation
+
+All JS files are located in 'static/js', making them easy to locate and manually validate using [JS Hint](https://jshint.com/).
+
+![JS Hint Results](/readme-images/screenshot-jshint.png)
+
+| Folder       | File                | Result |
+|--------------|---------------------|--------|
+| static/js/   | account_admin.js    | PASS   |
+| static/js/   | comments.js         | PASS*   |
+| static/js/   | countdown.js        | PASS   |
+| static/js/   | filter_form.js      | PASS   |
+| static/js/   | signup.js           | PASS*   |
+
+All files passed, with two files highlighting `One undefined variable - 27 bootstrap`.
+
 WAVE Validation
 Lighthouse
