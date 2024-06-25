@@ -12,7 +12,7 @@ The live version of the website can be viewed at [Run It!](https://runit-jdohert
   - [Table of Contents](#table-of-contents)
   - [User Experience (UX)](#user-experience-ux)
     - [The Idea](#the-idea)
-    - [The Ideal User](#the-ideal-user)
+    - [Target Audiences and the Ideal User](#target-audiences-and-the-ideal-user)
     - [Site Goals](#site-goals)
   - [The Strategy Plane](#the-strategy-plane)
   - [Epics](#epics)
@@ -95,6 +95,7 @@ The live version of the website can be viewed at [Run It!](https://runit-jdohert
     - [Validation](#validation)
       - [CI Python Linter Screenshot](#ci-python-linter-screenshot)
       - [HTML Validation](#html-validation)
+        - [Example of Django code that throws errors](#example-of-django-code-that-throws-errors)
       - [CSS Validation Results](#css-validation-results)
       - [JS Validation](#js-validation)
     - [Testing](#testing)
@@ -105,7 +106,11 @@ The live version of the website can be viewed at [Run It!](https://runit-jdohert
       - [Events Listing](#events-listing)
       - [Test Cases](#test-cases)
       - [Viewport Testing](#viewport-testing)
+        - [Screenshot - Desktop](#screenshot---desktop)
+        - [Screenshot - Tablet](#screenshot---tablet)
+        - [Screenshot - Mobile](#screenshot---mobile)
     - [Compatibility Testing](#compatibility-testing)
+      - [Comparing Chrome and Edge](#comparing-chrome-and-edge)
     - [Bugs](#bugs)
   - [Deployment](#deployment)
     - [6.1. Transfer of Progress from IDE](#61-transfer-of-progress-from-ide)
@@ -124,7 +129,7 @@ The live version of the website can be viewed at [Run It!](https://runit-jdohert
 
 **Run It!** is designed to be a comprehensive running event listing website. Users can effortlessly find free running events in their area and book their spots. Additionally, they can post questions about specific events, add likes, and easily contact the site webmaster.
 
-### The Ideal User
+### Target Audiences and the Ideal User
 
 **Target Audiences:**
 - Runners of all levels interested in participating in running events.
@@ -348,6 +353,58 @@ After determining the strategy, the scope was meticulously defined and planned o
 ### Database Schema
 
 ![Database Schema](/readme-images/run-it-database-layout.png)
+
+Created using [DBDDiagram](https://dbdiagram.io/):
+
+```
+
+Table users {
+  id integer [primary key]
+  username varchar
+  role varchar
+  created_at timestamp
+}
+
+Table post_events {
+  id integer [primary key]
+  event_name varchar
+  slug varchar
+  date timestamp
+  race_type varchar
+  author_id integer [ref: > users.id]
+  featured_image varchar
+  location varchar
+  description text
+  max_participants integer
+  course_map varchar
+  created_on timestamp
+  status integer
+}
+
+Table comments {
+  id integer [primary key]
+  post_id integer [ref: > post_events.id]
+  author_id integer [ref: > users.id]
+  body text
+  approved boolean
+  created_on timestamp
+}
+
+Table event_sign_ups {
+  id integer [primary key]
+  event_id integer [ref: > post_events.id]
+  user_id integer [ref: > users.id]
+  signed_up_on timestamp
+}
+
+Table contact_messages {
+  id integer [primary key]
+  name varchar
+  email varchar
+  message text
+  sent_at timestamp
+}
+```
 
 ## Relationships
 
@@ -1172,6 +1229,12 @@ To validate the HTML code, all static files had to be deployed and checked manua
   </tr>
 </table>
 
+Because of the way Django renders code when loading forms, such as <span class="helptext">, it is not possible to validate these lines.
+
+##### Example of Django code that throws errors
+
+![Example of Django code that throws errors](/readme-images/django-code-with-html-errors.png)
+
 CSS Validation
 
 To validate the CSS used in the project, I first ran `python manage.py collectstatic` from the command line and deployed the project on Heroku. Then, I selected the 'View Source' option by right-clicking on the webpage, located 'style.css', and opened it in a separate window. Finally, I ran this code through [The W3C CSS Validation Service - Jigsaw](https://jigsaw.w3.org/css-validator/) for validation. The results were as follows:
@@ -1381,11 +1444,25 @@ To restrict access to appropriate content, the `@login_required` decorator was i
 
 Viewport Testing involved physically testing the project's responsiveness across various devices with different viewports. The test included mobile phones with small and large viewports, as well as tablets. Additionally, testing was conducted on PCs with resolutions of 1366px * 768px (HD) and 1920px * 1080px (Full HD).
 
+##### Screenshot - Desktop
+![Screenshot - Desktop](/readme-images/screenshot-desktop.png)
+
+##### Screenshot - Tablet
+![Screenshot - Tablet](/readme-images/screenshot-ipad.png)
+
+##### Screenshot - Mobile
+![Screenshot - Mobile](/readme-images/screenshot-mobile.png)
+
+
 The expected outcome was for the project to display correctly without any distortion on all tested devices. The  result confirmed that there were **no issues** or content distortions observed across any of the tested devices. Therefore, the overall result of the viewport testing was deemed successful, with the project passing all criteria without any discrepancies.
 
 ### Compatibility Testing
 
 The website was tested on all major browsers, including Google Chrome, Mozilla Firefox, Microsoft Edge, Opera, and Safari. The expected outcome was that the project would function correctly in all these browsers.
+
+#### Comparing Chrome and Edge
+
+
 
 The result showed that there were no functionality issues, all navigation links worked, and the form responded appropriately to empty fields. 
 
