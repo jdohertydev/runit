@@ -135,7 +135,7 @@ The live version of the website can be viewed at [Run It!](https://runit-jdohert
 
 ### The Idea
 
-**Run It!** is designed to be a comprehensive running event listing website. Users can effortlessly find free running events in their area and book their spots. Additionally, they can post questions about specific events, add likes, and easily contact the site webmaster.
+**Run It!** is designed to be a comprehensive running event listing website. Users can effortlessly find free running events in their area and book their spots. Additionally, they can post questions about specific events, add easily contact the site webmaster.
 
 ### Target Audiences and the Ideal User
 
@@ -154,7 +154,7 @@ The live version of the website can be viewed at [Run It!](https://runit-jdohert
 1. **Facilitate Event Discovery:**
    - Provide a user-friendly interface for runners to easily find and book running events in their area.
 2. **Enhance User Engagement:**
-   - Enable users to post questions, add likes, and interact with other runners and event organisers within the platform.
+   - Enable users to post questions, and interact with other runners and event organisers within the platform.
 3. **Streamline Event Management:**
    - Offer race organisers robust tools to list events, manage bookings, and communicate with participants efficiently.
 4. **Promote Community Connection:**
