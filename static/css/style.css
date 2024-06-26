@@ -400,11 +400,6 @@ input[readonly] {
     /* Grey text */
 }
 
-/* Make the email input field wider on the account update form */
-#id_email {
-    width: 40%;
-}
-
 /* landing_page.html */
 .logo-landing-page {
     max-width: 100%;
