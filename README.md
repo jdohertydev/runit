@@ -526,7 +526,7 @@ Originally, I manually coded this feature using the following code:
 }
 
 ```
-However, after encountering some issues getting the navbar to stay stuck to the top, I read that I could utilize the power of Bootstrap and simply add the class```fixed-top```.
+However, after encountering some issues getting the navbar to stay stuck to the top, I read that I could utilize the power of Bootstrap and simply add the class```sticky-top```.
 
 ### Custom Error Pages
 
@@ -1653,5 +1653,6 @@ The following modules were used in development of the Run it! website:
 ## Credits
 
 * My mentor, Akshat Garg.
+* The CodeStar walkthrough project, which formed the foundation for this project.
 * ChatGPT, which acted as a virtual teacher.
 * A fellow Code Institute student, tomik-z-cech, whose readme served as a blueprint for mine.
