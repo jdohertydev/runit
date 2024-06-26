@@ -479,6 +479,44 @@ I used [Looka](https://looka.com/) to create the logo used:
 
 ![Logo and Tagline ](/readme-images/logo-with-slogan.png)
 
+On the landing page, I decided to keep the design simple and reproduce the logo with CSS animation:
+
+![Logo on landing page](/readme-images/logo-on-landing-page.png)
+
+```CSS
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Pulse effect */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Add pulse effect on hover */
+.logo-landing-page:hover {
+    animation: pulse 1s infinite;
+    /* Infinite pulse effect */
+}
+```
+
 ### Header
 
 The header code is centralised in base.html, ensuring consistency and facilitating future updates or modifications across the website.
@@ -1654,5 +1692,6 @@ The following modules were used in development of the Run it! website:
 
 * My mentor, Akshat Garg.
 * The CodeStar walkthrough project, which formed the foundation for this project.
+* [Cronorunner](https://www.cronorunner.com/), which assisted with various stages of registering for a running event. 
 * ChatGPT, which acted as a virtual teacher.
 * A fellow Code Institute student, tomik-z-cech, whose readme served as a blueprint for mine.
