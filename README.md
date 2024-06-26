@@ -20,7 +20,7 @@ The live version of the website can be viewed at [Run It!](https://runit-jdohert
     - [User Stories and Project Metrics](#user-stories-and-project-metrics)
     - [Kanban Board Labels](#kanban-board-labels)
     - [Total Story Points](#total-story-points)
-    - [EPIC 1: Event Discovery and Browsing](#epic-1-event-discovery-and-browsing)
+    - [EPIC 1: Event Discovery and Browsing (click to drop down)](#epic-1-event-discovery-and-browsing-click-to-drop-down)
     - [EPIC 2: User Registration and Login](#epic-2-user-registration-and-login)
     - [EPIC 3: Event Registration](#epic-3-event-registration)
     - [EPIC 4: Event Management for Organisers](#epic-4-event-management-for-organisers)
@@ -200,7 +200,7 @@ Each user story on the Kanban Board is labelled with two key attributes:
 
 The total estimation for the project is 40 Story Points.
 
-### EPIC 1: Event Discovery and Browsing
+### EPIC 1: Event Discovery and Browsing (click to drop down)
 
 <details>
 <summary>USER STORY: Event Details Page</summary>
