@@ -382,7 +382,7 @@ body {
     /* margin-top:15px; */
     text-align: center;
     font-size: 13px;
-    color: #aaa;
+    color: #4b4c4d;
     margin-bottom: 0;
 }
 
@@ -416,6 +416,12 @@ input[readonly] {
 #id_email {
     width: 40%;
     /* Adjust the width as needed */
+}
+
+/* landing_page.html */
+
+.hero-text {
+    font-weight: 500;
 }
 
 /* Media Queries  */
@@ -473,16 +479,6 @@ input[readonly] {
 .search-filter-container .form-group button,
 .search-filter-container .form-group input {
     height: 38px;
-}
-
-/* landing_page.html */
-
-.hero-text {
-    font-weight: 500;
-}
-
-.main-content {
-    padding-top: 15px; /* Adjust the value according to your navbar height */
 }
 
 /* Remove space between masthead and content for smaller devices */
