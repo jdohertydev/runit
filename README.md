@@ -37,6 +37,11 @@ The live version of the website can be viewed at [Run It!](https://runit-jdohert
     - [auth\_user Table](#auth_user-table)
   - [The Skeleton Plane](#the-skeleton-plane)
     - [Wireframes](#wireframes)
+      - [Landing Page](#landing-page)
+      - [Events](#events)
+      - [Events Page Listing](#events-page-listing)
+      - [Accounts](#accounts)
+      - [Contact](#contact)
   - [The Surface Plane](#the-surface-plane)
     - [Color Palette](#color-palette)
     - [Fonts](#fonts)
@@ -48,6 +53,8 @@ The live version of the website can be viewed at [Run It!](https://runit-jdohert
     - [Dynamic menu items that adapt based on the user's login status](#dynamic-menu-items-that-adapt-based-on-the-users-login-status)
     - [Sticky Navbar](#sticky-navbar)
     - [Custom Error Pages](#custom-error-pages)
+      - [url.py](#urlpy)
+      - [views.py](#viewspy)
     - [Footer](#footer)
     - [Events List Page](#events-list-page)
       - [Display Only Live Races](#display-only-live-races)
@@ -98,11 +105,12 @@ The live version of the website can be viewed at [Run It!](https://runit-jdohert
         - [Example of Django code that throws errors](#example-of-django-code-that-throws-errors)
       - [CSS Validation Results](#css-validation-results)
       - [JS Validation](#js-validation)
+      - [Lighthouse](#lighthouse)
     - [Testing](#testing)
       - [User stories testing](#user-stories-testing)
       - [Automated Testing](#automated-testing)
-        - [Accounts](#accounts)
-        - [Contact](#contact)
+        - [Accounts](#accounts-1)
+        - [Contact](#contact-1)
       - [Events Listing](#events-listing)
       - [Test Cases](#test-cases)
       - [Viewport Testing](#viewport-testing)
@@ -355,7 +363,6 @@ After determining the strategy, the scope was meticulously defined and planned o
 ![Database Schema](/readme-images/run-it-database-layout.png)
 
 Created using [DBDDiagram](https://dbdiagram.io/):
-
 ```
 
 Table users {
@@ -425,23 +432,23 @@ These relationships ensure data integrity and establish connections between rela
 
 ### Wireframes
 
-Landing Page
+#### Landing Page
 
 ![Landing Page](/readme-images/wire-frame-landing-page.png)
 
-Events
+#### Events
 
 ![Events](/readme-images/wire-frame-events.png)
 
-Events Page Listing
+#### Events Page Listing
 
 ![Events Page Listing](/readme-images/wire-frame-events-page-listing.png)
 
-Accounts
+#### Accounts
 
 ![Accounts](/readme-images/wire-frame-account.png)
 
-Contact
+#### Contact
 
 ![Contact](/readme-images/wire-frame-contact.png)
 
@@ -564,13 +571,13 @@ Originally, I manually coded this feature using the following code:
 }
 
 ```
-However, after encountering some issues getting the navbar to stay stuck to the top, I read that I could utilize the power of Bootstrap and simply add the class```sticky-top```.
+However, after encountering some issues getting the navbar to stay stuck to the top, I read that I could utilize the power of Bootstrap and simply add the class ```sticky-top```.
 
 ### Custom Error Pages
 
 I have created custom error pages for 400, 403, 404, and 500 errors that enhance user experience by offering helpful navigation options, maintaining brand consistency, and reducing frustration through humorous running-related puns. This involved creating custom templates and linking them via the urls.py file and views.py.
 
-url.py
+#### url.py
 
 ```Python
 
@@ -581,7 +588,7 @@ handler404 = 'myproject.views.custom_404_view'
 handler500 = 'myproject.views.custom_500_view'
 
 ```
-views.py
+#### views.py
 
 ```Python
 
@@ -1054,7 +1061,7 @@ To ensure Python files (.py extensions) are PEP8 valid, the following protocol w
 2. Update requirements (`$ pip freeze >> requirements.txt`)
 3. Run Black (`$ black .`)
 4. Run Black to format Python files with a specific line length of 79 characters (`$ black --line-length 79 .`)
-5. Manual check all .py files with CI Python Linter. "I created `list_py_files.py` to extract the file names of all .py files in the project and tested it only on the files I worked on."
+5. Manual check all .py files with CI Python Linter. I created `list_py_files.py` to extract the file names of all .py files in the project and tested it only on the files I worked on.
 
 #### CI Python Linter Screenshot
 
@@ -1167,7 +1174,7 @@ Using this method, I successfully validated all my Python code. The only excepti
 
 #### HTML Validation
 
-To validate the HTML code, all static files had to be deployed and checked manually (logged out and logged in where appropriate) using the [Markup Validation Service](https://validator.w3.org/). I created list_html_files.py to extract the file names of all .html files in the project and tested it only on the files I worked on."
+To validate the HTML code, all static files had to be deployed and checked manually (logged out and logged in where appropriate) using the [Markup Validation Service](https://validator.w3.org/). I created list_html_files.py to extract the file names of all .html files in the project and tested it only on the files I worked on.
 
 <table>
   <tr>
@@ -1267,7 +1274,7 @@ To validate the HTML code, all static files had to be deployed and checked manua
   </tr>
 </table>
 
-Because of the way Django renders code when loading forms, such as <span class="helptext">, it is not possible to validate these lines.
+Because of the way Django renders code when loading forms, such as `<span class="helptext">`, it is not possible to validate these lines.
 
 ##### Example of Django code that throws errors
 
@@ -1295,16 +1302,13 @@ All JS files are located in 'static/js', making them easy to locate and manually
 | static/js/   | filter_form.js      | PASS   |
 | static/js/   | signup.js           | PASS*   |
 
-All files passed, with two files highlighting `One undefined variable - 27 bootstrap`.
+All files passed, with two files highlighting `One undefined variable - 27 bootstrap`. I chose to ignore this warning because it's typically harmless if the code functions correctly with Bootstrap. Validators can occasionally misinterpret external dependencies, so it's crucial to grasp the context and ensure proper usage of variables and libraries.
 
-WAVE Validation
+#### Lighthouse
 
-Ask mentor
+The site performed very well on a Lighthouse test, with overall performance being rated at 99 and accessibility at 95.
 
-Lighthouse
-
-Ask mentor
-Contrast ratio
+![Lighthouse Report](/readme-images/light-house-report.png)
 
 ### Testing
 
@@ -1476,7 +1480,7 @@ Status: **PASS**
 
 #### Test Cases
 
-To restrict access to appropriate content, the `@login_required` decorator was implemented. Additionally, staff users can only view events they have created, as managed through Django Admin (see [django-admin](#django-admin))".
+To restrict access to appropriate content, the `@login_required` decorator was implemented. Additionally, staff users can only view events they have created, as managed through Django Admin (see [django-admin](#django-admin)).
 
 #### Viewport Testing
 
@@ -1515,7 +1519,7 @@ Bugs Screenshot
 | Issue                                                          | Page                        | Solution                                                          |
 |----------------------------------------------------------------|-----------------------------|-------------------------------------------------------------------|
 | After an event has passed, the option to register/unregister still is useable   | postevents_details.html     | Implement an if statement to check if the date has passed when the page loads. If it has, remove the button accordingly.               |
-| Navbar's 'sticky' behaviour obscures main content               | base.html                   | Create a div called `main-content` and add top padding within `style.css`. |
+| Navbar's 'sticky' behaviour obscures main content               | base.html                   | Change from `fixed` to `sticky` class.|
 
 ## Deployment 
 
