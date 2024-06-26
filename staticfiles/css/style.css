@@ -6,7 +6,6 @@ body {
 }
 
 /* Custom alert colour to match style */
-
 .alert-success {
     background-color: #cce5ff;
     color: #004085;
@@ -14,15 +13,12 @@ body {
 }
 
 /* Ensure consistent font size for select and input elements */
-
 .search-filter-container .form-group select,
 .search-filter-container .form-group input {
     font-size: 16px;
-
 }
 
-/* style for postevent_detail.html */
-
+/* Style for postevent_detail.html */
 .brand {
     font-family: Lato, sans-serif;
     font-size: 1.4rem;
@@ -182,8 +178,7 @@ body {
     color: rgb(222, 146, 168);
 }
 
-/* CSS for events_page.html*/
-
+/* CSS for events_page.html */
 .image-container {
     position: relative;
     width: 100%;
@@ -202,16 +197,13 @@ body {
     /* Ensures the image covers the container while maintaining aspect ratio */
 }
 
-
-/* Syling for search and filter */
-
+/* Styling for search and filter */
 .search-filter-container .form-control {
     width: auto;
     display: inline-block;
 }
 
 /* Add style to event post */
-
 * {
     box-sizing: border-box;
     /* Include padding and border in the element's total width and height */
@@ -264,7 +256,6 @@ body {
 }
 
 .container-fluid {
-    
     padding-right: 15px;
     /* Add padding to the container to prevent overflow */
     padding-left: 15px;
@@ -295,35 +286,35 @@ body {
     justify-content: space-between;
 }
 
-
-/* header */
-
+/* Header */
 .navbar {
     background-color: #f8f9fa;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
-    align-items: flex-end; /* Align items at the bottom */
-    
+    align-items: flex-end;
+    /* Align items at the bottom */
 }
 
 .navbar-brand {
     display: flex;
-    align-items: flex-end; /* Align logo at the bottom */
+    align-items: flex-end;
+    /* Align logo at the bottom */
 }
 
 .navbar-brand img.brand-logo {
-    height: 50px; /* Adjust height */
-    width: auto; /* Maintain aspect ratio */ 
+    height: 50px;
+    /* Adjust height */
+    width: auto;
+    /* Maintain aspect ratio */
 }
 
 .navbar-nav {
     display: flex;
-    align-items: flex-end; /* Align nav items at the bottom */
-    
+    align-items: flex-end;
+    /* Align nav items at the bottom */
 }
 
-/* footer */
-
+/* Footer */
 .footer-basic {
     padding: 20px 0;
     background-color: #ffffff;
@@ -382,7 +373,7 @@ body {
     /* margin-top:15px; */
     text-align: center;
     font-size: 13px;
-    color: #aaa;
+    color: #4b4c4d;
     margin-bottom: 0;
 }
 
@@ -392,7 +383,6 @@ body {
 }
 
 /* events_page.html */
-
 .page-display {
     cursor: default;
     /* Prevent cursor change on hover */
@@ -401,7 +391,6 @@ body {
 }
 
 /* Account_admin.html - Style the readonly input fields to appear greyed out */
-
 input[readonly] {
     background-color: #e9ecef;
     /* Light grey background */
@@ -412,16 +401,60 @@ input[readonly] {
 }
 
 /* Make the email input field wider on the account update form */
-
 #id_email {
     width: 40%;
-    /* Adjust the width as needed */
 }
 
-/* Media Queries  */
+/* landing_page.html */
+.logo-landing-page {
+    max-width: 100%;
+    /* Scale the image to fit its container */
+    height: auto;
+    /* Maintain aspect ratio */
+    animation: fadeIn 1.5s ease-in-out;
+    /* Fade-in animation on page load */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    /* Smooth transition */
+}
 
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Pulse effect */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Add pulse effect on hover */
+.logo-landing-page:hover {
+    animation: pulse 1s infinite;
+    /* Infinite pulse effect */
+}
+
+.hero-text {
+    font-weight: 500;
+}
+
+/* Media Queries */
 /* Hide slogan on burger menu */
-
 @media (max-width: 991px) {
     .slogan {
         display: none;
@@ -429,7 +462,6 @@ input[readonly] {
 }
 
 /* Responsive styles for search and filter form on viewports < 453px */
-
 @media (max-width: 453px) {
     .search-filter-container {
         display: flex;
@@ -475,22 +507,31 @@ input[readonly] {
     height: 38px;
 }
 
-/* landing_page.html */
-
-.hero-text {
-    font-weight: 500;
-}
-
-/* .splash-screen {} */
-
-.main-content {
-    padding-top: 15px; /* Adjust the value according to your navbar height */
-}
-
 /* Remove space between masthead and content for smaller devices */
+@media (max-width: 768px) {
+    .masthead {
+        height: auto;
+    }
+}
+
+/* Media queries for different screen sizes */
+@media (max-width: 1200px) {
+    .logo-landing-page {
+        width: 50%;
+        /* Adjust width for medium screens */
+    }
+}
 
 @media (max-width: 768px) {
-    .masthead{
-        height: auto;
-    }  
+    .logo-landing-page {
+        width: 70%;
+        /* Adjust width for small screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-landing-page {
+        width: 90%;
+        /* Adjust width for extra small screens */
+    }
 }
