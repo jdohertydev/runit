@@ -19,8 +19,12 @@ class CustomSignupForm(SignupForm):
     Includes additional fields for first name and last name.
     """
 
-    first_name = forms.CharField(max_length=30, label="First Name", required=True)
-    last_name = forms.CharField(max_length=30, label="Last Name", required=True)
+    first_name = forms.CharField(
+        max_length=30, label="First Name", required=True
+    )
+    last_name = forms.CharField(
+        max_length=30, label="Last Name", required=True
+    )
 
     def save(self, request):
         """

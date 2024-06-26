@@ -61,7 +61,9 @@ class PostList(generic.ListView):
                 Q(author__username__icontains=query) | Q(body__icontains=query)
             ).values_list("post_id", flat=True)
 
-            queryset = queryset | PostEvent.objects.filter(id__in=event_signup_ids)
+            queryset = queryset | PostEvent.objects.filter(
+                id__in=event_signup_ids
+            )
             queryset = queryset | PostEvent.objects.filter(id__in=comment_ids)
 
         if race_type:
@@ -98,7 +100,9 @@ class PostEventDetailView(View):
         remaining_places = max(post.max_participants - post.signups.count(), 0)
         user_signed_up = (
             request.user.is_authenticated
-            and EventSignUp.objects.filter(event=post, user=request.user).exists()
+            and EventSignUp.objects.filter(
+                event=post, user=request.user
+            ).exists()
         )
         comment_form = CommentForm()
 
@@ -155,7 +159,9 @@ class PostEventDetailView(View):
                 comment.author = request.user
                 comment.post = post
                 comment.save()
-                messages.success(request, "Comment submitted and awaiting approval")
+                messages.success(
+                    request, "Comment submitted and awaiting approval"
+                )
 
         return redirect("postevent_detail", slug=post.slug)
 

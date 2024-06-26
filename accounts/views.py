@@ -102,7 +102,9 @@ def account_password_change(request):
                 fail_silently=False,  # This controls whether exceptions are raised on email sending errors
             )
 
-            messages.success(request, "Your password was successfully updated!")
+            messages.success(
+                request, "Your password was successfully updated!"
+            )
             return redirect("account_update")
         else:
             messages.error(request, "Please correct the error below.")

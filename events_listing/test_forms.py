@@ -34,7 +34,9 @@ class TestCommentForm(TestCase):
         class MockRequest:
             def __init__(self):
                 self.user = None
-                self.session = {}  # Add a session attribute to avoid AttributeError
+                self.session = (
+                    {}
+                )  # Add a session attribute to avoid AttributeError
 
         request = MockRequest()
         user = form.save(request)

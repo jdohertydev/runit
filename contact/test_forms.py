@@ -40,4 +40,6 @@ class TestContactForm(TestCase):
         }
         form = ContactForm(data=form_data)
         self.assertFalse(form.is_valid())
-        self.assertEqual(form.errors["email"], ["Enter a valid email address."])
+        self.assertEqual(
+            form.errors["email"], ["Enter a valid email address."]
+        )
