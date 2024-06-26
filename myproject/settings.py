@@ -32,7 +32,7 @@ SECRET_KEY = (
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "8000-jdohertydev-runit-sm147r7wmj2.ws.codeinstitute-ide.net",

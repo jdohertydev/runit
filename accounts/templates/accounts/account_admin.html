@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
+
 {% block content %}
 <div class="container mt-5">
     <!-- Update Profile Section -->
@@ -7,16 +9,33 @@
         <div class="col-md-6">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h3 class="card-title text-center">Update Your Account</h3>
-                    <button class="btn btn-secondary w-100 mb-3" id="toggle-account-update">Update Profile</button>
+                    <h3 class="card-title text-center">{% trans "Update Your Account" %}</h3>
+                    <button class="btn btn-secondary w-100 mb-3" id="toggle-account-update">{% trans "Update Profile" %}</button>
                     <div id="account-update-section" style="display:none;">
                         <form method="post" action="{% url 'account_update' %}">
                             {% csrf_token %}
                             <div class="mb-3">
-                                {{ user_form.as_p }}
+                                <label for="id_username" class="form-label">{% trans "Username" %}</label>
+                                {{ user_form.username.errors }}
+                                <input type="text" class="form-control" id="id_username" name="username" value="{{ user_form.username.value }}" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_first_name" class="form-label">{% trans "First Name" %}</label>
+                                {{ user_form.first_name.errors }}
+                                <input type="text" class="form-control" id="id_first_name" name="first_name" value="{{ user_form.first_name.value }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_last_name" class="form-label">{% trans "Last Name" %}</label>
+                                {{ user_form.last_name.errors }}
+                                <input type="text" class="form-control" id="id_last_name" name="last_name" value="{{ user_form.last_name.value }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_email" class="form-label">{% trans "Email" %}</label>
+                                {{ user_form.email.errors }}
+                                <input type="email" class="form-control" id="id_email" name="email" value="{{ user_form.email.value }}" required>
                             </div>
                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary">Update Profile</button>
+                                <button type="submit" class="btn btn-primary">{% trans "Update Profile" %}</button>
                             </div>
                         </form>
                     </div>
@@ -29,16 +48,28 @@
         <div class="col-md-6">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h3 class="card-title text-center">Change Password</h3>
-                    <button class="btn btn-secondary w-100 mb-3" id="toggle-password-change">Change Password</button>
+                    <h3 class="card-title text-center">{% trans "Change Password" %}</h3>
+                    <button class="btn btn-secondary w-100 mb-3" id="toggle-password-change">{% trans "Change Password" %}</button>
                     <div id="password-change-section" style="display:none;">
                         <form method="post" action="{% url 'account_password_change' %}">
                             {% csrf_token %}
                             <div class="mb-3">
-                                {{ password_form.as_p }}
+                                <label for="id_old_password" class="form-label">{% trans "Current Password" %}</label>
+                                {{ password_form.old_password.errors }}
+                                <input type="password" class="form-control" id="id_old_password" name="old_password" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_new_password1" class="form-label">{% trans "New Password" %}</label>
+                                {{ password_form.new_password1.errors }}
+                                <input type="password" class="form-control" id="id_new_password1" name="new_password1" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_new_password2" class="form-label">{% trans "Confirm New Password" %}</label>
+                                {{ password_form.new_password2.errors }}
+                                <input type="password" class="form-control" id="id_new_password2" name="new_password2" required>
                             </div>
                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary">Update Password</button>
+                                <button type="submit" class="btn btn-primary">{% trans "Update Password" %}</button>
                             </div>
                         </form>
                     </div>
@@ -51,8 +82,8 @@
         <div class="col-md-6">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h3 class="card-title text-center">Delete Account</h3>
-                    <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete Account</button>
+                    <h3 class="card-title text-center">{% trans "Delete Account" %}</h3>
+                    <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteModal">{% trans "Delete Account" %}</button>
                 </div>
             </div>
         </div>
@@ -63,27 +94,28 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Delete Account</h5>
+                <h5 class="modal-title" id="deleteModalLabel">{% trans "Delete Account" %}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form method="post" action="{% url 'account_delete' %}">
                     {% csrf_token %}
-                    <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+                    <p>{% trans "Are you sure you want to delete your account? This action cannot be undone." %}</p>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Enter your password:</label>
+                        <label for="password" class="form-label">{% trans "Enter your password:" %}</label>
                         <input type="password" id="password" name="password" class="form-control" />
                     </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-danger">Delete Account</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+                        <button type="submit" class="btn btn-danger">{% trans "Delete Account" %}</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
 {% endblock %}
+
 {% block extras %}
 <script src="{% static 'js/account_admin.js' %}"></script>
 {% endblock %}

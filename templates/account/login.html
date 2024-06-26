@@ -1,26 +1,39 @@
 {% extends "base.html" %}
 
 {% load i18n %}
-{% load account socialaccount %}
 
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-md-6 mt-5">
+    <div class="col-md-6">
       <div class="card shadow-sm">
         <div class="card-body">
           <h3 class="card-title text-center">{% trans "Sign In" %}</h3>
-          <p>{% blocktrans %}Welcome back to Run it! To register for an event, leave a comment or like an event, please log in. If you have not created an account yet, then <a class="link" href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+          <p>{% blocktrans %}
+            Welcome back to Run it! To register for an event, leave a comment, or like an event, please log in. If you haven't created an account yet, <a class="link" href="{{ signup_url }}">sign up</a> first.
+            {% endblocktrans %}
+          </p>
           <form class="login" method="POST" action="{% url 'account_login' %}">
             {% csrf_token %}
+            
             <div class="mb-3">
-              {{ form.as_p }}
+              <label for="id_login" class="form-label">{% trans "Username or Email" %}</label>
+              {{ form.login.errors }}
+              <input type="text" class="form-control" id="id_login" name="login" {% if form.login.value %}value="{{ form.login.value }}"{% endif %} required>
             </div>
+
+            <div class="mb-3">
+              <label for="id_password" class="form-label">{% trans "Password" %}</label>
+              {{ form.password.errors }}
+              <input type="password" class="form-control" id="id_password" name="password" required>
+            </div>
+
             {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
             {% endif %}
+
             <div class="d-grid gap-2">
               <button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
             </div>
