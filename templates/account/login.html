@@ -1,9 +1,6 @@
 {% extends "base.html" %}
-
 {% load i18n %}
-
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
-
 {% block content %}
 <div class="container mt-5">
   <div class="row justify-content-center">
@@ -16,24 +13,37 @@
             {% endblocktrans %}
           </p>
           <form class="login" method="POST" action="{% url 'account_login' %}">
-            {% csrf_token %}
-            
+            {% csrf_token %}            
+            {% if form.non_field_errors %}
+              <div class="alert alert-danger" role="alert">
+                {% for error in form.non_field_errors %}
+                  {{ error }}
+                {% endfor %}
+              </div>
+            {% endif %}            
             <div class="mb-3">
-              <label for="id_login" class="form-label">{% trans "Username or Email" %}</label>
               {{ form.login.errors }}
-              <input type="text" class="form-control" id="id_login" name="login" {% if form.login.value %}value="{{ form.login.value }}"{% endif %} required>
+              <label for="id_login" class="form-label">{% trans "Username or Email" %}</label>
+              <input type="text" class="form-control {% if form.login.errors %}is-invalid{% endif %}" id="id_login" name="login" {% if form.login.value %}value="{{ form.login.value }}"{% endif %} required>
+              <div class="invalid-feedback">
+                {% for error in form.login.errors %}
+                  {{ error }}
+                {% endfor %}
+              </div>
             </div>
-
             <div class="mb-3">
-              <label for="id_password" class="form-label">{% trans "Password" %}</label>
               {{ form.password.errors }}
-              <input type="password" class="form-control" id="id_password" name="password" required>
+              <label for="id_password" class="form-label">{% trans "Password" %}</label>
+              <input type="password" class="form-control {% if form.password.errors %}is-invalid{% endif %}" id="id_password" name="password" required>
+              <div class="invalid-feedback">
+                {% for error in form.password.errors %}
+                  {{ error }}
+                {% endfor %}
+              </div>
             </div>
-
             {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
             {% endif %}
-
             <div class="d-grid gap-2">
               <button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
             </div>
