@@ -1,8 +1,8 @@
 # Run It! 
 
-"Run It!" is a website dedicated to listing running events. Runners can effortlessly find details about local running events, ask questions, and sign up directly through the platform. Event organisers can also use "Run It!" to post their events and manage their participant lists.
+"Run It!" is a website dedicated to listing running events. Runners can easily find details about local running events, ask questions, and sign up directly through the platform. Event organisers can also use "Run It!" to post their events and manage their participant lists.
 
-The live version of the website can be viewed at [Run It!](https://runit-jdohertydev-773091e00a18.herokuapp.com/).
+View the live version of the website at [Run It!](https://runit-jdohertydev-773091e00a18.herokuapp.com/).
 
 ![Am I responsive](/readme-images/am-i-responsive.png)
 
@@ -69,14 +69,15 @@ The live version of the website can be viewed at [Run It!](https://runit-jdohert
       - [Comments section - not logged in](#comments-section---not-logged-in)
       - [Comments section - logged in](#comments-section---logged-in)
       - [Comments section - awaiting approval](#comments-section---awaiting-approval)
-      - [Comments section - approved ny superuser](#comments-section---approved-ny-superuser)
+      - [Comments section - approved by superuser](#comments-section---approved-by-superuser)
       - [Edit](#edit)
       - [Delete](#delete)
       - [List of Participants](#list-of-participants)
-        - [List of particpants - unregistered](#list-of-particpants---unregistered)
-        - [List of particpants - registered](#list-of-particpants---registered)
-        - [Email template - Sign up](#email-template---sign-up)
-        - [Email template - Unregister](#email-template---unregister)
+        - [List of participants - unregistered](#list-of-participants---unregistered)
+        - [List of participants - registered](#list-of-participants---registered)
+        - [Email templates](#email-templates)
+          - [Sign up](#sign-up)
+          - [Unregister](#unregister)
     - [Account Page](#account-page)
       - [Update profile](#update-profile)
         - [Update profile confirmation email](#update-profile-confirmation-email)
@@ -85,7 +86,7 @@ The live version of the website can be viewed at [Run It!](https://runit-jdohert
         - [Delete account](#delete-account)
           - [Delete account modal](#delete-account-modal)
         - [Delete account email confirmation](#delete-account-email-confirmation)
-    - [Contact Us Page](#contact-us-page)
+      - [Contact Us Page](#contact-us-page)
       - [Contact us form when user is logged in](#contact-us-form-when-user-is-logged-in)
         - [Contact us form when user is not logged in](#contact-us-form-when-user-is-not-logged-in)
         - [Email message](#email-message)
@@ -95,8 +96,8 @@ The live version of the website can be viewed at [Run It!](https://runit-jdohert
       - [Staff user view of post events](#staff-user-view-of-post-events)
       - [Post events - Add post event](#post-events---add-post-event)
       - [Export list of participants](#export-list-of-participants)
-      - [View in admin - export csv](#view-in-admin---export-csv)
-      - [Screenhot of exported csv file](#screenhot-of-exported-csv-file)
+      - [View in admin - export CSV](#view-in-admin---export-csv)
+      - [Screenhot of exported CSV file](#screenhot-of-exported-csv-file)
     - [Future Features](#future-features)
   - [Validation, Testing \& Bugs](#validation-testing--bugs)
     - [Validation](#validation)
@@ -135,7 +136,7 @@ The live version of the website can be viewed at [Run It!](https://runit-jdohert
 
 ### The Idea
 
-**Run It!** is designed to be a comprehensive running event listing website. Users can effortlessly find free running events in their area and book their spots. Additionally, they can post questions about specific events, add easily contact the site webmaster.
+**Run It!** is designed to be a comprehensive running event listing website. Users can effortlessly find free running events in their area and book their spots. Additionally, they can post questions about specific events and easily contact the site webmaster.
 
 ### Target Audiences and the Ideal User
 
@@ -362,7 +363,7 @@ After determining the strategy, the scope was meticulously defined and planned o
 
 ![Database Schema](/readme-images/run-it-database-layout.png)
 
-Created using [DBDDiagram](https://dbdiagram.io/):
+Created using [DBDiagram](https://dbdiagram.io/):
 ```
 
 Table users {
@@ -466,7 +467,7 @@ I decided to use the color palette provided by [Looka](https://looka.com/). I fi
 
 **Roboto**
 
-Roboto was chosen for its modern, clean aesthetic and versatility. Designed with a mechanical skeleton and largely geometric forms, Roboto offers a contemporary look that is both visually appealing and highly readable on various screen sizes and resolutions. Its wide range of weights and styles, from thin to black, including italics, makes it a flexible choice for diverse design needs, whether for web, mobile, or print applications. Serif was selected as a fallback font in case the primary font (Roboto) fails to load for any reason, such as network issues or the font not being installed on the user's device. This fallback ensures that the text remains legible and maintains a consistent style.
+Roboto was chosen for its modern, clean aesthetic and versatility. Designed with a mechanical skeleton and largely geometric forms, Roboto offers a contemporary look that is both visually appealing and highly readable on various screen sizes and resolutions. Its wide range of weights and styles, from thin to black, including italics, makes it a flexible choice for diverse design needs, whether for web, mobile, or print applications. Serif font was selected as a fallback font in case the primary font (Roboto) fails to load for any reason, such as network issues or the font not being installed on the user's device. This fallback ensures that the text remains legible and maintains a consistent style.
 
 ## Features
 
@@ -484,7 +485,7 @@ I used [Favicon Generator](https://favicon.io/favicon-converter/) to create the 
 
 I used [Looka](https://looka.com/) to create the logo used:
 
-![Logo and Tagline ](/readme-images/logo-with-slogan.png)
+![Logo and Tagline](/readme-images/logo-with-slogan.png)
 
 On the landing page, I decided to keep the design simple and reproduce the logo with CSS animation:
 
@@ -536,7 +537,7 @@ The header code is centralised in base.html, ensuring consistency and facilitati
 
 The slogan used serves to support the essence and values of my brand, leaving a memorable impression on visitors while reinforcing its identity and purpose. When viewing the website on smaller viewports, the slogan is removed to optimize screen space.
 
-![Slogan](/readme-images/slogan-hideen-on-mobile-view.png)
+![Slogan](/readme-images/slogan-hidden-on-mobile-view.png)
 
 ```CSS
 @media (max-width: 991px) {
@@ -575,7 +576,7 @@ However, after encountering some issues getting the navbar to stay stuck to the 
 
 ### Custom Error Pages
 
-I have created custom error pages for 400, 403, 404, and 500 errors that enhance user experience by offering helpful navigation options, maintaining brand consistency, and reducing frustration through humorous running-related puns. This involved creating custom templates and linking them via the urls.py file and views.py.
+I have created custom error pages for 400, 403, 404, and 500 errors that enhance user experience by offering helpful navigation options, maintaining brand consistency, and reducing frustration through humorous running-related puns. This involved creating custom templates and linking them via the `urls.py` file and `views.py`.
 
 #### url.py
 
@@ -815,7 +816,7 @@ To prevent spam or attacks, users need an account to post content, and additiona
 
 ![Comments section - awaiting approval](/readme-images/alert-waiting-aproval.png)
 
-#### Comments section - approved ny superuser
+#### Comments section - approved by superuser
 
 ![Comments section - approved](/readme-images/admin-comment-approved.png)
 
@@ -856,23 +857,25 @@ Extra precaution has been implemented in the form of a modal to confirm if the u
 
 It is crucial that only registered users can sign up for events to bolster security and prevent potential spam attacks. 
 
-##### List of particpants - unregistered
+##### List of participants - unregistered
 
-![List of particpants - unregistered](/readme-images/list-of-participants-unregister.png)
+![List of participants - unregistered](/readme-images/list-of-participants-unregister.png)
 
-##### List of particpants - registered
+##### List of participants - registered
 
-![List of particpants - registered](/readme-images/list-of-participants-sign-up.png)
+![List of participants - registered](/readme-images/list-of-participants-sign-up.png)
 
 I've chosen to make the list of participants public, which is common in the running community, as it encourages runners to join when they see friends participating. There could potentially be compliance issues with the General Data Protection Regulation (GDPR) that need to be addressed before launching this site live.
 
 When users sign up or unregister, they will receive an automated email to confirm this sending an automatic confirmation email when runners sign up is beneficial because it provides immediate assurance to users that their registration was successful, reduces uncertainty, and helps verify the accuracy of their provided email address.
 
-##### Email template - Sign up
+##### Email templates
+
+###### Sign up
 
 ![Email template - Sign up](/readme-images/sign-up-confirmation-email.png)
 
-##### Email template - Unregister
+###### Unregister
 
 ![Email template - Unregister](/readme-images/unregister-confirmation.png)
 
@@ -938,7 +941,7 @@ From the account page, users have full CRUD availability, enabling them to chang
 
 ##### Delete account
 
-Since deleting an account is irreversible, I added an additional layer of protection for the user through a modal box, where the user must enter their current password again.
+Since deleting an account is irreversible, I added an additional layer of protection for the user through a modal box, where the user must re-enter their current password.
 
 ###### Delete account modal
 
@@ -948,7 +951,7 @@ Since deleting an account is irreversible, I added an additional layer of protec
 
 ![Delete account email confirmation](/readme-images/delete-account-confirmation-email.png)
 
-### Contact Us Page
+#### Contact Us Page
 
 The 'Contact Us' page serves as a 'last resort' form where users can easily send a message to the site webmaster. If the user is already logged in, they are not required to enter their name or email address and this information cannot be edited.
 
@@ -1039,13 +1042,13 @@ def export_participants(modeladmin, request, queryset):
 export_participants.short_description = "Export participants for selected events"
 
 ```
-#### View in admin - export csv
+#### View in admin - export CSV
 
-![View in admin - export csv](/readme-images/export-participants-list-admin.png)
+![View in admin - export CSV](/readme-images/export-participants-list-admin.png)
 
-#### Screenhot of exported csv file
+#### Screenhot of exported CSV file
 
-![Screenhot of exported csv file](/readme-images/participants-list-csv.png)
+![Screenhot of exported CSV file](/readme-images/participants-list-csv.png)
 
 ### Future Features
 
@@ -1518,7 +1521,7 @@ Bugs Screenshot
 
 | Issue                                                          | Page                        | Solution                                                          |
 |----------------------------------------------------------------|-----------------------------|-------------------------------------------------------------------|
-| After an event has passed, the option to register/unregister still is useable   | postevents_details.html     | Implement an if statement to check if the date has passed when the page loads. If it has, remove the button accordingly.               |
+| After an event has passed, the option to register/unregister still is usable   | postevents_details.html     | Implement an if statement to check if the date has passed when the page loads. If it has, remove the button accordingly.               |
 | Navbar's 'sticky' behaviour obscures main content               | base.html                   | Change from `fixed` to `sticky` class.|
 
 ## Deployment 
