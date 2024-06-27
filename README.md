@@ -1052,7 +1052,7 @@ export_participants.short_description = "Export participants for selected events
 
 ### Future Features
 
-For future releases, I envision incorporating a payment system, which would enhance user experience by allowing seamless transactions. Additionally, integrating social media connectivity will enable users to log in using their social media accounts and effortlessly share the races they participate in.
+For future releases, I envision incorporating a payment system to enhance user experience by allowing seamless transactions. Additionally, integrating social media connectivity will enable users to log in using their social media accounts and effortlessly share the races they participate in. Finally, a post-race area for publishing race results would be a valuable addition.
 
 ## Validation, Testing & Bugs
 
