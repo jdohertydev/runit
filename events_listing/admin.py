@@ -4,7 +4,6 @@ import csv
 from .models import PostEvent, Comment, EventSignUp
 from django_summernote.admin import SummernoteModelAdmin
 
-
 def export_participants(modeladmin, request, queryset):
     """
     Custom admin action to export participants
@@ -43,11 +42,9 @@ def export_participants(modeladmin, request, queryset):
 
     return response
 
-
 export_participants.short_description = (
     "Export participants for selected events"
 )
-
 
 class EventPostAdmin(SummernoteModelAdmin):
     """
@@ -89,6 +86,14 @@ class EventPostAdmin(SummernoteModelAdmin):
             return qs.filter(author=request.user)
         return qs.none()
 
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        """
+        Limit the author field to the logged-in user.
+        """
+        if db_field.name == "author":
+            kwargs["queryset"] = self.model._meta.get_field(db_field.name).related_model.objects.filter(id=request.user.id)
+            kwargs["initial"] = request.user
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 @admin.register(EventSignUp)
 class EventSignUpAdmin(admin.ModelAdmin):
@@ -103,7 +108,6 @@ class EventSignUpAdmin(admin.ModelAdmin):
         "user__first_name",
         "user__last_name",
     )
-
 
 # Register models
 admin.site.register(PostEvent, EventPostAdmin)
