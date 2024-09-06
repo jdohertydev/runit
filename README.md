@@ -121,6 +121,7 @@ View the live version of the website at [Run It!](https://runit-jdohertydev-7730
     - [Compatibility Testing](#compatibility-testing)
       - [Comparing Chrome and Edge](#comparing-chrome-and-edge)
     - [Bugs](#bugs)
+      - [Security Threat](#security-threat)
   - [Deployment](#deployment)
     - [6.1. Transfer of Progress from IDE](#61-transfer-of-progress-from-ide)
     - [6.2. Offline Cloning](#62-offline-cloning)
@@ -1297,13 +1298,13 @@ All JS files are located in 'static/js', making them easy to locate and manually
 
 ![JS Hint Results](/readme-images/screenshot-jshint.png)
 
-| Folder       | File                | Result |
-|--------------|---------------------|--------|
-| static/js/   | account_admin.js    | PASS   |
-| static/js/   | comments.js         | PASS*   |
-| static/js/   | countdown.js        | PASS   |
-| static/js/   | filter_form.js      | PASS   |
-| static/js/   | signup.js           | PASS*   |
+| Folder     | File             | Result |
+| ---------- | ---------------- | ------ |
+| static/js/ | account_admin.js | PASS   |
+| static/js/ | comments.js      | PASS*  |
+| static/js/ | countdown.js     | PASS   |
+| static/js/ | filter_form.js   | PASS   |
+| static/js/ | signup.js        | PASS*  |
 
 All files passed, with two files highlighting `One undefined variable - 27 bootstrap`. I chose to ignore this warning because it's typically harmless if the code functions correctly with Bootstrap. Validators can occasionally misinterpret external dependencies, so it's crucial to grasp the context and ensure proper usage of variables and libraries.
 
@@ -1519,10 +1520,30 @@ Bugs Screenshot
 
 ![Bugs screenshot](/readme-images/bugs-screenshot.png)
 
-| Issue                                                          | Page                        | Solution                                                          |
-|----------------------------------------------------------------|-----------------------------|-------------------------------------------------------------------|
-| After an event has passed, the option to register/unregister still is usable   | postevents_details.html     | Implement an if statement to check if the date has passed when the page loads. If it has, remove the button accordingly.               |
-| Navbar's 'sticky' behaviour obscures main content               | base.html                   | Change from `fixed` to `sticky` class.|
+| Issue                                                                        | Page                    | Solution                                                                                                                 |
+| ---------------------------------------------------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| After an event has passed, the option to register/unregister still is usable | postevents_details.html | Implement an if statement to check if the date has passed when the page loads. If it has, remove the button accordingly. |
+| Navbar's 'sticky' behaviour obscures main content                            | base.html               | Change from `fixed` to `sticky` class.                                                                                   |
+
+#### Security Threat 
+
+Although not a bug per se, I committed a version of the project that exposed the secret key, which made my application vulnerable to security risks. To fix this, I generated a new key using the following command:
+
+```Bash
+python manage.py shell
+
+from django.core.management.utils import get_random_secret_key
+print(get_random_secret_key())
+
+```
+
+Using the new key, I updated the ```settings.py``` file with the following code:
+
+```Python 
+SECRET_KEY = os.environ.get("SECRET_KEY")
+```
+
+Finally, I added the key to the environment variables in Heroku and ```env.py```, both of which are not publicly visible, ensuring the application is secure again.
 
 ## Deployment 
 
@@ -1639,61 +1660,61 @@ EMAIL_USE_TLS = True
 
 ## Technologies Used
 
-| Technology         | Description                                                                                   |
-|--------------------|-----------------------------------------------------------------------------------------------|
-| Django             | Primary framework used for backend development in the project.                                 |
-| Python             | Core backend programming language employed throughout the project.                            |
-| HTML               | Markup language utilized for creating frontend templates.                                      |
-| CSS                | External stylesheet (`./static/css/style.css`) applied to style the project.                   |
-| JavaScript         | Frontend scripting language employed for interactive web elements.                             |
-| Bootstrap v. 5.3   | Frontend framework adopted for building responsive, mobile-first web applications.             |
-| Heroku             | Cloud platform utilized for deploying the project.                                              |
-| Balsamiq           | Software tool utilized for designing wireframes and mockups.                                    |
-| Git                | Version control system used to manage changes and project history.                              |
-| GitHub             | Hosting service for storing Git repositories and facilitating collaboration.                   |
-| Gitpod             | Online IDE initially used for developing the project.                                           |
-| Requirements.txt   | File listing Python packages required for the project, facilitating environment setup.         |
+| Technology       | Description                                                                            |
+| ---------------- | -------------------------------------------------------------------------------------- |
+| Django           | Primary framework used for backend development in the project.                         |
+| Python           | Core backend programming language employed throughout the project.                     |
+| HTML             | Markup language utilized for creating frontend templates.                              |
+| CSS              | External stylesheet (`./static/css/style.css`) applied to style the project.           |
+| JavaScript       | Frontend scripting language employed for interactive web elements.                     |
+| Bootstrap v. 5.3 | Frontend framework adopted for building responsive, mobile-first web applications.     |
+| Heroku           | Cloud platform utilized for deploying the project.                                     |
+| Balsamiq         | Software tool utilized for designing wireframes and mockups.                           |
+| Git              | Version control system used to manage changes and project history.                     |
+| GitHub           | Hosting service for storing Git repositories and facilitating collaboration.           |
+| Gitpod           | Online IDE initially used for developing the project.                                  |
+| Requirements.txt | File listing Python packages required for the project, facilitating environment setup. |
 
 ### Requirements.txt
 
 The following modules were used in development of the Run it! website:
 
-| Module Name              | Description                                                                                     |
-|--------------------------|-------------------------------------------------------------------------------------------------|
-| asgiref==3.8.1           | ASGI specification reference implementation, used for building asynchronous Python web applications. |
-| astroid==3.2.2           | Abstract Syntax Tree (AST) manipulation library for Python, used in static analysis tools like pylint. |
-| black==24.4.2            | Code formatter for Python, ensuring consistent code style across projects.                     |
-| Brotli==1.1.0            | Python bindings for the Brotli compression algorithm, providing lossless data compression.       |
-| chardet==5.2.0           | Character encoding auto-detection in Python, used to determine the encoding of text files.       |
-| click==8.1.7             | Command line interface creation kit for Python, simplifying the process of writing command line tools. |
-| cloudinary==1.36.0       | Python SDK for Cloudinary, a cloud service for managing media assets.                            |
-| crispy-bootstrap5==0.7   | Django forms plugin that seamlessly integrates Bootstrap 5 styles with crispy-forms.             |
-| cssselect2==0.7.0        | CSS selector library for Python, facilitating the selection of HTML elements using CSS selectors. |
-| dj-database-url==0.5.0   | Django utility for utilizing database URLs in configuration, simplifying database connection settings. |
-| dj3-cloudinary-storage==0.0.6 | Django storage backend for Cloudinary, allowing seamless integration of Cloudinary with Django projects. |
-| Django==4.2.13           | High-level Python web framework that encourages rapid development and clean, pragmatic design.   |
-| django-allauth==0.57.2   | Django package for handling authentication, registration, account management, and social authentication. |
-| django-crispy-forms==2.1 | Django forms application that helps manage forms rendering in a DRY (Don't Repeat Yourself) manner. |
-| django-sendgrid-v5==1.2.3| Django integration with SendGrid API for sending transactional and marketing email.              |
-| django-summernote==0.8.20.0 | Django integration with Summernote WYSIWYG editor for text and HTML content editing.             |
-| fonttools==4.53.0        | Library for manipulating fonts in Python, used for reading, writing, and converting font files. |
-| gunicorn==20.1.0         | Python WSGI HTTP server for UNIX, used to run Python web applications in production environments. |
-| html5lib==1.1            | HTML parser library for Python, used for parsing HTML documents and cleaning up markup.          |
-| oauthlib==3.2.2          | Library for implementing OAuth 1.0 and OAuth 2.0 in Python, facilitating authentication processes. |
-| pathspec==0.12.1         | Library for matching file paths against Unix shell-style patterns, used in git and other tools. |
-| pillow==10.3.0           | Python Imaging Library (PIL) fork that adds support for opening, manipulating, and saving many different image file formats. |
-| psycopg2==2.9.9          | PostgreSQL adapter for Python, allowing Python to connect to PostgreSQL databases.             |
-| pydyf==0.10.0            | Python library for creating and modifying PDF files.                                             |
-| PyJWT==2.8.0             | JSON Web Token (JWT) implementation in Python, used for securely transmitting information between parties. |
-| pyphen==0.15.0           | Library for hyphenating words in Python, used for text processing and formatting.               |
-| python-http-client==3.3.7| Simple HTTP client library for Python, facilitating making HTTP requests.                        |
-| python3-openid==3.2.0    | Python 3 implementation of the OpenID Connect protocol for user authentication.                 |
-| requests-oauthlib==2.0.0 | OAuth library for Python requests, providing OAuth client support for Python applications.       |
-| sqlparse==0.5.0          | Non-validating SQL parser for Python, used for parsing SQL queries and formatting SQL code.      |
-| starkbank-ecdsa==2.2.0   | Library for ECDSA cryptography in Python, used for cryptographic operations.                    |
-| urllib3==1.26.18         | HTTP client library for Python, used for handling HTTP requests and responses.                  |
-| whitenoise==5.3.0        | Simplified static file serving for Python web applications, enhancing Django's static file handling. |
-| zopfli==0.2.3            | Compression library for Python, providing higher compression ratios than typical zlib.          |
+| Module Name                   | Description                                                                                                                  |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| asgiref==3.8.1                | ASGI specification reference implementation, used for building asynchronous Python web applications.                         |
+| astroid==3.2.2                | Abstract Syntax Tree (AST) manipulation library for Python, used in static analysis tools like pylint.                       |
+| black==24.4.2                 | Code formatter for Python, ensuring consistent code style across projects.                                                   |
+| Brotli==1.1.0                 | Python bindings for the Brotli compression algorithm, providing lossless data compression.                                   |
+| chardet==5.2.0                | Character encoding auto-detection in Python, used to determine the encoding of text files.                                   |
+| click==8.1.7                  | Command line interface creation kit for Python, simplifying the process of writing command line tools.                       |
+| cloudinary==1.36.0            | Python SDK for Cloudinary, a cloud service for managing media assets.                                                        |
+| crispy-bootstrap5==0.7        | Django forms plugin that seamlessly integrates Bootstrap 5 styles with crispy-forms.                                         |
+| cssselect2==0.7.0             | CSS selector library for Python, facilitating the selection of HTML elements using CSS selectors.                            |
+| dj-database-url==0.5.0        | Django utility for utilizing database URLs in configuration, simplifying database connection settings.                       |
+| dj3-cloudinary-storage==0.0.6 | Django storage backend for Cloudinary, allowing seamless integration of Cloudinary with Django projects.                     |
+| Django==4.2.13                | High-level Python web framework that encourages rapid development and clean, pragmatic design.                               |
+| django-allauth==0.57.2        | Django package for handling authentication, registration, account management, and social authentication.                     |
+| django-crispy-forms==2.1      | Django forms application that helps manage forms rendering in a DRY (Don't Repeat Yourself) manner.                          |
+| django-sendgrid-v5==1.2.3     | Django integration with SendGrid API for sending transactional and marketing email.                                          |
+| django-summernote==0.8.20.0   | Django integration with Summernote WYSIWYG editor for text and HTML content editing.                                         |
+| fonttools==4.53.0             | Library for manipulating fonts in Python, used for reading, writing, and converting font files.                              |
+| gunicorn==20.1.0              | Python WSGI HTTP server for UNIX, used to run Python web applications in production environments.                            |
+| html5lib==1.1                 | HTML parser library for Python, used for parsing HTML documents and cleaning up markup.                                      |
+| oauthlib==3.2.2               | Library for implementing OAuth 1.0 and OAuth 2.0 in Python, facilitating authentication processes.                           |
+| pathspec==0.12.1              | Library for matching file paths against Unix shell-style patterns, used in git and other tools.                              |
+| pillow==10.3.0                | Python Imaging Library (PIL) fork that adds support for opening, manipulating, and saving many different image file formats. |
+| psycopg2==2.9.9               | PostgreSQL adapter for Python, allowing Python to connect to PostgreSQL databases.                                           |
+| pydyf==0.10.0                 | Python library for creating and modifying PDF files.                                                                         |
+| PyJWT==2.8.0                  | JSON Web Token (JWT) implementation in Python, used for securely transmitting information between parties.                   |
+| pyphen==0.15.0                | Library for hyphenating words in Python, used for text processing and formatting.                                            |
+| python-http-client==3.3.7     | Simple HTTP client library for Python, facilitating making HTTP requests.                                                    |
+| python3-openid==3.2.0         | Python 3 implementation of the OpenID Connect protocol for user authentication.                                              |
+| requests-oauthlib==2.0.0      | OAuth library for Python requests, providing OAuth client support for Python applications.                                   |
+| sqlparse==0.5.0               | Non-validating SQL parser for Python, used for parsing SQL queries and formatting SQL code.                                  |
+| starkbank-ecdsa==2.2.0        | Library for ECDSA cryptography in Python, used for cryptographic operations.                                                 |
+| urllib3==1.26.18              | HTTP client library for Python, used for handling HTTP requests and responses.                                               |
+| whitenoise==5.3.0             | Simplified static file serving for Python web applications, enhancing Django's static file handling.                         |
+| zopfli==0.2.3                 | Compression library for Python, providing higher compression ratios than typical zlib.                                       |
 
 ## Credits
 
